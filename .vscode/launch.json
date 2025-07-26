@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-MycrmApplication<mycrm>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "parrino.riccardo.mycrm.MycrmApplication",
+            "projectName": "mycrm",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
