@@ -5,19 +5,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductService {
     
-    public String createService(String entity) {
+    public String createProduct(String entity) {
         return entity;
     }
 
-    public String readService(String param) {
+    public String readProduct(String param) {
         return param;
     }
     
-    public String updateService(String param) {
+    public String updateProduct(String param) {
         return param;
     }
     
-    public String deleteService(String param) {
+    public String deleteProduct(String param) {
         return param;
     }
 
