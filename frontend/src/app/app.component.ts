@@ -10,5 +10,5 @@ import { MatListModule } from '@angular/material/list';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'frontend';
+  title = 'MyCrm';
 }
