@@ -2,19 +2,19 @@
   <mat-sidenav mode="side" opened>
     <mat-nav-list>
       <div class="icon-container">
-        <a mat-list-item href="#"><img class="sale-sidenavbar-icon" src="assets/hamburger-icon.png" alt="" title="Expand"></a>
+        <a mat-list-item routerLink=""><img class="sale-sidenavbar-icon" src="assets/hamburger-icon.png" alt="" title="Expand"></a>
       </div>  
       <div class="icon-container">
-        <a mat-list-item href="#"><img class="sale-sidenavbar-icon" src="assets/sale-icon.png" alt="" title="Sale Section"></a>
+        <a mat-list-item routerLink="sales"><img class="sale-sidenavbar-icon" src="assets/sale-icon.png" alt="" title="Sale Section"></a>
       </div>
       <div class="icon-container">
-        <a mat-list-item href="#"><img class="sale-sidenavbar-icon" src="assets/product-icon.png" alt="" title="Product Section"></a>
+        <a mat-list-item routerLink="products"><img class="sale-sidenavbar-icon" src="assets/product-icon.png" alt="" title="Product Section"></a>
       </div>
       <div class="icon-container">
-        <a mat-list-item href="#"><img class="sale-sidenavbar-icon" src="assets/customer-icon.png" alt="" title="Customer Section"></a>
+        <a mat-list-item routerLink="customers"><img class="sale-sidenavbar-icon" src="assets/customer-icon.png" alt="" title="Customer Section"></a>
       </div>
       <div class="icon-container">
-        <a mat-list-item href="#"><img class="sale-sidenavbar-icon" src="assets/settings-icon.png" alt="" title="Settings"></a>
+        <a mat-list-item routerLink="settings"><img class="sale-sidenavbar-icon" src="assets/settings-icon.png" alt="" title="Settings"></a>
       </div>
     </mat-nav-list>
   </mat-sidenav>
@@ -22,5 +22,3 @@
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-<router-outlet />
