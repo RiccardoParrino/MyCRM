@@ -17,13 +17,15 @@ public class CustomerController {
     private CustomerService customerService;
 
     @PostMapping("/createCustomer")
-    public String createCustomer(@RequestBody String entity) {
+    public String createCustomer() {
+        String entity = new String ("temp");
         return this.customerService.createCustomer(entity);
     }
 
     @GetMapping("/readCustomer")
-    public String readCustomer(@RequestParam String param) {
-        return this.customerService.readCustomer(param);
+    public String readCustomer() {
+        String entity = new String ("temp");
+        return this.customerService.readCustomer(entity);
     }
     
     
