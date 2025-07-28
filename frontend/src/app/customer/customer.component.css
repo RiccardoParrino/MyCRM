@@ -1,3 +1,8 @@
+.customer-component-container {
+    width: 100%;
+    height: 100%;
+}
+
 .toolbar-title {
     font-size: 32px;
 }
@@ -11,11 +16,12 @@ mat-toolbar {
 }
 
 .footer-toolbar {
-  margin-top: auto;
-  position: sticky;
-  bottom: 0;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;  
   width: 100%;
   z-index: 2;
+  padding-bottom: 16px;
   background-color: aqua;
 }
 
@@ -28,6 +34,7 @@ mat-toolbar {
     height: 600px;
     margin: 0px auto;
     margin-top: 64px;
+    margin-bottom: 16px;
     overflow: auto;
     border: 1px solid black;
 }
