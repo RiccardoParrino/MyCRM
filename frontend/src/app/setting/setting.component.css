@@ -1,0 +1,7 @@
+.toolbar-title {
+    font-size: 32px;
+}
+
+mat-toolbar {
+    padding-top: 16px;
+}
