@@ -12,8 +12,8 @@ export class CustomerService {
 
   constructor(private http: HttpClient) {}
 
-  readCustomers(): Observable<CustomerDTO> {
-    return this.http.get<CustomerDTO>(this.readCustomerAPI);
+  readCustomers(): Observable<CustomerDTO[]> {
+    return this.http.get<CustomerDTO[]>(this.readCustomerAPI);
   }
 
 }

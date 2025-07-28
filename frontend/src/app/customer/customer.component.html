@@ -5,7 +5,7 @@
 </mat-toolbar>
 
 <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
-  <div *cdkVirtualFor="let customer of customers" class="example-item">{{customer}}</div>
+  <div *cdkVirtualFor="let customer of customers" class="example-item">{{customer.name}}</div>
 </cdk-virtual-scroll-viewport>
 
 <mat-toolbar color="primary" class="footer-toolbar">

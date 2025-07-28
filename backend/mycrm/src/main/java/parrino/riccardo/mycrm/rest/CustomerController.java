@@ -70,7 +70,6 @@ public class CustomerController {
         return toReturn;
     }
     
-    
     @GetMapping("/updateCustomer")
     public String updateCustomer(@RequestParam String param) {
         return this.customerService.updateCustomer(param);
