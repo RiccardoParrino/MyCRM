@@ -7,10 +7,11 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { Customer } from '../model/customer.model';
 import {MatListModule} from '@angular/material/list';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-customer',
-  imports: [RouterModule, HttpClientModule, MatToolbarModule, ScrollingModule, NgFor, MatListModule],
+  imports: [RouterModule, HttpClientModule, MatToolbarModule, ScrollingModule, NgFor, MatListModule,MatButtonModule],
   templateUrl: './customer.component.html',
   styleUrl: './customer.component.css'
 })
