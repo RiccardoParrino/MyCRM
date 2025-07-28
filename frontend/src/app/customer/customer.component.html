@@ -4,9 +4,24 @@
     <span class="toolbar-title">MyCRM</span>
 </mat-toolbar>
 
-<cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+<!-- <div class="customer-container">
+
+  <div class="customer-item" *ngFor="let customer of customers">
+    {{customer.name}}
+  </div>
+  
+
+</div> -->
+
+<div class="customer-container">
+  <mat-selection-list>
+    <mat-list-option *ngFor="let customer of customers">{{customer.name}}</mat-list-option>
+  </mat-selection-list>
+</div>
+
+<!-- <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
   <div *cdkVirtualFor="let customer of customers" class="example-item">{{customer.name}}</div>
-</cdk-virtual-scroll-viewport>
+</cdk-virtual-scroll-viewport> -->
 
 <mat-toolbar color="primary" class="footer-toolbar">
     <span class="toolbar-title">Customers page</span>

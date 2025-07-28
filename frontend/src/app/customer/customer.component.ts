@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { NgFor } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CustomerService } from '../service/customer.service';
 import { HttpClientModule } from '@angular/common/http';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { Customer } from '../model/customer.model';
+import {MatListModule} from '@angular/material/list';
 
 @Component({
   selector: 'app-customer',
-  imports: [RouterModule, HttpClientModule, MatToolbarModule, ScrollingModule],
+  imports: [RouterModule, HttpClientModule, MatToolbarModule, ScrollingModule, NgFor, MatListModule],
   templateUrl: './customer.component.html',
   styleUrl: './customer.component.css'
 })

@@ -30,42 +30,20 @@ public class CustomerController {
     @GetMapping("/readCustomer")
     public List<CustomerDTO> readCustomer() {
         List<CustomerDTO> toReturn = new ArrayList<>();
-        CustomerDTO c1 = 
-            CustomerDTO.builder()
-                .name("riccardo")
-                .surname("parrino")
-                .email("riccardo@gmail.com")
-                .organization("BIG COMPANY LTD")
-                .phoneNumber("1231231231")
-                .notes("GRAAANDEEE")
-                .createdAt(new Date())
-                .build();
-        
-        CustomerDTO c2 = 
-            CustomerDTO.builder()
-                .name("riccardo")
-                .surname("parrino")
-                .email("riccardo@gmail.com")
-                .organization("BIG COMPANY LTD")
-                .phoneNumber("1231231231")
-                .notes("GRAAANDEEE")
-                .createdAt(new Date())
-                .build();
-        
-        CustomerDTO c3 = 
-            CustomerDTO.builder()
-                .name("riccardo")
-                .surname("parrino")
-                .email("riccardo@gmail.com")
-                .organization("BIG COMPANY LTD")
-                .phoneNumber("1231231231")
-                .notes("GRAAANDEEE")
-                .createdAt(new Date())
-                .build();
-        
-        toReturn.add(c1);
-        toReturn.add(c2);
-        toReturn.add(c3);
+
+        for (int i = 0; i < 50; i++) {
+            toReturn.add(
+                CustomerDTO.builder()
+                    .name("riccardo")
+                    .surname("parrino")
+                    .email("riccardo@gmail.com")
+                    .organization("BIG COMPANY LTD")
+                    .phoneNumber("1231231231")
+                    .notes("GRAAANDEEE")
+                    .createdAt(new Date())
+                    .build()
+            );
+        }
 
         return toReturn;
     }
