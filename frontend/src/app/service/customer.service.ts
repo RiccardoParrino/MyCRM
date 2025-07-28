@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MessageDTO } from '../dto/message.dto';
+import { CustomerDTO } from '../dto/customer.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +10,10 @@ export class CustomerService {
 
   readCustomerAPI:string = 'http://localhost:8080/readCustomer';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  readCustomers(): Observable<MessageDTO> {
-    return this.http.get<MessageDTO>(this.readCustomerAPI);
+  readCustomers(): Observable<CustomerDTO> {
+    return this.http.get<CustomerDTO>(this.readCustomerAPI);
   }
 
 }

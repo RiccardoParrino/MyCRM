@@ -4,7 +4,7 @@ export interface SaleDTO {
     activity:string;
     customer:string;
     amount:number;
-    product:number;
+    product:string;
     date:Date;
     createdAt:Date;
 }

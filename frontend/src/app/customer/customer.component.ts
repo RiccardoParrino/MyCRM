@@ -21,7 +21,11 @@ export class CustomerComponent {
 
   readCustomers() {
     this.customerService.readCustomers().subscribe(
-      (customer) => { this.customers = customer; }
+      (customers[]) => {
+        customers.forEach(element => {
+          this.customers.push(element);
+        });
+      }
     )
   }
 
