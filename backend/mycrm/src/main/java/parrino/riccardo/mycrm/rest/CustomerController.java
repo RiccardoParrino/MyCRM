@@ -2,10 +2,10 @@ package parrino.riccardo.mycrm.rest;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import parrino.riccardo.mycrm.dto.Message;
 import parrino.riccardo.mycrm.service.CustomerService;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,9 +23,8 @@ public class CustomerController {
     }
 
     @GetMapping("/readCustomer")
-    public String readCustomer() {
-        String entity = new String ("temp");
-        return this.customerService.readCustomer(entity);
+    public Message readCustomer() {
+        return new Message("temp");
     }
     
     

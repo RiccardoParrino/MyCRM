@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CustomerService } from '../service/customer.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MessageDTO } from '../dto/message.dto';
 
 @Component({
   selector: 'app-customer',
@@ -11,15 +12,14 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class CustomerComponent {
 
-  customers:String;
+  customers:MessageDTO | undefined;
   
   constructor(private customerService:CustomerService) {
-    this.customers = "";
   }
 
   readCustomers() {
     this.customerService.readCustomers().subscribe(
-      (customer) => { this.customers = customer; console.log("temp");}
+      (customer) => { this.customers = customer; }
     )
   }
 
