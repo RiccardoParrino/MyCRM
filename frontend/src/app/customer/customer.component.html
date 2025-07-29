@@ -36,9 +36,9 @@
 </div>
 
 <mat-toolbar color="primary" class="footer-toolbar">
-    <button mat-flat-button>Delete</button>
-    <button mat-flat-button>Modify</button>
-    <button mat-flat-button>Send Message</button>
-    <button mat-flat-button>Send Email</button>
-    <button mat-flat-button>Other actions</button>
+    <button mat-flat-button [disabled]="!isRowSelected">Delete</button>
+    <button mat-flat-button [disabled]="!isRowSelected">Modify</button>
+    <button mat-flat-button [disabled]="!isRowSelected">Send Message</button>
+    <button mat-flat-button [disabled]="!isRowSelected">Send Email</button>
+    <button mat-flat-button [disabled]="!isRowSelected">Other actions</button>
 </mat-toolbar>

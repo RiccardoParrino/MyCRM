@@ -31,9 +31,8 @@ export class CustomerComponent {
   customersDataSource = new MatTableDataSource<Customer>();
   displayedColumns: String[] = ["name", "email", "phoneNumber", "organization"];
 
-  currentSelection: Customer | undefined;
-  allowMultiSelect = false;
-  selection = new SelectionModel<Customer>(this.allowMultiSelect);
+  isRowSelected:boolean = false;
+  currentSelectedRow: MatRow | undefined;
 
   constructor(private customerService:CustomerService,
     private createCustomerDialog:MatDialog) {
@@ -77,7 +76,8 @@ export class CustomerComponent {
   }
 
   rowClicked(customerRow:MatRow) {
-    console.log(customerRow);
+    this.currentSelectedRow = customerRow;
+    this.isRowSelected = true;
   }
 
 } 
