@@ -8,7 +8,6 @@ import { Customer } from '../model/customer.model';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatRow, MatTableDataSource, MatTableModule} from '@angular/material/table';
-import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateCustomerDialogComponent } from '../create-customer-dialog/create-customer-dialog.component';
 
@@ -29,7 +28,7 @@ export class CustomerComponent {
 
   customers: Customer[] = [];
   customersDataSource = new MatTableDataSource<Customer>();
-  displayedColumns: String[] = ["name", "email", "phoneNumber", "organization"];
+  displayedColumns: String[] = ["name", "email", "organizationName", "city", "region", "state", "coreBusiness", "phoneNumber", "notes", "createdAt"];
 
   isRowSelected:boolean = false;
   currentSelectedRow: MatRow | undefined;
