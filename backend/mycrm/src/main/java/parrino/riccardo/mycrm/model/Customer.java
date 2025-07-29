@@ -2,6 +2,8 @@ package parrino.riccardo.mycrm.model;
 
 import java.util.Date;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,6 +13,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @Builder
+@Entity
+@Table(name = "Customer")
 public class Customer {
     private String name;
     private String surname;
