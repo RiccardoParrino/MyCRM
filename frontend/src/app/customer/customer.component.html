@@ -1,12 +1,14 @@
 <mat-toolbar color="primary">
     <span class="toolbar-title">Customers page</span>
-    <button mat-flat-button color="warn">Create</button>
+    <button mat-flat-button color="warn" (click)="openCreateCustomerDialog()">Create</button>
+    <button mat-flat-button color="warn" (click)="readCustomers()">Load</button>
+    <button mat-flat-button color="warn" (click)="readCustomers()">Import</button>
     <span class="example-spacer"></span>
     <span class="toolbar-title">MyCRM</span>
 </mat-toolbar>
 
 <div class="table-container">
-  <table mat-table [dataSource]="customers">
+  <table mat-table [dataSource]="customersDataSource" >
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -34,9 +36,9 @@
 </div>
 
 <mat-toolbar color="primary" class="footer-toolbar">
-    <button mat-flat-button color="warn">Delete</button>
-    <button mat-flat-button color="warn">Modify</button>
-    <button mat-flat-button color="warn">Send Message</button>
-    <button mat-flat-button color="warn">Send Email</button>
-    <button mat-flat-button color="warn">Other actions</button>
+    <button mat-flat-button>Delete</button>
+    <button mat-flat-button>Modify</button>
+    <button mat-flat-button>Send Message</button>
+    <button mat-flat-button>Send Email</button>
+    <button mat-flat-button>Other actions</button>
 </mat-toolbar>
