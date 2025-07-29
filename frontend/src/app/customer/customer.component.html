@@ -1,36 +1,42 @@
-<div class="customer-component-container">
-  <mat-toolbar color="primary">
-      <span class="toolbar-title">Customers page</span>
+<mat-toolbar color="primary">
+    <span class="toolbar-title">Customers page</span>
+    <button mat-flat-button color="warn">Create</button>
+    <span class="example-spacer"></span>
+    <span class="toolbar-title">MyCRM</span>
+</mat-toolbar>
 
-      <button matButton="filled">Basic</button>
+<div class="table-container">
+  <table mat-table [dataSource]="customers">
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let customer"> {{customer.name + customer.surname}} </td>
+    </ng-container>
 
-      <span class="example-spacer"></span>
-      <span class="toolbar-title">MyCRM</span>
-  </mat-toolbar>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let customer"> {{customer.email}} </td>
+    </ng-container>
 
-  <!-- <div class="customer-container">
+    <ng-container matColumnDef="phoneNumber">
+      <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+      <td mat-cell *matCellDef="let customer"> {{customer.phoneNumber}} </td>
+    </ng-container>
 
-    <div class="customer-item" *ngFor="let customer of customers">
-      {{customer.name}}
-    </div>
-    
+    <ng-container matColumnDef="organization">
+      <th mat-header-cell *matHeaderCellDef>Organization</th>
+      <td mat-cell *matCellDef="let customer"> {{customer.organization}} </td>
+    </ng-container>
 
-  </div> -->
-
-  <div class="customer-container">
-    <mat-selection-list>
-      <mat-list-option *ngFor="let customer of customers">{{customer.name}}</mat-list-option>
-    </mat-selection-list>
-  </div>
-
-  <!-- <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
-    <div *cdkVirtualFor="let customer of customers" class="example-item">{{customer.name}}</div>
-  </cdk-virtual-scroll-viewport> -->
-
-  <mat-toolbar color="primary" class="footer-toolbar">
-      <span class="toolbar-title">Customers page</span>
-      <span class="example-spacer"></span>
-      <span class="toolbar-title">MyCRM</span>
-  </mat-toolbar>
-
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 </div>
+
+<mat-toolbar color="primary" class="footer-toolbar">
+    <button mat-flat-button color="warn">Delete</button>
+    <button mat-flat-button color="warn">Modify</button>
+    <button mat-flat-button color="warn">Send Message</button>
+    <button mat-flat-button color="warn">Send Email</button>
+    <button mat-flat-button color="warn">Other actions</button>
+</mat-toolbar>

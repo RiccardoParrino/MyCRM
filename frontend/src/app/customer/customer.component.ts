@@ -8,16 +8,26 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import { Customer } from '../model/customer.model';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
+import {MatTableModule} from '@angular/material/table';
 
 @Component({
   selector: 'app-customer',
-  imports: [RouterModule, HttpClientModule, MatToolbarModule, ScrollingModule, NgFor, MatListModule,MatButtonModule],
+  imports: [RouterModule, 
+    HttpClientModule, 
+    MatToolbarModule, 
+    ScrollingModule,
+    NgFor, 
+    MatListModule, 
+    MatButtonModule, 
+    MatTableModule
+  ],
   templateUrl: './customer.component.html',
   styleUrl: './customer.component.css'
 })
 export class CustomerComponent implements OnInit {
 
   customers: Customer[] = [];
+  displayedColumns: String[] = ["name", "email", "phoneNumber", "organization"]
   
   constructor(private customerService:CustomerService) {
   }
