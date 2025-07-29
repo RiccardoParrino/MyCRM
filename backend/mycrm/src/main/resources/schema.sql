@@ -10,8 +10,9 @@ CREATE TABLE product (
 
 CREATE TABLE sale (
     saleId int,
-    userId varchar(255),
-    productId varchar(255),
+    userId int,
+    productId int,
+    customerId int,
     progress varchar(255),
     activity varchar(255),
     amount varchar(255),
