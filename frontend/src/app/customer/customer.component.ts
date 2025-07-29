@@ -36,7 +36,6 @@ export class CustomerComponent {
   }
 
   readCustomers() {
-    console.log("Reading customers...");
     this.customerService.readCustomers().subscribe(
       (customers) => {
         customers.forEach(item => {
@@ -52,12 +51,9 @@ export class CustomerComponent {
             )
           );
         });
+        this.customersDataSource.data = this.customers;
       }
     );
-    console.log("Customers readed!");
-    this.customersDataSource.data = this.customers;
-    console.log(this.customers);
-    console.log(this.customersDataSource.data);
   }
 
   openCreateCustomerDialog() : void {
