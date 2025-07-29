@@ -3,7 +3,11 @@ export interface CustomerDTO {
     surname:string;
     email:string;
     phoneNumber:string;
-    organization:string;
+    organizationName:string;
+    city:string;
+    region:string;
+    state:string;
+    coreBusiness:string;
     createdAt:Date;
     notes:string;
 }

@@ -49,7 +49,11 @@ export class CustomerComponent {
               item.surname,
               item.email,
               item.phoneNumber,
-              item.organization,
+              item.organizationName,
+              item.city,
+              item.region,
+              item.state,
+              item.coreBusiness,
               item.createdAt,
               item.notes
             )

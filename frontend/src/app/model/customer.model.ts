@@ -1,11 +1,13 @@
-import { createDocumentRegistry } from "typescript";
-
 export class Customer {
     name:string;
     surname:string;
     email:string;
     phoneNumber:string;
-    organization:string;
+    organizationName:string;
+    city:string;
+    region:string;
+    state:string;
+    coreBusiness:string;
     createdAt:Date;
     notes:string;
 
@@ -14,7 +16,11 @@ export class Customer {
         surname:string,
         email:string,
         phoneNumber:string,
-        organization:string,
+        organizationName:string,
+        city:string,
+        region:string,
+        state:string,
+        coreBusiness:string,
         createdAt:Date,
         notes:string
     ) {
@@ -22,7 +28,11 @@ export class Customer {
         this.surname = surname;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.organization = organization;
+        this.organizationName = organizationName;
+        this.city = city;
+        this.region = region;
+        this.state = state;
+        this.coreBusiness = coreBusiness;
         this.createdAt = createdAt;
         this.notes = notes;
     }
