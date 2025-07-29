@@ -7,7 +7,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import { Customer } from '../model/customer.model';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import {MatRow, MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateCustomerDialogComponent } from '../create-customer-dialog/create-customer-dialog.component';
@@ -31,6 +31,10 @@ export class CustomerComponent {
   customersDataSource = new MatTableDataSource<Customer>();
   displayedColumns: String[] = ["name", "email", "phoneNumber", "organization"];
 
+  currentSelection: Customer | undefined;
+  allowMultiSelect = false;
+  selection = new SelectionModel<Customer>(this.allowMultiSelect);
+
   constructor(private customerService:CustomerService,
     private createCustomerDialog:MatDialog) {
   }
@@ -38,6 +42,7 @@ export class CustomerComponent {
   readCustomers() {
     this.customerService.readCustomers().subscribe(
       (customers) => {
+        this.customers = [];  
         customers.forEach(item => {
           this.customers.push(
             new Customer (
@@ -69,6 +74,10 @@ export class CustomerComponent {
       console.log(result);
     }
     )
+  }
+
+  rowClicked(customerRow:MatRow) {
+    console.log(customerRow);
   }
 
 } 

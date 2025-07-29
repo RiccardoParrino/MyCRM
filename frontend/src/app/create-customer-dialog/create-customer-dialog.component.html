@@ -1,8 +1,8 @@
-<h2 mat-dialog-title>Modifica Cliente</h2>
+<h2 mat-dialog-title>Create new Customer</h2>
 <mat-dialog-content>
-  <p>Nome attuale: <strong>{{ data.name }}</strong></p>
+  <p>Nome: <strong>{{ data.name }}</strong></p>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button (click)="close()">Annulla</button>
-  <button mat-button color="primary" (click)="save()">Salva</button>
+  <button matButton (click)="close()">Annulla</button>
+  <button matButton (click)="save()">Salva</button>
 </mat-dialog-actions>
