@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgFor } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CustomerService } from '../service/customer.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -16,7 +15,6 @@ import {MatTableModule} from '@angular/material/table';
     HttpClientModule, 
     MatToolbarModule, 
     ScrollingModule,
-    NgFor, 
     MatListModule, 
     MatButtonModule, 
     MatTableModule
@@ -34,6 +32,7 @@ export class CustomerComponent implements OnInit {
 
   ngOnInit(): void {
     this.readCustomers();
+    console.log(this.customers.length);
   }
 
   readCustomers() {
