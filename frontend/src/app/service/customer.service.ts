@@ -22,7 +22,7 @@ export class CustomerService {
     return this.http.post<Boolean>(this.createCustomerAPI, customer);
   }
 
-  deleteCustomer(customerId:string): Observable<Boolean> {
+  deleteCustomer(customerId:number): Observable<Boolean> {
     const params = new HttpParams().set('customerId', customerId);
     return this.http.get<Boolean>(this.deleteCustomerAPI, {params});
   }

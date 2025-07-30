@@ -59,7 +59,7 @@ public class CustomerController {
     }
 
     @GetMapping("/deleteCustomer")
-    public Boolean deleteCustomer(@RequestParam String customerId) {
+    public Boolean deleteCustomer(@RequestParam Long customerId) {
         return this.customerService.deleteCustomer(customerId);
     }
     

@@ -20,7 +20,8 @@ public class CustomerService {
         return param;
     }
     
-    public Boolean deleteCustomer(String customerId) {
+    public Boolean deleteCustomer(Long customerId) {
+        System.out.println(customerId);
         return true;
     }
 

@@ -32,7 +32,7 @@ export class CustomerComponent {
   displayedColumns: String[] = ["name", "email", "organizationName", "city", "region", "state", "coreBusiness", "phoneNumber", "notes", "createdAt"];
 
   isRowSelected:boolean = false;
-  currentSelectedRow: MatRow | undefined;
+  currentSelectedCustomer: Customer | undefined;
 
   constructor(
     private customerService:CustomerService, 
@@ -91,14 +91,16 @@ export class CustomerComponent {
 
     deleteDialogRef.afterClosed().subscribe( result => {
       if (result) {
-        this.customerService.deleteCustomer("customerId").subscribe ( 
-          (value) => console.log("customer deleted successfully!")
-        );}
+        if (this.currentSelectedCustomer) {
+          this.customerService.deleteCustomer(this.currentSelectedCustomer.customerId).subscribe ( 
+            (value) => console.log("customer deleted successfully!")
+          );}
+        }
     });
   }
 
   rowClicked(customerRow:any) {
-    this.currentSelectedRow = customerRow;
+    this.currentSelectedCustomer = customerRow;
     this.isRowSelected = true;
     console.log(customerRow);
   }
