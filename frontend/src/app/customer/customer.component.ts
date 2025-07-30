@@ -85,7 +85,7 @@ export class CustomerComponent {
 
   deleteCustomer() {
     const deleteDialogRef = this.deleteCustomerDialog.open(DeleteCustomerComponent,
-      {width:'512px', height:'128px'}
+      {width:'512px', height:'158px'}
     );
 
     deleteDialogRef.afterClosed().subscribe( result => {
