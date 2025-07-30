@@ -6,6 +6,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { Customer } from '../model/customer.model';
+import { ConfirmModifyCustomerComponent } from '../confirm-modify-customer/confirm-modify-customer.component';
+import { ConfirmCreateCustomerComponent } from '../confirm-create-customer/confirm-create-customer.component';
 
 @Component({
   selector: 'app-modify-customer',
@@ -26,6 +28,7 @@ export class ModifyCustomerComponent {
   notes:string = '';
 
   constructor (
+    public confirmModifyCustomerComponentDialog:MatDialog,
     public modifyCustomerDialogRef:MatDialogRef<ModifyCustomerComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
@@ -46,21 +49,29 @@ export class ModifyCustomerComponent {
   }
 
   save() {
-    const newCustomer = new Customer(
-      -1,
-      this.name,
-      this.surname,
-      this.email,
-      this.phoneNumber,
-      this.organizationName,
-      this.city,
-      this.region,
-      this.state,
-      this.coreBusiness,
-      new Date(),
-      this.notes
+    const confirmDialogRef = this.confirmModifyCustomerComponentDialog.open(
+      ConfirmModifyCustomerComponent, {width:'512px', height:'158px'}
     );
-    this.modifyCustomerDialogRef.close(newCustomer);
+
+    confirmDialogRef.afterClosed().subscribe( (result) => {
+      if (result) {
+        const newCustomer = new Customer(
+          -1,
+          this.name,
+          this.surname,
+          this.email,
+          this.phoneNumber,
+          this.organizationName,
+          this.city,
+          this.region,
+          this.state,
+          this.coreBusiness,
+          new Date(),
+          this.notes
+        );
+        this.modifyCustomerDialogRef.close(newCustomer);
+      }
+    } );
   }
 
 }
