@@ -31,7 +31,7 @@ export class ProductComponent {
 
   products: Product[] = [];
   productsDataSource = new MatTableDataSource<Product>();
-  displayedColumns: String[] = ["name", "email", "organizationName", "city", "region", "state", "coreBusiness", "phoneNumber", "notes", "createdAt"];
+  displayedColumns: String[] = ["name", "description", "unit", "stock", "notes"];
 
   isRowSelected:boolean = false;
   currentSelectedProduct: Customer | undefined;
