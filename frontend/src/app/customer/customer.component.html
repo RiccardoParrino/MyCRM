@@ -72,7 +72,7 @@
 
 <mat-toolbar color="primary" class="footer-toolbar">
     <button mat-flat-button [disabled]="!isRowSelected" (click)="deleteCustomer()">Delete</button>
-    <button mat-flat-button [disabled]="!isRowSelected">Modify</button>
+    <button mat-flat-button [disabled]="!isRowSelected" (click)="modifyCustomer()">Modify</button>
     <button mat-flat-button disabled>Send Message</button>
     <button mat-flat-button disabled>Send Email</button>
     <button mat-flat-button disabled>Other actions</button>

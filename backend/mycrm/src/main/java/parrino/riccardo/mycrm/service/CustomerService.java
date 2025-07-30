@@ -16,8 +16,8 @@ public class CustomerService {
         return param;
     }
     
-    public String updateCustomer(String param) {
-        return param;
+    public Boolean updateCustomer(String param) {
+        return true;
     }
     
     public Boolean deleteCustomer(Long customerId) {

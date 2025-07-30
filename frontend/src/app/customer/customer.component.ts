@@ -11,6 +11,8 @@ import {MatRow, MatTableDataSource, MatTableModule} from '@angular/material/tabl
 import { MatDialog } from '@angular/material/dialog';
 import { CreateCustomerDialogComponent } from '../create-customer-dialog/create-customer-dialog.component';
 import { DeleteCustomerComponent } from '../delete-customer/delete-customer.component';
+import { ModifyCustomerComponent } from '../modify-customer/modify-customer.component';
+import { DIALOG_SCROLL_STRATEGY } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-customer',
@@ -37,7 +39,27 @@ export class CustomerComponent {
   constructor(
     private customerService:CustomerService, 
     private createCustomerDialog:MatDialog,
-    private deleteCustomerDialog:MatDialog) {
+    private deleteCustomerDialog:MatDialog,
+    private modifyCustomerDialog:MatDialog) {
+  }
+
+  modifyCustomer() : void {
+    console.log("Open modify customer dialog!");
+
+    const dialogRef = this.modifyCustomerDialog.open(ModifyCustomerComponent,
+      {width:'1000px',height:'600px', maxWidth:'1000px', data:this.currentSelectedCustomer},
+    );
+
+    dialogRef.afterClosed().subscribe( data => {
+      if (data) {
+        this.customerService.updateCustomer(data).subscribe( result => {
+          if (result) {
+            console.log("Customer successfully updated!");
+            this.readCustomers();
+          }
+        });
+      }
+    } );
   }
 
   readCustomers() {
