@@ -10,6 +10,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatRow, MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateCustomerDialogComponent } from '../create-customer-dialog/create-customer-dialog.component';
+import { DeleteCustomerComponent } from '../delete-customer/delete-customer.component';
 
 @Component({
   selector: 'app-customer',
@@ -35,7 +36,8 @@ export class CustomerComponent {
 
   constructor(
     private customerService:CustomerService, 
-    private createCustomerDialog:MatDialog) {
+    private createCustomerDialog:MatDialog,
+    private deleteCustomerDialog:MatDialog) {
   }
 
   readCustomers() {
@@ -79,6 +81,12 @@ export class CustomerComponent {
         }
       });
     });
+  }
+
+  deleteCustomer() {
+    this.deleteCustomerDialog.open(DeleteCustomerComponent,
+      {width:'512px', height:'128px'}
+    );
   }
 
   rowClicked(customerRow:MatRow) {
