@@ -6,6 +6,7 @@ import parrino.riccardo.mycrm.dto.CustomerDTO;
 import parrino.riccardo.mycrm.service.CustomerService;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,9 +23,8 @@ public class CustomerController {
     private CustomerService customerService;
 
     @PostMapping("/createCustomer")
-    public String createCustomer() {
-        String entity = new String ("temp");
-        return this.customerService.createCustomer(entity);
+    public Boolean createCustomer(@RequestBody CustomerDTO customerDTO) {
+        return this.customerService.createCustomer(customerDTO);
     }
 
     @GetMapping("/readCustomer")

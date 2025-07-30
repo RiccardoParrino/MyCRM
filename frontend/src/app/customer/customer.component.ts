@@ -70,8 +70,14 @@ export class CustomerComponent {
       {width:'1000px',height:'600px', maxWidth:'1000px'}
     );
 
-    dialogRef.afterClosed().subscribe ( results => {
-      console.log(results);
+    dialogRef.afterClosed().subscribe ( data => {
+      this.customerService.createCustomer(data).subscribe( result => {
+        if ( result ) {
+          console.log("customer creato correttamente");
+        } else {
+          console.log("errore!");
+        }
+      });
     });
   }
 
