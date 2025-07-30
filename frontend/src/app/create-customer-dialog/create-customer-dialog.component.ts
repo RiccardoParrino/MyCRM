@@ -4,6 +4,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { Customer } from '../model/customer.model';
 
 @Component({
   selector: 'app-create-customer-dialog',
@@ -14,6 +15,15 @@ import { FormsModule } from '@angular/forms';
 export class CreateCustomerDialogComponent {
 
   name:string = '';
+  surname:string = '';
+  email:string = '';
+  phoneNumber:string = '';
+  organizationName:string = '';
+  city:string = '';
+  region:string = '';
+  state:string = '';
+  coreBusiness:string = '';
+  notes:string = '';
 
   constructor(
     public dialogRef:MatDialogRef<CreateCustomerDialogComponent>,
@@ -21,7 +31,20 @@ export class CreateCustomerDialogComponent {
   ) {}
 
   save() {
-    this.dialogRef.close(this.name);
+    const newCustomer = new Customer(
+      this.name,
+      this.surname,
+      this.email,
+      this.phoneNumber,
+      this.organizationName,
+      this.city,
+      this.region,
+      this.state,
+      this.coreBusiness,
+      new Date(),
+      this.notes
+    );
+    this.dialogRef.close(newCustomer);
   }
 
   close() {
