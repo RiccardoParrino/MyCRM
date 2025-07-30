@@ -33,7 +33,8 @@ export class CustomerComponent {
   isRowSelected:boolean = false;
   currentSelectedRow: MatRow | undefined;
 
-  constructor(private customerService:CustomerService,
+  constructor(
+    private customerService:CustomerService, 
     private createCustomerDialog:MatDialog) {
   }
 
@@ -65,12 +66,12 @@ export class CustomerComponent {
 
   openCreateCustomerDialog() : void {
     console.log("Create Customer Dialog opened!");
-    this.createCustomerDialog.open(CreateCustomerDialogComponent, 
-      {width:'1000px',height:'600px', minWidth:'1000px', maxWidth:'1000px'}
+    const dialogRef = this.createCustomerDialog.open(CreateCustomerDialogComponent, 
+      {width:'1000px',height:'600px', maxWidth:'1000px'}
     );
 
-    this.createCustomerDialog.afterAllClosed.subscribe ( result => {
-      console.log(result);
+    dialogRef.afterClosed().subscribe ( results => {
+      console.log(results);
     });
   }
 
