@@ -1,4 +1,5 @@
 export class Customer {
+    customerId:number;
     name:string;
     surname:string;
     email:string;
@@ -12,6 +13,7 @@ export class Customer {
     notes:string;
 
     constructor (
+        customerId:number,
         name:string,
         surname:string,
         email:string,
@@ -24,6 +26,7 @@ export class Customer {
         createdAt:Date,
         notes:string
     ) {
+        this.customerId = customerId;
         this.name = name;
         this.surname = surname;
         this.email = email;

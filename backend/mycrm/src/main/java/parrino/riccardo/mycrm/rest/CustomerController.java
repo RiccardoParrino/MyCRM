@@ -34,6 +34,7 @@ public class CustomerController {
         for (int i = 0; i < 50; i++) {
             toReturn.add(
                 CustomerDTO.builder()
+                    .customerId(Long.valueOf(i))
                     .name("riccardo")
                     .surname("parrino")
                     .email("riccardo@gmail.com")

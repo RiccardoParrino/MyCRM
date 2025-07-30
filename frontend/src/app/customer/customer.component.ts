@@ -47,6 +47,7 @@ export class CustomerComponent {
         customers.forEach(item => {
           this.customers.push(
             new Customer (
+              item.customerId,
               item.name,
               item.surname,
               item.email,
@@ -90,15 +91,16 @@ export class CustomerComponent {
 
     deleteDialogRef.afterClosed().subscribe( result => {
       if (result) {
-        this.customerService.deleteCustomer("temp").subscribe ( 
+        this.customerService.deleteCustomer("customerId").subscribe ( 
           (value) => console.log("customer deleted successfully!")
         );}
     });
   }
 
-  rowClicked(customerRow:MatRow) {
+  rowClicked(customerRow:any) {
     this.currentSelectedRow = customerRow;
     this.isRowSelected = true;
+    console.log(customerRow);
   }
 
 } 

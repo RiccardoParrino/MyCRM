@@ -32,6 +32,7 @@ export class CreateCustomerDialogComponent {
 
   save() {
     const newCustomer = new Customer(
+      -1,
       this.name,
       this.surname,
       this.email,

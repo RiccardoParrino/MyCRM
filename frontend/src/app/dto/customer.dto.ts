@@ -1,4 +1,5 @@
 export interface CustomerDTO {
+    customerId:number;
     name:string;
     surname:string;
     email:string;
