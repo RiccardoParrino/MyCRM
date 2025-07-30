@@ -2,8 +2,8 @@
     <span class="toolbar-title">Customers page</span>
     <button mat-flat-button color="warn" (click)="openCreateCustomerDialog()">Create</button>
     <button mat-flat-button color="warn" (click)="readCustomers()">Load</button>
-    <button mat-flat-button color="warn" (click)="readCustomers()">Import</button>
-    <button mat-flat-button color="warn" (click)="readCustomers()">Segment by</button>
+    <button mat-flat-button color="warn" (click)="readCustomers()" disabled>Import</button>
+    <button mat-flat-button color="warn" (click)="readCustomers()" disabled>Segment by</button>
     <span class="example-spacer"></span>
     <span class="toolbar-title">MyCRM</span>
 </mat-toolbar>
@@ -69,7 +69,7 @@
 <mat-toolbar color="primary" class="footer-toolbar">
     <button mat-flat-button [disabled]="!isRowSelected">Delete</button>
     <button mat-flat-button [disabled]="!isRowSelected">Modify</button>
-    <button mat-flat-button [disabled]="!isRowSelected">Send Message</button>
-    <button mat-flat-button [disabled]="!isRowSelected">Send Email</button>
-    <button mat-flat-button [disabled]="!isRowSelected">Other actions</button>
+    <button mat-flat-button disabled>Send Message</button>
+    <button mat-flat-button disabled>Send Email</button>
+    <button mat-flat-button disabled>Other actions</button>
 </mat-toolbar>
