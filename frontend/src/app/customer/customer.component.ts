@@ -58,6 +58,9 @@ export class CustomerComponent {
             this.readCustomers();
           }
         });
+      } else {
+        this.currentSelectedCustomer = undefined;
+        this.isRowSelected = false;
       }
     });
   }
@@ -118,8 +121,12 @@ export class CustomerComponent {
         if (this.currentSelectedCustomer) {
           this.customerService.deleteCustomer(this.currentSelectedCustomer.customerId).subscribe ( 
             (value) => console.log("customer deleted successfully!")
-          );}
+          );
         }
+      } else {
+        this.currentSelectedCustomer = undefined;
+        this.isRowSelected = false;
+      }
     });
   }
 
