@@ -1,0 +1,8 @@
+.add-customer-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    column-gap: 16px;
+    width: 100%;
+}

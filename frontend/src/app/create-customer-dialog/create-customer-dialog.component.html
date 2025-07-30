@@ -1,6 +1,70 @@
-<h2 mat-dialog-title>Create new Customer</h2>
+<h2 mat-dialog-title>Add new Customer</h2>
 <mat-dialog-content>
-  <p>Nome: <strong>{{ data.name }}</strong></p>
+  <form class="add-customer-form">
+
+    <!--Anagraphic Information-->
+    <div class="form-fields-container">
+      <h3>Anagraphical Information</h3>
+      <mat-form-field class="example-full-width">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Giuseppe" value="">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Surname</mat-label>
+        <input matInput placeholder="Rossi" value="">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>email</mat-label>
+        <input matInput placeholder="Rossi" value="">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Phone Number</mat-label>
+        <input matInput placeholder="Rossi" value="">
+      </mat-form-field>
+    </div>
+
+    <!--Organizational Information-->
+    <div class="form-fields-container">
+      <h3>Organizational Information</h3>
+      <mat-form-field class="example-full-width">
+        <mat-label>Organization Name</mat-label>
+        <input matInput placeholder="Rossi" value="">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>City</mat-label>
+        <input matInput placeholder="Rossi" value="">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Region</mat-label>
+        <input matInput placeholder="Rossi" value="">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>State</mat-label>
+        <input matInput placeholder="Rossi" value="">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Core Business</mat-label>
+        <input matInput placeholder="Rossi" value="">
+      </mat-form-field>
+    </div>
+
+    <!--Notes-->
+    <div class="form-fields-container">
+      <h3>Notes</h3>
+      <mat-form-field class="example-full-width">
+        <mat-label>Notes</mat-label>
+        <input matInput placeholder="Rossi" value="">
+      </mat-form-field>
+    </div>
+
+  </form>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button matButton (click)="close()">Annulla</button>

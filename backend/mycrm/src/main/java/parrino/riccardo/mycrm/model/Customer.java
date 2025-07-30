@@ -19,11 +19,9 @@ import lombok.Setter;
 @Entity
 @Table(name = "Customer")
 public class Customer {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long customerId;
-
     private String name;
     private String surname;
     private String email;
