@@ -74,13 +74,15 @@ export class CustomerComponent {
     );
 
     dialogRef.afterClosed().subscribe ( data => {
-      this.customerService.createCustomer(data).subscribe( result => {
+      if (data) {
+        this.customerService.createCustomer(data).subscribe( result => {
         if ( result ) {
           console.log("customer creato correttamente");
         } else {
           console.log("errore!");
         }
       });
+      }
     });
   }
 
