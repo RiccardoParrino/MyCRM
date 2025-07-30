@@ -20,8 +20,8 @@ public class CustomerService {
         return param;
     }
     
-    public String deleteCustomer(String param) {
-        return param;
+    public Boolean deleteCustomer(String customerId) {
+        return true;
     }
 
 }

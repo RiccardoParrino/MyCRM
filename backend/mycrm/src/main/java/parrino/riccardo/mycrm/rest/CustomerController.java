@@ -56,11 +56,10 @@ public class CustomerController {
     public String updateCustomer(@RequestParam String param) {
         return this.customerService.updateCustomer(param);
     }
-    
 
     @GetMapping("/deleteCustomer")
-    public String deleteCustomer(@RequestParam String param) {
-        return this.customerService.deleteCustomer(param);  
+    public Boolean deleteCustomer(@RequestParam String customerId) {
+        return this.customerService.deleteCustomer(customerId);
     }
     
 }

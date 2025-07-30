@@ -84,9 +84,16 @@ export class CustomerComponent {
   }
 
   deleteCustomer() {
-    this.deleteCustomerDialog.open(DeleteCustomerComponent,
+    const deleteDialogRef = this.deleteCustomerDialog.open(DeleteCustomerComponent,
       {width:'512px', height:'128px'}
     );
+
+    deleteDialogRef.afterClosed().subscribe( result => {
+      if (result) {
+        this.customerService.deleteCustomer("temp").subscribe ( 
+          (value) => console.log("customer deleted successfully!")
+        );}
+    });
   }
 
   rowClicked(customerRow:MatRow) {

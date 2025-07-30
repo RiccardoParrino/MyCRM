@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CustomerDTO } from '../dto/customer.dto';
@@ -10,6 +10,7 @@ export class CustomerService {
 
   readCustomerAPI:string = 'http://localhost:8080/readCustomer';
   createCustomerAPI:string = 'http://localhost:8080/createCustomer';
+  deleteCustomerAPI:string = 'http://localhost:8080/deleteCustomer';
 
   constructor(private http: HttpClient) {}
 
@@ -19,6 +20,11 @@ export class CustomerService {
 
   createCustomer(customer:CustomerDTO): Observable<Boolean> {
     return this.http.post<Boolean>(this.createCustomerAPI, customer);
+  }
+
+  deleteCustomer(customerId:string): Observable<Boolean> {
+    const params = new HttpParams().set('customerId', customerId);
+    return this.http.get<Boolean>(this.deleteCustomerAPI, {params});
   }
 
 }

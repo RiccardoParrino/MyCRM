@@ -21,7 +21,7 @@ export class DeleteCustomerComponent {
 
   delete() {
     console.log("Customer removed!");
-    this.dialogRef.close();
+    this.dialogRef.close("delete");
   }
 
 }
