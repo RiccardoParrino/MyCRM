@@ -1,3 +1,76 @@
 <mat-toolbar color="primary">
-    <span class="toolbar-title">Products page</span>
+    <span class="toolbar-title">Product page</span>
+    <button mat-flat-button color="warn" (click)="openCreateProductDialog()">Create</button>
+    <button mat-flat-button color="warn" (click)="readProducts()">Load</button>
+    <button mat-flat-button color="warn" (click)="readProducts()" disabled>Import</button>
+    <button mat-flat-button color="warn" (click)="readProducts()" disabled>Segment by</button>
+    <span class="example-spacer"></span>
+    <span class="toolbar-title">MyCRM</span>
+</mat-toolbar>
+
+<div class="table-container">
+  <table mat-table [dataSource]="productsDataSource" >
+    
+    <ng-container matColumnDef="customer">
+      <td mat-cell *matCellDef="let customer">{{customer}}</td>
+    </ng-container> 
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let customer"> {{customer.name + " " + customer.surname}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let customer"> {{customer.email}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="phoneNumber">
+      <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+      <td mat-cell *matCellDef="let customer"> {{customer.phoneNumber}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="organizationName">
+      <th mat-header-cell *matHeaderCellDef>Organization name</th>
+      <td mat-cell *matCellDef="let customer"> {{customer.organizationName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="city">
+      <th mat-header-cell *matHeaderCellDef>City</th>
+      <td mat-cell *matCellDef="let customer"> {{customer.city}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="region">
+      <th mat-header-cell *matHeaderCellDef>Region</th>
+      <td mat-cell *matCellDef="let customer"> {{customer.region}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="state">
+      <th mat-header-cell *matHeaderCellDef>State</th>
+      <td mat-cell *matCellDef="let customer"> {{customer.state}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="coreBusiness">
+      <th mat-header-cell *matHeaderCellDef>Core Business</th>
+      <td mat-cell *matCellDef="let customer"> {{customer.coreBusiness}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="createdAt">
+      <th mat-header-cell *matHeaderCellDef>Created At</th>
+      <td mat-cell *matCellDef="let customer"> {{customer.createdAt}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="notes">
+      <th mat-header-cell *matHeaderCellDef>Notes</th>
+      <td mat-cell *matCellDef="let customer"> {{customer.notes}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [class.selected-row]="currentSelectedProduct === row" (click)="rowClicked(row)"></tr>
+  </table>
+</div>
+
+<mat-toolbar color="primary" class="footer-toolbar">
+    <button mat-flat-button [disabled]="!isRowSelected" (click)="deleteProduct()">Delete</button>
+    <button mat-flat-button [disabled]="!isRowSelected" (click)="modifyProduct()">Modify</button>
 </mat-toolbar>

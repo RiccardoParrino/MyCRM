@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CustomerService } from '../service/customer.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -7,12 +7,11 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import { Customer } from '../model/customer.model';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
-import {MatRow, MatTableDataSource, MatTableModule} from '@angular/material/table';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateCustomerDialogComponent } from '../create-customer-dialog/create-customer-dialog.component';
 import { DeleteCustomerComponent } from '../delete-customer/delete-customer.component';
 import { ModifyCustomerComponent } from '../modify-customer/modify-customer.component';
-import { DIALOG_SCROLL_STRATEGY } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-customer',
