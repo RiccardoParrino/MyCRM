@@ -30,6 +30,6 @@ public class Sale {
     private String progress;
     private String activity;
     private String amount;
-    private Date date;
+    private Date lastUpdate;
     private Date createdAt;
 }
