@@ -1,45 +1,68 @@
+CREATE TABLE MYCRM.USERS (
+    userId INTEGER PRIMARY KEY,
+    username VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    surname VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phoneNumber VARCHAR(255) NOT NULL,
+    enabled NUMBER(1) DEFAULT 1,
+    accountNonExpired NUMBER(1) DEFAULT 1,
+    credentialsNonExpired NUMBER(1) DEFAULT 1,
+    accountNonLocked NUMBER(1) DEFAULT 1,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE MYCRM.roles (
+    rolesId INTEGER PRIMARY KEY,
+    name VARCHAR(50) UNIQUE NOT NULL
+);
+
+CREATE TABLE MYCRM.user_roles (
+    userId INTEGER NOT NULL,
+    roleId INTEGER NOT NULL,
+    PRIMARY KEY (userId, roleId),
+    FOREIGN KEY (userId) REFERENCES MYCRM.users(userId),
+    FOREIGN KEY (roleId) REFERENCES MYCRM.roles(rolesId)
+);
+
+CREATE TABLE MYCRM.USER_RELATION (
+    userId INTEGER,
+    customerId INTEGER,
+    PRIMARY KEY (userId, customerId),
+   	FOREIGN KEY (userId) REFERENCES MYCRM.users(userId),
+   	FOREIGN KEY (customerId) REFERENCES MYCRM.customer(customerId)
+);
+
 CREATE TABLE MYCRM.product (
-    productId INTEGER,
-    name varchar(255),
+    productId INTEGER PRIMARY KEY,
+    name varchar(255) NOT NULL ,
     description varchar(255),
     unit varchar(255),
-    price varchar(255),
+    price varchar(255) NOT NULL,
     stock INTEGER,
-    notes varchar(255)
+    notes varchar(255),
+    producedBy INTEGER NOT NULL,
+    FOREIGN KEY (producedBy) REFERENCES MYCRM.USERS(USERID),
+    CONSTRAINT UserProduction UNIQUE (productId, producedBy)
 );
 
-CREATE TABLE sale (
-    saleId int,
-    userId int,
-    productId int,
-    customerId int,
-    progress varchar(255),
-    activity varchar(255),
-    amount varchar(255),
-    date DATE,
-    createdAt DATE
-);
-
-CREATE TABLE MYCRM.CUSTOMER (
+CREATE TABLE MYCRM.PRODUCT_PURCHASE (
+	productId INTEGER,
     customerId INTEGER,
-    name varchar(255),
-    email varchar(255),
-    phoneNumber varchar(255),
-    organizationName varchar(255),
-    city varchar(255),
-    region varchar(255),
-    state varchar(255),
-    coreBusiness varchar(255),
-    createdAt DATE,
-    notes varchar(255)
+    PRIMARY KEY (productId, customerId),
+   	FOREIGN KEY (productId) REFERENCES MYCRM.product(productId),
+   	FOREIGN KEY (customerId) REFERENCES MYCRM.customer(customerId)
 );
 
-CREATE TABLE MYCRM.USERS (
-    userId INTEGER,
-    username varchar(255),
-    password varchar(255),
-    name varchar(255),
-    surname varchar(255),
-    email varchar(255),
-    phoneNumber varchar(255)
+CREATE TABLE MYCRM.SALES (
+	userId INTEGER,
+	customerId INTEGER,
+	productId INTEGER,
+	salesDate DATE ,
+	PRIMARY KEY (userId, customerId, productId, salesDate),
+	FOREIGN KEY (userId) REFERENCES MYCRM.USERS (userId),
+	FOREIGN KEY (customerId) REFERENCES MYCRM.CUSTOMER (customerId),
+	FOREIGN KEY (productId) REFERENCES MYCRM.PRODUCT (productId)
 );
