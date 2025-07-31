@@ -7,4 +7,5 @@ export interface SaleDTO {
     product:string;
     date:Date;
     createdAt:Date;
+    notes:string;
 }
