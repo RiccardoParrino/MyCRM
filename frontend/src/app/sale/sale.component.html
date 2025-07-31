@@ -1,3 +1,71 @@
 <mat-toolbar color="primary">
-    <span class="toolbar-title">Sales page</span>
+    <span class="toolbar-title">Customers page</span>
+    <button mat-flat-button color="warn" (click)="openCreateSaleDialog()">New sale</button>
+    <button mat-flat-button color="warn" (click)="readSales()">Load</button>
+    <button mat-flat-button color="warn" (click)="readSales()" disabled>Import</button>
+    <button mat-flat-button color="warn" (click)="readSales()" disabled>Segment by</button>
+    <span class="example-spacer"></span>
+    <span class="toolbar-title">MyCRM</span>
+</mat-toolbar>
+
+<div class="table-container">
+  <table mat-table [dataSource]="salesDataSource" >
+    
+    <ng-container matColumnDef="sale">
+      <td mat-cell *matCellDef="let sale">{{sale}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let sale"> {{sale.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="progress">
+      <th mat-header-cell *matHeaderCellDef>Progress</th>
+      <td mat-cell *matCellDef="let sale"> {{sale.progress}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="activity">
+      <th mat-header-cell *matHeaderCellDef>Activity</th>
+      <td mat-cell *matCellDef="let sale"> {{sale.activity}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="customer">
+      <th mat-header-cell *matHeaderCellDef>Customer</th>
+      <td mat-cell *matCellDef="let sale"> {{sale.customer}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef>Amount</th>
+      <td mat-cell *matCellDef="let sale"> {{sale.amount}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="product">
+      <th mat-header-cell *matHeaderCellDef>Product</th>
+      <td mat-cell *matCellDef="let sale"> {{sale.product}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastUpdate">
+      <th mat-header-cell *matHeaderCellDef>Last update</th>
+      <td mat-cell *matCellDef="let sale"> {{sale.lastUpdate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="createdAt">
+      <th mat-header-cell *matHeaderCellDef>Created at</th>
+      <td mat-cell *matCellDef="let sale"> {{sale.createdAt}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="notes">
+      <th mat-header-cell *matHeaderCellDef>Notes</th>
+      <td mat-cell *matCellDef="let sale"> {{sale.notes}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [class.selected-row]="currentSelectedSale === row" (click)="rowClicked(row)"></tr>
+  </table>
+</div>
+
+<mat-toolbar color="primary" class="footer-toolbar">
+    <button mat-flat-button [disabled]="!isRowSelected" (click)="deleteSale()">Delete</button>
+    <button mat-flat-button [disabled]="!isRowSelected" (click)="modifySale()">Modify</button>
 </mat-toolbar>

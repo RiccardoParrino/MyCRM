@@ -1,10 +1,11 @@
-export interface SaleDTO {
+export interface Sale {
     name:string;
     progress:string;
     activity:string;
     customer:string;
     amount:number;
     product:number;
-    date:Date;
+    lastUpdate:Date;
     createdAt:Date;
+    notes:string;
 }

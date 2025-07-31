@@ -32,4 +32,5 @@ public class Sale {
     private String amount;
     private Date lastUpdate;
     private Date createdAt;
+    private String notes;
 }
