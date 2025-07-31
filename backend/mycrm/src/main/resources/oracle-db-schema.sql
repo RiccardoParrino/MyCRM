@@ -14,6 +14,21 @@ CREATE TABLE MYCRM.USERS (
     updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE MYCRM.CUSTOMER (	
+    customerId INTEGER PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    surname VARCHAR(255) NOT NULL,
+    email VARCHAR(255),
+    phoneNumber VARCHAR(255),
+    organizationName VARCHAR(255),
+    city VARCHAR(255),
+    region VARCHAR(255),
+    state VARCHAR(255),
+    coreBusiness VARCHAR(255),
+    createdAt VARCHAR(255),
+    notes VARCHAR(255)
+);
+
 CREATE TABLE MYCRM.roles (
     rolesId INTEGER PRIMARY KEY,
     name VARCHAR(50) UNIQUE NOT NULL
@@ -57,11 +72,17 @@ CREATE TABLE MYCRM.PRODUCT_PURCHASE (
 );
 
 CREATE TABLE MYCRM.SALES (
+    saleId INTEGER,
 	userId INTEGER,
 	customerId INTEGER,
 	productId INTEGER,
-	salesDate DATE ,
-	PRIMARY KEY (userId, customerId, productId, salesDate),
+	salesDate DATE,
+    progress VARCHAR(255),
+    activity VARCHAR(255),
+    amount VARCHAR(255),
+    lastUpdate DATE,
+    createdAt DATE,
+	PRIMARY KEY (saleId, userId, customerId, productId, salesDate),
 	FOREIGN KEY (userId) REFERENCES MYCRM.USERS (userId),
 	FOREIGN KEY (customerId) REFERENCES MYCRM.CUSTOMER (customerId),
 	FOREIGN KEY (productId) REFERENCES MYCRM.PRODUCT (productId)
