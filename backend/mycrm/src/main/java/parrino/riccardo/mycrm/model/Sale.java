@@ -21,15 +21,15 @@ public class Sale {
 
     @ManyToOne
     @MapsId("userId")
-    private Long userId;
+    private User user;
 
     @ManyToOne
     @MapsId("customerId")
-    private Long customerId;
+    private Customer customer;
 
     @ManyToOne
     @MapsId("productId")
-    private Long productId;
+    private Product product;
 
     private String progress;
     private String activity;
