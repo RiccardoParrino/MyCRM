@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import parrino.riccardo.mycrm.dto.LoginDTO;
 import parrino.riccardo.mycrm.dto.UserDTO;
 import parrino.riccardo.mycrm.service.AuthenticationService;
+import parrino.riccardo.mycrm.service.MailSenderService;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,5 +38,21 @@ public class AuthenticationController {
     public Boolean deleteUser(@RequestParam String param) {
         return true;
     }
+
+    @GetMapping("resetPassword")
+    public Boolean resetPassword(@RequestParam String username) {
+        // verify username exist
+        // generate temporary password
+        // set temporary password
+        // send mail with temporary password
+        return this.authenticationService.resetPassword(username);
+    }
+
+    @GetMapping("changePassword")
+    public Boolean changePassword(@RequestParam String username, @RequestParam String newPassword) {
+        return this.authenticationService.changePassword(username, newPassword);
+    }
+    
+    
     
 }
