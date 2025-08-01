@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 
 @Injectable({
@@ -7,14 +9,12 @@ import { Observable, Subject } from 'rxjs';
 export class AuthService {
 
   private isLogged: boolean = false;
-  authenticated!: Subject<boolean>;
 
-  constructor() {}
+  constructor(private http:HttpClient, private router:Router) {}
 
   login(username:string, password:string) {
     if (username == 'giovanni' && password == 'mycrm') {
       this.isLogged = true;
-      this.authenticated.next(true);
       return true;
     }
     if (username == 'riccardo' && password == 'mycrm') {
@@ -30,6 +30,11 @@ export class AuthService {
 
   isLoggedIn() {
     return this.isLogged;
+  }
+
+  registration() {
+    // parte chiamata verso backend this.http...
+    this.router.navigate(["login"]);
   }
 
 }

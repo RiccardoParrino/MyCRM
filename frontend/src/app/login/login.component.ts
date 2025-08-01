@@ -25,7 +25,6 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.authService.login(this.username, this.password)) {
-      console.log(this.authService.isLoggedIn());
       this.router.navigate(['customers']);
     } else {
       alert('Credenziali errate');
