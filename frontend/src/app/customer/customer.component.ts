@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CustomerService } from '../service/customer.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateCustomerDialogComponent } from '../create-customer-dialog/create-customer-dialog.component';
 import { DeleteCustomerComponent } from '../delete-customer/delete-customer.component';
 import { ModifyCustomerComponent } from '../modify-customer/modify-customer.component';
+import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
 
 @Component({
   selector: 'app-customer',
@@ -21,7 +22,8 @@ import { ModifyCustomerComponent } from '../modify-customer/modify-customer.comp
     ScrollingModule,
     MatListModule, 
     MatButtonModule, 
-    MatTableModule
+    MatTableModule,
+    MatSortModule
   ],
   templateUrl: './customer.component.html',
   styleUrl: './customer.component.css'
@@ -35,11 +37,17 @@ export class CustomerComponent {
   isRowSelected:boolean = false;
   currentSelectedCustomer: Customer | undefined;
 
+  @ViewChild(MatSort) sort!: MatSort;
+
   constructor(
     private customerService:CustomerService, 
     private createCustomerDialog:MatDialog,
     private deleteCustomerDialog:MatDialog,
     private modifyCustomerDialog:MatDialog) {
+  }
+
+  ngAfterViewInit() {
+    this.customersDataSource.sort = this.sort;
   }
 
   modifyCustomer() : void {
