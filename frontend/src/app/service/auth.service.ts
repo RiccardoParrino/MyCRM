@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
+import { User } from '../dto/user.dto';
+import { __values } from 'tslib';
 
 @Injectable({
   providedIn: 'root'
@@ -9,18 +11,18 @@ import { Observable, Subject } from 'rxjs';
 export class AuthService {
 
   private isLogged: boolean = false;
+  private registrationUrl: string = 'http://localhost:8080/registration';
+  private loginUrl: string = 'http://localhost:8080/login';
 
   constructor(private http:HttpClient, private router:Router) {}
 
   login(username:string, password:string) {
-    if (username == 'giovanni' && password == 'mycrm') {
-      this.isLogged = true;
-      return true;
-    }
-    if (username == 'riccardo' && password == 'mycrm') {
-      this.isLogged = true;
-      return true;
-    }
+    this.http.post<boolean>(this.loginUrl,{username, password}).subscribe( value => {
+      if (value == true) 
+        return true;
+      else
+        return false;
+    } )
     return false;
   }
 
@@ -32,8 +34,18 @@ export class AuthService {
     return this.isLogged;
   }
 
-  registration() {
-    // parte chiamata verso backend this.http...
+  registration(user:User) {
+    this.http.post<boolean>(this.registrationUrl, user).subscribe({
+      next: value => {
+        if (value == true)
+          alert('New user registered!');
+        else
+          alert('Some errors occurred!');
+      }, 
+      error: value => {
+        alert(value);
+      }
+    });
     this.router.navigate(["login"]);
   }
 

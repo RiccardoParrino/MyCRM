@@ -5,6 +5,7 @@ import {FormsModule} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
+import { User } from '../dto/user.dto';
 
 @Component({
   selector: 'app-registration',
@@ -17,7 +18,7 @@ export class RegistrationComponent {
   name = '';
   surname = '';
   email = '';
-  organization = '';
+  organizationName = '';
   phoneNumber = '';
   username = '';
   password = '';
@@ -26,6 +27,15 @@ export class RegistrationComponent {
   }
 
   onSubmit() {
-    this.authService.registration();
+    const user = new User(
+      this.username,
+      this.password,
+      this.name,
+      this.surname,
+      this.email,
+      this.phoneNumber,
+      this.organizationName
+    );
+    this.authService.registration(user);
   }
 }
