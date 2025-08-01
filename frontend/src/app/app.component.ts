@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { NgIf } from '@angular/common';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -14,4 +15,12 @@ import { NgIf } from '@angular/common';
 export class AppComponent {
   title = 'MyCrm';
   showAppComponentContainer: boolean = false;
+
+  constructor(private router:Router) {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        this.showAppComponentContainer = !['/login'].includes(event.urlAfterRedirects);
+      });
+  }
 }

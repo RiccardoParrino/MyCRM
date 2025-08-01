@@ -19,9 +19,14 @@ export class LoginComponent {
 
   constructor(private authService:AuthService, private router:Router) {}
 
+  onRegistration() {
+
+  }
+
   onSubmit() {
     if (this.authService.login(this.username, this.password)) {
-      this.router.navigate(['customer']);
+      console.log(this.authService.isLoggedIn());
+      this.router.navigate(['customers']);
     } else {
       alert('Credenziali errate');
     }
