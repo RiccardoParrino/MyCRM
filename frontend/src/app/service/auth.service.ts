@@ -1,27 +1,23 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
+import { User } from '../dto/user.dto';
+import { __values } from 'tslib';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private isLogged: boolean = false;
-  authenticated!: Subject<boolean>;
+  public isLogged: boolean = false;
+  private registrationUrl: string = 'http://localhost:8080/registration';
+  private loginUrl: string = 'http://localhost:8080/login';
 
-  constructor() {}
+  constructor(private http:HttpClient, private router:Router) {}
 
-  login(username:string, password:string) {
-    if (username == 'giovanni' && password == 'mycrm') {
-      this.isLogged = true;
-      this.authenticated.next(true);
-      return true;
-    }
-    if (username == 'riccardo' && password == 'mycrm') {
-      this.isLogged = true;
-      return true;
-    }
-    return false;
+  login(username:string, password:string) : Observable<boolean> {
+    return this.http.post<boolean>(this.loginUrl,{username, password});
   }
 
   logout() {
@@ -30,6 +26,10 @@ export class AuthService {
 
   isLoggedIn() {
     return this.isLogged;
+  }
+
+  registration(user:User) : Observable<boolean> {
+    return this.http.post<boolean>(this.registrationUrl, user);
   }
 
 }

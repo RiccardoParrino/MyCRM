@@ -20,7 +20,7 @@ export class AppComponent {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
-        this.showAppComponentContainer = !['/login'].includes(event.urlAfterRedirects);
+        this.showAppComponentContainer = !['/login','/registration'].includes(event.urlAfterRedirects);
       });
   }
 }
