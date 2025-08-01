@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ValueChangeEvent} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,11 +24,15 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    if (this.authService.login(this.username, this.password)) {
-      this.router.navigate(['customers']);
-    } else {
-      alert('Credenziali errate');
-    }
+    this.authService.login(this.username, this.password).subscribe( value => {
+      if (value){
+        this.authService.isLogged = true;
+        this.router.navigate(['customers']);
+      }
+      else { 
+        alert('Credenziali errate');
+      }
+    } );
   }
 
 }

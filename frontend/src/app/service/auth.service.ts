@@ -10,20 +10,14 @@ import { __values } from 'tslib';
 })
 export class AuthService {
 
-  private isLogged: boolean = false;
+  public isLogged: boolean = false;
   private registrationUrl: string = 'http://localhost:8080/registration';
   private loginUrl: string = 'http://localhost:8080/login';
 
   constructor(private http:HttpClient, private router:Router) {}
 
-  login(username:string, password:string) {
-    this.http.post<boolean>(this.loginUrl,{username, password}).subscribe( value => {
-      if (value == true) 
-        return true;
-      else
-        return false;
-    } )
-    return false;
+  login(username:string, password:string) : Observable<boolean> {
+    return this.http.post<boolean>(this.loginUrl,{username, password});
   }
 
   logout() {
