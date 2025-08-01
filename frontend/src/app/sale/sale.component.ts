@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CustomerService } from '../service/customer.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,6 +13,7 @@ import { CreateCustomerDialogComponent } from '../create-customer-dialog/create-
 import { DeleteCustomerComponent } from '../delete-customer/delete-customer.component';
 import { ModifyCustomerComponent } from '../modify-customer/modify-customer.component';
 import { Sale } from '../model/sale.model';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 
 @Component({
   selector: 'app-sale',
@@ -22,7 +23,8 @@ import { Sale } from '../model/sale.model';
     ScrollingModule,
     MatListModule, 
     MatButtonModule, 
-    MatTableModule
+    MatTableModule,
+    MatSortModule
   ],
   templateUrl: './sale.component.html',
   styleUrl: './sale.component.css'
@@ -35,6 +37,14 @@ export class SaleComponent {
   
   isRowSelected:boolean = false;
   currentSelectedSale: Sale | undefined;
+
+  @ViewChild(MatSort) sort!: MatSort;
+
+  constructor() {}
+
+  ngAfterViewInit() {
+    this.salesDataSource.sort = this.sort;
+  }
 
   openCreateSaleDialog() {}
 
