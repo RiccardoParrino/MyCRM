@@ -20,7 +20,7 @@ export class LoginComponent {
   constructor(private authService:AuthService, private router:Router) {}
 
   onRegistration() {
-
+    this.router.navigate(['registration'])
   }
 
   onSubmit() {
