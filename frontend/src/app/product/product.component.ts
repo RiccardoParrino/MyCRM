@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CustomerService } from '../service/customer.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,6 +13,8 @@ import { CreateCustomerDialogComponent } from '../create-customer-dialog/create-
 import { DeleteCustomerComponent } from '../delete-customer/delete-customer.component';
 import { ModifyCustomerComponent } from '../modify-customer/modify-customer.component';
 import { Product } from '../model/product.model';
+import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
+
 
 @Component({
   selector: 'app-product',
@@ -22,7 +24,8 @@ import { Product } from '../model/product.model';
     ScrollingModule,
     MatListModule, 
     MatButtonModule, 
-    MatTableModule
+    MatTableModule,
+    MatSortModule
   ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
@@ -36,7 +39,13 @@ export class ProductComponent {
   isRowSelected:boolean = false;
   currentSelectedProduct: Customer | undefined;
 
+  @ViewChild(MatSort) sort!: MatSort;
+
   constructor (){}
+
+  ngAfterViewInit() {
+    this.productsDataSource.sort = this.sort;
+  }
 
   openCreateProductDialog() {}
 
