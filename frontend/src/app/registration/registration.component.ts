@@ -36,6 +36,17 @@ export class RegistrationComponent {
       this.phoneNumber,
       this.organizationName
     );
-    this.authService.registration(user);
+    this.authService.registration(user).subscribe({
+      next: value => {
+        if (value == true)
+          alert('New user registered!');
+        else
+          alert('Some errors occurred!');
+      }, 
+      error: value => {
+        alert(value);
+      }
+    });
+    this.router.navigate(["login"]);
   }
 }

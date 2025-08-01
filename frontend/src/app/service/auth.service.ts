@@ -28,19 +28,8 @@ export class AuthService {
     return this.isLogged;
   }
 
-  registration(user:User) {
-    this.http.post<boolean>(this.registrationUrl, user).subscribe({
-      next: value => {
-        if (value == true)
-          alert('New user registered!');
-        else
-          alert('Some errors occurred!');
-      }, 
-      error: value => {
-        alert(value);
-      }
-    });
-    this.router.navigate(["login"]);
+  registration(user:User) : Observable<boolean> {
+    return this.http.post<boolean>(this.registrationUrl, user);
   }
 
 }
