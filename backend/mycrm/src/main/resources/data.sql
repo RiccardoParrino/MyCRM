@@ -1,22 +1,35 @@
-INSERT INTO users VALUES (1, 'ric', 'pass', 'riccardo', 'verdi', 'riccardo@gmail.com', '1231231231');
-INSERT INTO users VALUES (2, 'gio', 'pass', 'giovanni', 'rossi', 'giovanni@gmail.com', '1231231231');
-INSERT INTO users VALUES (3, 'vin', 'pass', 'vincenzo', 'verdi', 'vincenzo@gmail.com', '1231231231');
-INSERT INTO users VALUES (4, 'giu', 'pass', 'giuseppe', 'rossi', 'giuseppe@gmail.com', '1231231231');
+INSERT INTO MYCRM.USERS
+(USER_ID, EMAIL, NAME, PASSWORD, PHONE_NUMBER, SURNAME, USERNAME)
+VALUES("MYCRM"."ISEQ$$_76950".nextval, 'riccardo@gmail.com', 'riccardo', 'mycrm', '1231231', 'parrino', 'ric');
 
-INSERT INTO product VALUES (1, 'pc', 'pc asus', '1', '500.5', 1, 'ciao');
-INSERT INTO product VALUES (2, 'pc', 'pc asus', '1', '500.5', 1, 'ciao');
-INSERT INTO product VALUES (3, 'pc', 'pc asus', '1', '500.5', 1, 'ciao');
-INSERT INTO product VALUES (4, 'pc', 'pc asus', '1', '500.5', 1, 'ciao');
-INSERT INTO product VALUES (5, 'pc', 'pc asus', '1', '500.5', 1, 'ciao');
+INSERT INTO MYCRM.USERS
+(USER_ID, EMAIL, NAME, PASSWORD, PHONE_NUMBER, SURNAME, USERNAME)
+VALUES("MYCRM"."ISEQ$$_76950".nextval, 'francesco@gmail.com', 'francesco', 'mycrm', '1231231', 'rossi', 'fra');
 
-INSERT INTO customer VALUES (1, 'giovanni', 'giovanni@gmail.com', '1231231231', 'BIG COMPANY', 'New York City', 'New York', 'New York',  'product', NULL, NULL);
-INSERT INTO customer VALUES (2, 'giovanni', 'giovanni@gmail.com', '1231231231', 'BIG COMPANY', 'New York City', 'New York', 'New York',  'product', NULL, NULL);
-INSERT INTO customer VALUES (3, 'giovanni', 'giovanni@gmail.com', '1231231231', 'BIG COMPANY', 'New York City', 'New York', 'New York',  'product', NULL, NULL);
-INSERT INTO customer VALUES (4, 'giovanni', 'giovanni@gmail.com', '1231231231', 'BIG COMPANY', 'New York City', 'New York', 'New York',  'product', NULL, NULL);
-INSERT INTO customer VALUES (5, 'giovanni', 'giovanni@gmail.com', '1231231231', 'BIG COMPANY', 'New York City', 'New York', 'New York',  'product', NULL, NULL);
+INSERT INTO MYCRM.USERS
+(USER_ID, EMAIL, NAME, PASSWORD, PHONE_NUMBER, SURNAME, USERNAME)
+VALUES("MYCRM"."ISEQ$$_76950".nextval, 'giuseppe@gmail.com', 'giuseppe', 'mycrm', '1231231', 'verdi', 'giu');
 
-INSERT INTO sale VALUES (1, 1, 1, 1, 'start', 'call', '12.5$', NULL, NULL);
-INSERT INTO sale VALUES (2, 1, 1, 1, 'start', 'call', '12.5$', NULL, NULL);
-INSERT INTO sale VALUES (3, 1, 1, 1, 'start', 'call', '12.5$', NULL, NULL);
-INSERT INTO sale VALUES (4, 1, 1, 1, 'start', 'call', '12.5$', NULL, NULL);
-INSERT INTO sale VALUES (5, 1, 1, 1, 'start', 'call', '12.5$', NULL, NULL);
+INSERT INTO MYCRM.CUSTOMER
+(CUSTOMER_ID, CITY, CORE_BUSINESS, CREATED_AT, EMAIL, NAME, NOTES, ORGANIZATION_NAME, PHONE_NUMBER, REGION, STATE, SURNAME)
+VALUES("MYCRM"."ISEQ$$_76941".nextval, 'palermo', 'product', CURRENT_TIMESTAMP, 'giovanni@gmail.com', 'giovanni', 'ok', 'BIG', '123412341', 'sicily', 'italy', 'rossi');
+
+INSERT INTO MYCRM.CUSTOMER
+(CUSTOMER_ID, CITY, CORE_BUSINESS, CREATED_AT, EMAIL, NAME, NOTES, ORGANIZATION_NAME, PHONE_NUMBER, REGION, STATE, SURNAME)
+VALUES("MYCRM"."ISEQ$$_76941".nextval, 'palermo', 'product', CURRENT_TIMESTAMP, 'paolo@gmail.com', 'paolo', 'ok', 'SEO srl', '123412341', 'sicily', 'italy', 'verdi');
+
+INSERT INTO MYCRM.CUSTOMER
+(CUSTOMER_ID, CITY, CORE_BUSINESS, CREATED_AT, EMAIL, NAME, NOTES, ORGANIZATION_NAME, PHONE_NUMBER, REGION, STATE, SURNAME)
+VALUES("MYCRM"."ISEQ$$_76941".nextval, 'palermo', 'product', CURRENT_TIMESTAMP, 'augusto@gmail.com', 'augusto', 'ok', 'CEO srl', '123412341', 'lombardia', 'italy', 'rossi');
+
+INSERT INTO MYCRM.PRODUCT
+(PRODUCT_ID, DESCRIPTION, NAME, NOTES, PRICE, STOCK, UNIT)
+VALUES("MYCRM"."ISEQ$$_76945".nextval, 'laptop asus', 'asus laptop', 'ok', '700.00', 10, 'pz');
+
+INSERT INTO MYCRM.PRODUCT
+(PRODUCT_ID, DESCRIPTION, NAME, NOTES, PRICE, STOCK, UNIT)
+VALUES("MYCRM"."ISEQ$$_76945".nextval, 'laptop acer', 'acer laptop', 'ok', '800.00', 20, 'pz');
+
+INSERT INTO MYCRM.PRODUCT
+(PRODUCT_ID, DESCRIPTION, NAME, NOTES, PRICE, STOCK, UNIT)
+VALUES("MYCRM"."ISEQ$$_76945".nextval, 'laptop apple', 'apple laptop', 'ok', '900.00', 30, 'pz');
