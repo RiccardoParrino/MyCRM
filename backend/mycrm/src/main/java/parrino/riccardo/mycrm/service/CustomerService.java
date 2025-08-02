@@ -1,5 +1,7 @@
 package parrino.riccardo.mycrm.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +34,8 @@ public class CustomerService {
         return true;
     }
 
-    public String readCustomer(String param) {
-        return param;
+    public List<Customer> readCustomers() {
+        return this.customerRepository.findAll();
     }
     
     public Boolean updateCustomer(String param) {

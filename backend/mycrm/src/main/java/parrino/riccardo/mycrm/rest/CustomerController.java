@@ -28,29 +28,25 @@ public class CustomerController {
     }
 
     @GetMapping("/readCustomer")
-    public List<CustomerDTO> readCustomer() {
-        List<CustomerDTO> toReturn = new ArrayList<>();
-
-        for (int i = 0; i < 50; i++) {
-            toReturn.add(
+    public List<CustomerDTO> readCustomers() {
+        return this.customerService
+            .readCustomers()
+            .stream()
+            .map(customer -> 
                 CustomerDTO.builder()
-                    .customerId(Long.valueOf(i))
-                    .name("riccardo"+String.valueOf(i))
-                    .surname("parrino"+String.valueOf(i))
-                    .email("riccardo@gmail.com"+String.valueOf(i))
-                    .organizationName("BIG COMPANY LTD"+String.valueOf(i))
-                    .city("Alcamo"+String.valueOf(i))
-                    .region("Sicily"+String.valueOf(i))
-                    .state("Italy"+String.valueOf(i))
-                    .coreBusiness("Product"+String.valueOf(i))
-                    .phoneNumber("1231231231"+String.valueOf(i))
-                    .notes("GRAAANDEEE"+String.valueOf(i))
-                    .createdAt(new Date(i))
+                    .name(customer.getName())
+                    .surname(customer.getSurname())
+                    .email(customer.getEmail())
+                    .phoneNumber(customer.getPhoneNumber())
+                    .organizationName(customer.getOrganizationName())
+                    .city(customer.getCity())
+                    .region(customer.getRegion())
+                    .state(customer.getState())
+                    .coreBusiness(customer.getCoreBusiness())
+                    .createdAt(customer.getCreatedAt())
+                    .notes(customer.getNotes())
                     .build()
-            );
-        }
-
-        return toReturn;
+        ).toList();
     }
     
     @PostMapping("/updateCustomer")
