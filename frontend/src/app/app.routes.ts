@@ -6,6 +6,7 @@ import { SettingComponent } from './setting/setting.component';
 import { LoginComponent } from './login/login.component';
 import { authGuard } from './auth.guard';
 import { RegistrationComponent } from './registration/registration.component';
+import { AdministrationComponent } from './administration/administration.component';
 
 export const routes: Routes = [
 
@@ -45,6 +46,12 @@ export const routes: Routes = [
         path: 'settings',
         component: SettingComponent,
         title: "Settings Page",
+        canActivate: [authGuard]
+    },
+    {
+        path: 'administration',
+        component: AdministrationComponent,
+        title: "Administration Page",
         canActivate: [authGuard]
     },
     {
