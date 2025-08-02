@@ -16,7 +16,7 @@ public class UserService {
     private UserRepository userRepository;
     
     public Optional<User> findUserByUsername(String username) {
-        return this.userRepository.findByUsername("username");
+        return this.userRepository.findByUsername(username);
     }
 
     public Boolean setPasswordToUser(String username, String password) {

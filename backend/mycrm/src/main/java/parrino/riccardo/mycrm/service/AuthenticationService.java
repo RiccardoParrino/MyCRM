@@ -22,11 +22,9 @@ public class AuthenticationService {
         return true;
     }
 
-    public Boolean readUser(LoginDTO loginDTO) {
-        if ( loginDTO.getUsername().equals("riccardo") &&
-                loginDTO.getPassword().equals("mycrm") )
-                return true;
-        return false;
+    public Boolean directLogin(LoginDTO loginDTO) {
+        Optional<User> user = this.userService.findUserByUsername(loginDTO.getUsername());
+        return user.isPresent() ? loginDTO.getPassword().equals(user.get().getPassword()) : false;
     }
 
     public Boolean resetPassword(String username) {

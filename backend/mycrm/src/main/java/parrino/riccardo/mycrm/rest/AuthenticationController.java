@@ -24,8 +24,8 @@ public class AuthenticationController {
     }
 
     @PostMapping("login")
-    public Boolean readUser(@RequestBody LoginDTO loginDTO) {
-        return this.authenticationService.readUser(loginDTO);
+    public Boolean directLogin(@RequestBody LoginDTO loginDTO) {
+        return this.authenticationService.directLogin(loginDTO);
     }
     
     @PostMapping("updateUser")
