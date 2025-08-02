@@ -1,0 +1,27 @@
+.all-user-registered-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    overflow:hidden;
+    padding-left: 32px;
+    padding-right: 32px;
+}
+
+mat-toolbar {
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+.table-container {
+    width: 85%;
+    height: 75%;
+    margin: 0px auto;
+    margin-top: 32px;
+    border: 1px solid black;
+    overflow: auto;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
