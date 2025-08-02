@@ -7,8 +7,6 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { Customer } from '../model/customer.model';
 import { ConfirmModifyCustomerComponent } from '../confirm-modify-customer/confirm-modify-customer.component';
-import { ConfirmCreateCustomerComponent } from '../confirm-create-customer/confirm-create-customer.component';
-
 @Component({
   selector: 'app-modify-customer',
   imports: [MatDialogModule, MatInputModule, MatFormFieldModule, FormsModule, MatButtonModule],

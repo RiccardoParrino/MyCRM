@@ -1,5 +1,7 @@
 package parrino.riccardo.mycrm.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,11 +30,15 @@ public class AuthenticationService {
     }
 
     public Boolean resetPassword(String username) {
-        User user = this.userService.findUserByUsername(username);
+        Optional<User> user = this.userService.findUserByUsername(username);
+
+        if (user.isEmpty())
+            return false;
+
         String temporaryPassword = new String("123456789");
 
         this.mailSenderService.sendEmail( 
-            user.getEmail(),
+            user.get().getEmail(),
             "Reset Password MyCRM",
             "New password: " + temporaryPassword
         );
