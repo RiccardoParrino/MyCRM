@@ -126,8 +126,12 @@ export class CustomerComponent {
     deleteDialogRef.afterClosed().subscribe( result => {
       if (result) {
         if (this.currentSelectedCustomer) {
-          this.customerService.deleteCustomer(this.currentSelectedCustomer.customerId).subscribe ( 
-            (value) => console.log("customer deleted successfully!")
+          this.customerService.deleteCustomer(this.currentSelectedCustomer.customerId).subscribe ( value => {
+            if (value) {
+              this.readCustomers();
+            } else {
+              alert("Some errors occurred!");
+            }}
           );
         }
       } else {

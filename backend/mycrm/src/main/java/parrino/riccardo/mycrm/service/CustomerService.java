@@ -3,6 +3,7 @@ package parrino.riccardo.mycrm.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 import parrino.riccardo.mycrm.dto.CustomerDTO;
@@ -43,8 +44,16 @@ public class CustomerService {
     }
     
     public Boolean deleteCustomer(Long customerId) {
-        System.out.println(customerId);
-        return true;
+        try {
+            this.customerRepository.deleteById(customerId);
+            return true;
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex);
+            return false;
+        } catch (OptimisticLockingFailureException ex){
+            System.out.println("User doesn't exist!");
+            return false;
+        }
     }
 
 }

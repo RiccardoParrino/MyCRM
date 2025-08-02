@@ -32,6 +32,7 @@ public class CustomerController {
             .stream()
             .map(customer -> 
                 CustomerDTO.builder()
+                    .customerId(customer.getCustomerId())
                     .name(customer.getName())
                     .surname(customer.getSurname())
                     .email(customer.getEmail())
