@@ -50,7 +50,7 @@ public class CustomerController {
     
     @PostMapping("/updateCustomer")
     public Boolean updateCustomer(@RequestBody CustomerDTO customerDTO) {
-        return this.customerService.updateCustomer(customerDTO.getName());
+        return this.customerService.updateCustomer(customerDTO);
     }
 
     @GetMapping("/deleteCustomer")

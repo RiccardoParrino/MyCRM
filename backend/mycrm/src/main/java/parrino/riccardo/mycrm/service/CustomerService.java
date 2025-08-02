@@ -39,7 +39,22 @@ public class CustomerService {
         return this.customerRepository.findAll();
     }
     
-    public Boolean updateCustomer(String param) {
+    public Boolean updateCustomer(CustomerDTO customerDTO) {
+        Customer customer = Customer.builder()
+            .customerId(customerDTO.getCustomerId())
+            .name(customerDTO.getName())
+            .surname(customerDTO.getSurname())
+            .email(customerDTO.getEmail())
+            .phoneNumber(customerDTO.getPhoneNumber())
+            .organizationName(customerDTO.getOrganizationName())
+            .city(customerDTO.getCity())
+            .region(customerDTO.getRegion())
+            .state(customerDTO.getState())
+            .coreBusiness(customerDTO.getCoreBusiness())
+            .createdAt(customerDTO.getCreatedAt())
+            .notes(customerDTO.getNotes())
+        .build();
+        this.customerRepository.save(customer);
         return true;
     }
     
