@@ -2,11 +2,13 @@ package parrino.riccardo.mycrm.service;
 
 import org.springframework.stereotype.Service;
 
+import parrino.riccardo.mycrm.dto.ProductDTO;
+
 @Service
 public class ProductService {
     
-    public String createProduct(String entity) {
-        return entity;
+    public String createProduct(ProductDTO productDto) {
+        return "entity";
     }
 
     public String readProduct(String param) {
