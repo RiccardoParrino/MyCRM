@@ -1,11 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { User } from '../dto/user.dto';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from "@angular/material/toolbar";
 
 @Component({
   selector: 'app-all-user-registered',
-  imports: [],
+  imports: [MatToolbarModule, MatTableModule],
   templateUrl: './all-user-registered.component.html',
   styleUrl: './all-user-registered.component.css'
 })
 export class AllUserRegisteredComponent {
 
+  usersList : User[] = [];
+  usersListDataSource = new MatTableDataSource<User>();
+  displayedColumns: String[] = ["username", "name", "surname", "email", "phoneNumber", "organizationName"];
+
+  constructor (
+    public allUserRegisteredComponentDialogRef:MatDialogRef<AllUserRegisteredComponent>,
+    @Inject(MAT_DIALOG_DATA) public data:any
+  ) {
+    this.usersList = data;
+    this.usersListDataSource.data = data;
+  }
+
+  close() {
+    this.allUserRegisteredComponentDialogRef.close();
+  }
+  
 }
