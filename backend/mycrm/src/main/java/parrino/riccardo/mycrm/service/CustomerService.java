@@ -1,6 +1,7 @@
 package parrino.riccardo.mycrm.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.OptimisticLockingFailureException;
@@ -40,22 +41,27 @@ public class CustomerService {
     }
     
     public Boolean updateCustomer(CustomerDTO customerDTO) {
-        Customer customer = Customer.builder()
-            .customerId(customerDTO.getCustomerId())
-            .name(customerDTO.getName())
-            .surname(customerDTO.getSurname())
-            .email(customerDTO.getEmail())
-            .phoneNumber(customerDTO.getPhoneNumber())
-            .organizationName(customerDTO.getOrganizationName())
-            .city(customerDTO.getCity())
-            .region(customerDTO.getRegion())
-            .state(customerDTO.getState())
-            .coreBusiness(customerDTO.getCoreBusiness())
-            .createdAt(customerDTO.getCreatedAt())
-            .notes(customerDTO.getNotes())
-        .build();
-        this.customerRepository.save(customer);
-        return true;
+        if (customerRepository.existsById(customerDTO.getCustomerId())) {
+            Customer customer = Customer.builder()
+                .customerId(customerDTO.getCustomerId())
+                .name(customerDTO.getName())
+                .surname(customerDTO.getSurname())
+                .email(customerDTO.getEmail())
+                .phoneNumber(customerDTO.getPhoneNumber())
+                .organizationName(customerDTO.getOrganizationName())
+                .city(customerDTO.getCity())
+                .region(customerDTO.getRegion())
+                .state(customerDTO.getState())
+                .coreBusiness(customerDTO.getCoreBusiness())
+                .createdAt(customerDTO.getCreatedAt())
+                .notes(customerDTO.getNotes())
+            .build();
+            customerRepository.save(customer);
+            return true;
+        } else {
+            System.out.println("Customer not found with id: " + customerDTO.getCustomerId());
+            return false;
+        }
     }
     
     public Boolean deleteCustomer(Long customerId) {

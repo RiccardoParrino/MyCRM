@@ -61,6 +61,7 @@ export class CustomerComponent {
       if (data) {
         this.customerService.updateCustomer(data).subscribe( result => {
           if (result) {
+            console.log(data)
             console.log("Customer successfully updated!");
             this.readCustomers();
           }
