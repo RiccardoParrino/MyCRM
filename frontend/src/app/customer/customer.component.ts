@@ -109,7 +109,7 @@ export class CustomerComponent {
       if (data) {
         this.customerService.createCustomer(data).subscribe( result => {
         if ( result ) {
-          console.log("customer creato correttamente");
+          console.log(result);
         } else {
           console.log("errore!");
         }
