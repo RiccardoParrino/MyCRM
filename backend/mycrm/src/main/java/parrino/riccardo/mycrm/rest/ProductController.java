@@ -7,34 +7,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import parrino.riccardo.mycrm.dto.ProductDTO;
+import parrino.riccardo.mycrm.model.Product;
 import parrino.riccardo.mycrm.service.ProductService;
 
-@RestController
+@RestController("product")
 public class ProductController {
 
     @Autowired
     private ProductService productService;
     
-    @PostMapping("/createProduct")
-    public String createProduct(@RequestBody String entity) {
-        return productService.createProduct(entity);
+    @PostMapping("/create")
+    public String createProduct(@RequestBody ProductDTO productDTO) {
+        return productService.createProduct(productDTO);
     }
 
-    @GetMapping("/readProduct")
-    public String readProduct(@RequestParam String param) {
-        return productService.readProduct(param);
+    @GetMapping("/read")
+    public Product readProduct(@RequestParam Long productId) {
+        return productService.readProduct(productId).get();
     }
     
-    
-    @GetMapping("/updateProduct")
-    public String updateProduct(@RequestParam String param) {
-        return productService.updateProduct(param);
+    @PostMapping("/update")
+    public Boolean updateProduct(@RequestBody ProductDTO productDTO) {
+        this.productService.updateProduct(productDTO);
+        return true;
     }
     
-
-    @GetMapping("/deleteProduct")
-    public String deleteProduct(@RequestParam String param) {
-        return productService.deleteProduct(param);
+    @GetMapping("/delete")
+    public Boolean deleteProduct(@RequestParam Long productId) {
+        return productService.deleteProductById(productId);
     }
 
 }
