@@ -3,10 +3,11 @@ import { AdministrationService } from '../service/administration.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AllUserRegisteredComponent } from '../all-user-registered/all-user-registered.component';
 import { MatButton } from '@angular/material/button';
+import { MatToolbarModule } from "@angular/material/toolbar";
 
 @Component({
   selector: 'app-administration',
-  imports: [MatButton],
+  imports: [MatButton, MatToolbarModule],
   templateUrl: './administration.component.html',
   styleUrl: './administration.component.css'
 })
