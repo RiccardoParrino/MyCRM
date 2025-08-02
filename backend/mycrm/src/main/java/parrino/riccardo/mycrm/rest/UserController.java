@@ -1,0 +1,39 @@
+package parrino.riccardo.mycrm.rest;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+
+import parrino.riccardo.mycrm.dto.UserDTO;
+import parrino.riccardo.mycrm.model.User;
+import parrino.riccardo.mycrm.service.UserService;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@RestController
+public class UserController {
+    
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("getAllUser")
+    public List<UserDTO> getAllUser() {
+        List<User> usersList = this.userService.getAllUser();
+        List<UserDTO> listToReturn = new ArrayList<>();
+        usersList.forEach(
+            (user) -> listToReturn.add( UserDTO
+                .builder()
+                .email(user.getEmail())
+                .name(user.getName())
+                .username(user.getUsername())
+                .surname(user.getSurname())
+                .organizationName(user.getOrganizationName())
+                .phoneNumber(user.getPhoneNumber())
+                .build())
+        );
+        return listToReturn;
+    }
+    
+
+}
