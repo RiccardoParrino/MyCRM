@@ -2,6 +2,7 @@ package parrino.riccardo.mycrm.service;
 
 import java.util.Optional;
 
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 import parrino.riccardo.mycrm.dto.ProductDTO;
@@ -42,8 +43,16 @@ public class ProductService {
     }
     
     public Boolean deleteProductById(Long productId) {
-        productRepository.deleteById(productId);
-        return true;
+        try {
+            productRepository.deleteById(productId);
+            return true;
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex);
+            return false;
+        } catch (OptimisticLockingFailureException ex){
+            System.out.println("Product doesn't exist!");
+            return false;
+        }
     }
 
 }
