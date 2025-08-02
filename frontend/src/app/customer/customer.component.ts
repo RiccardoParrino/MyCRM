@@ -109,9 +109,9 @@ export class CustomerComponent {
       if (data) {
         this.customerService.createCustomer(data).subscribe( result => {
         if ( result ) {
-          console.log(result);
+          this.readCustomers();
         } else {
-          console.log("errore!");
+          alert("Some errors occurred!");
         }
       });
       }
