@@ -51,7 +51,9 @@ export class SaleComponent implements OnInit{
     this.readSales();
   }
 
-  openCreateSaleDialog() {}
+  openCreateSaleDialog() {
+    
+  }
 
   readSales() {
     this.saleService.readSales();
