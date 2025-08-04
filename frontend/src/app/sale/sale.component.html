@@ -10,8 +10,8 @@
   <table mat-table [dataSource]="salesDataSource" matSort>
 
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-      <td mat-cell *matCellDef="let sale"> {{sale.name}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
+      <td mat-cell *matCellDef="let sale"> {{sale.saleId.saleId}} </td>
     </ng-container>
 
     <ng-container matColumnDef="progress">
@@ -26,7 +26,7 @@
 
     <ng-container matColumnDef="customer">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Customer</th>
-      <td mat-cell *matCellDef="let sale"> {{sale.customer}} </td>
+      <td mat-cell *matCellDef="let sale"> {{sale.saleId.customerId}} </td>
     </ng-container>
 
     <ng-container matColumnDef="amount">
@@ -36,7 +36,7 @@
 
     <ng-container matColumnDef="product">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Product</th>
-      <td mat-cell *matCellDef="let sale"> {{sale.product}} </td>
+      <td mat-cell *matCellDef="let sale"> {{sale.saleId.productId}} </td>
     </ng-container>
 
     <ng-container matColumnDef="lastUpdate">
@@ -46,7 +46,7 @@
 
     <ng-container matColumnDef="createdAt">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Created at</th>
-      <td mat-cell *matCellDef="let sale"> {{sale.createdAt}} </td>
+      <td mat-cell *matCellDef="let sale"> {{sale.saleId.createdAt}} </td>
     </ng-container>
 
     <ng-container matColumnDef="notes">

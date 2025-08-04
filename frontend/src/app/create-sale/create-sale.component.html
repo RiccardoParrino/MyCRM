@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>Add new Sale</h2>
+<mat-dialog-content>
+
+  <form class="add-customer-form">
+    <h3>Sale Information</h3>
+    <mat-form-field>
+        <mat-label>UserId</mat-label>
+        <input matInput placeholder="" [(ngModel)]="userId" name="userId">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>CustomerId</mat-label>
+        <input matInput placeholder="" value="" [(ngModel)]="customerId" name="customerId">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>ProductId</mat-label>
+        <input matInput placeholder="" value="" [(ngModel)]="productId" name="productId">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Progress</mat-label>
+        <input matInput placeholder="" value="" [(ngModel)]="progress" name="progress">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Activity</mat-label>
+        <input matInput placeholder="" value="" [(ngModel)]="activity" name="activity">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Amount</mat-label>
+        <input matInput placeholder="" value="" [(ngModel)]="amount" name="amount">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Last Update</mat-label>
+        <input matInput placeholder="" value="" [(ngModel)]="lastUpdate" name="lastUpdate">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Notes</mat-label>
+        <input matInput placeholder="" value="" [(ngModel)]="notes" name="notes">
+    </mat-form-field>
+  </form>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-flat-button (click)="close()">Annulla</button>
+  <button mat-flat-button (click)="save()">Salva</button>
+</mat-dialog-actions>

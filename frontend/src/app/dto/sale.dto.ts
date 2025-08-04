@@ -1,13 +1,9 @@
-import { CustomerDTO } from "./customer.dto";
-import { ProductDTO } from "./product.dto";
-import { SaleIdDTO } from "./saleId.dto";
-import { UserDTO } from "./user.dto";
-
 export interface SaleDTO {
-    saleId:SaleIdDTO;
-    user:UserDTO;
-    customer:CustomerDTO;
-    product:ProductDTO;
+    saleId:number;
+    userId:number;
+    customerId:number;
+    productId:number;
+    createdAt:Date;
     progress:string;
     activity:string;
     amount:string;
