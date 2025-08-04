@@ -37,7 +37,7 @@ export class SaleService {
     return this.httpClient.post<Boolean>(this.createUrl, saleDTO);
   }
 
-  updateSale(sale:Sale) : Observable<Boolean> {
+  updateSale(sale:any) : Observable<Boolean> {
     return this.httpClient.post<Boolean>(this.updateUrl, sale);
   }
 

@@ -122,13 +122,16 @@ export class SaleComponent implements OnInit{
       {width:'1000px',height:'600px', maxWidth:'1000px'}
     );
     
-    createSaleDialogRef.afterClosed().subscribe( value => {
-      if (value) {
-        
+    createSaleDialogRef.afterClosed().subscribe( data => {
+      if (data) {
+        const saleDTO = {
+          'saleId' : this.currentSelectedSale.saleId.saleId,
+          'createdAt' : this.currentSelectedSale.saleId.createdAt,
+          'userId': this.currentSelectedSale.saleId.userId
+        };
+        this.saleService.updateSale(saleDTO);
       }
-    } )
-
-    this.saleService.updateSale(this.currentSelectedSale);
+    } );
   }
 
   rowClicked(saleRow:any) {
