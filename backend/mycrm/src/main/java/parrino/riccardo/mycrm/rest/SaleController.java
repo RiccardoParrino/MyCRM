@@ -37,7 +37,7 @@ public class SaleController {
                     .saleId(sale.getSaleId().getSaleId())
                     .createdAt(sale.getSaleId().getCreatedAt())
                     .userId(sale.getSaleId().getUserId())
-                    .customerId(sale.getSaleId().getProductId())
+                    .customerId(sale.getSaleId().getCustomerId())
                     .productId(sale.getSaleId().getProductId())
                     .progress(sale.getProgress())
                     .activity(sale.getActivity())
@@ -53,9 +53,10 @@ public class SaleController {
         return saleService.updateSale(saleDTO);
     }
     
-    @GetMapping("delete")
-    public Boolean deleteSaleById(@RequestParam SaleId saleId) {
-        return saleService.deleteSale(saleId);
+    @PostMapping("delete")
+    public Boolean deleteSaleBySaleId(@RequestBody SaleId saleId) {
+        saleService.deleteSale(saleId);
+        return true;
     }
 
 }

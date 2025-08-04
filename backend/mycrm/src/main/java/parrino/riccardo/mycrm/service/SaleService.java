@@ -82,8 +82,13 @@ public class SaleService {
     }
     
     public Boolean deleteSale(SaleId saleId) {
-        saleRepository.deleteById(saleId);
-        return true;
+        try {
+            saleRepository.deleteById(saleId);
+            return true;
+        } catch(Exception e) {
+            System.out.println(e);
+            return false;
+        }
     }
 
 }
