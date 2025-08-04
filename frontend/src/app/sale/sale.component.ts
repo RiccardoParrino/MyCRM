@@ -12,6 +12,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { SaleService } from '../service/sale.service';
 import { CreateSaleComponent } from '../create-sale/create-sale.component';
 import { SaleId } from '../model/saleId.model';
+import { SaleModifyComponent } from '../sale-modify/sale-modify.component';
 
 @Component({
   selector: 'app-sale',
@@ -38,8 +39,10 @@ export class SaleComponent implements OnInit{
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private saleService:SaleService,
-    private createSaleComponentMatDialog:MatDialog
+  constructor(
+    private saleService:SaleService,
+    private createSaleComponentMatDialog:MatDialog,
+    private modifySaleComponentMatDialog:MatDialog
   ) {}
 
   ngAfterViewInit() {
@@ -114,6 +117,17 @@ export class SaleComponent implements OnInit{
   }
 
   modifySale() {
+    const createSaleDialogRef = this.createSaleComponentMatDialog.open(
+      SaleModifyComponent,
+      {width:'1000px',height:'600px', maxWidth:'1000px'}
+    );
+    
+    createSaleDialogRef.afterClosed().subscribe( value => {
+      if (value) {
+        
+      }
+    } )
+
     this.saleService.updateSale(this.currentSelectedSale);
   }
 
