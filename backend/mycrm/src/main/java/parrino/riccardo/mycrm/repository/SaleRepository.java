@@ -1,8 +1,9 @@
 package parrino.riccardo.mycrm.repository;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public class SaleRepository {
-    
+import parrino.riccardo.mycrm.model.Sale;
+import parrino.riccardo.mycrm.model.SaleId;
+
+public interface SaleRepository extends JpaRepository<Sale, SaleId> {
 }

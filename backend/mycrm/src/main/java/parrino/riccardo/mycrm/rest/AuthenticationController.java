@@ -24,8 +24,8 @@ public class AuthenticationController {
     }
 
     @PostMapping("login")
-    public Boolean readUser(@RequestBody LoginDTO loginDTO) {
-        return this.authenticationService.readUser(loginDTO);
+    public Boolean directLogin(@RequestBody LoginDTO loginDTO) {
+        return this.authenticationService.directLogin(loginDTO);
     }
     
     @PostMapping("updateUser")
@@ -37,5 +37,21 @@ public class AuthenticationController {
     public Boolean deleteUser(@RequestParam String param) {
         return true;
     }
+
+    @GetMapping("resetPassword")
+    public Boolean resetPassword(@RequestParam String username) {
+        // verify username exist
+        // generate temporary password
+        // set temporary password
+        // send mail with temporary password
+        return this.authenticationService.resetPassword(username);
+    }
+
+    @GetMapping("changePassword")
+    public Boolean changePassword(@RequestParam String username, @RequestParam String newPassword) {
+        return this.authenticationService.changePassword(username, newPassword);
+    }
+    
+    
     
 }

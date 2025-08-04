@@ -1,0 +1,11 @@
+.toolbar-title {
+    font-size: 32px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+mat-toolbar {
+    column-gap: 8px;
+}

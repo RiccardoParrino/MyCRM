@@ -61,6 +61,7 @@ export class CustomerComponent {
       if (data) {
         this.customerService.updateCustomer(data).subscribe( result => {
           if (result) {
+            console.log(data)
             console.log("Customer successfully updated!");
             this.readCustomers();
           }
@@ -109,9 +110,9 @@ export class CustomerComponent {
       if (data) {
         this.customerService.createCustomer(data).subscribe( result => {
         if ( result ) {
-          console.log("customer creato correttamente");
+          this.readCustomers();
         } else {
-          console.log("errore!");
+          alert("Some errors occurred!");
         }
       });
       }
@@ -126,8 +127,12 @@ export class CustomerComponent {
     deleteDialogRef.afterClosed().subscribe( result => {
       if (result) {
         if (this.currentSelectedCustomer) {
-          this.customerService.deleteCustomer(this.currentSelectedCustomer.customerId).subscribe ( 
-            (value) => console.log("customer deleted successfully!")
+          this.customerService.deleteCustomer(this.currentSelectedCustomer.customerId).subscribe ( value => {
+            if (value) {
+              this.readCustomers();
+            } else {
+              alert("Some errors occurred!");
+            }}
           );
         }
       } else {
