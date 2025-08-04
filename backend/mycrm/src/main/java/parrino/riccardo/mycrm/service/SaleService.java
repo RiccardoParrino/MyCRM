@@ -1,7 +1,7 @@
 package parrino.riccardo.mycrm.service;
 
 import java.util.Date;
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -69,8 +69,8 @@ public class SaleService {
         }
     }
 
-    public Optional<Sale> readSale(SaleId saleId) {
-        return saleRepository.findById(saleId);
+    public List<Sale> readSale() {
+        return saleRepository.findAll();
     }
     
     public Boolean updateSale(SaleDTO saleDTO) {

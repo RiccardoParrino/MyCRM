@@ -1,13 +1,10 @@
-import { Customer } from "./customer.model";
-import { Product } from "./product.model";
 import { SaleId } from "./saleId.model";
-import { User } from "./user.model";
 
 export class Sale {
     saleId:SaleId;
-    user:User;
-    customer:Customer;
-    product:Product;
+    userId:number;
+    customerId:number;
+    productId:number;
     progress:string;
     activity:string;
     amount:string;
@@ -16,9 +13,9 @@ export class Sale {
 
     constructor (
         saleId:SaleId,
-        user:User,
-        customer:Customer,
-        product:Product,
+        userId:number,
+        customerId:number,
+        productId:number,
         progress:string,
         activity:string,
         amount:string,
@@ -26,9 +23,9 @@ export class Sale {
         notes:string
     ) {
         this.saleId = saleId;
-        this.user = user;
-        this.customer = customer;
-        this.product = product;
+        this.userId = userId;
+        this.customerId = customerId;
+        this.productId = productId;
         this.progress = progress;
         this.activity = activity;
         this.amount = amount;

@@ -21,7 +21,19 @@ export class SaleService {
   }
 
   createSale(sale:Sale) : Observable<Boolean> {
-    return this.httpClient.post<Boolean>(this.createUrl, sale);
+    const saleDTO = {
+      'saleId' : sale.saleId.saleId,
+      'createdAt' : sale.saleId.createdAt,
+      'user': sale.saleId.userId,
+      'customerId': sale.saleId.customerId,
+      'productId': sale.saleId.productId,
+      'progress': sale.progress,
+      'activity': sale.activity,
+      'amount': sale.amount,
+      'lastUpdate': sale.lastUpdate,
+      'notes': sale.notes
+    };
+    return this.httpClient.post<Boolean>(this.createUrl, saleDTO);
   }
 
   updateSale(sale:Sale) : Observable<Boolean> {

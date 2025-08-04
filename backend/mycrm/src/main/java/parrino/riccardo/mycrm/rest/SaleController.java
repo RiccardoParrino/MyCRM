@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import parrino.riccardo.mycrm.dto.SaleDTO;
+import parrino.riccardo.mycrm.model.Sale;
 import parrino.riccardo.mycrm.model.SaleId;
 import parrino.riccardo.mycrm.service.SaleService;
 
@@ -28,7 +29,23 @@ public class SaleController {
 
     @GetMapping("read")
     public List<SaleDTO> readSale() {
-        return null;
+        List<Sale> sales = saleService.readSale();
+        return sales
+            .stream()
+            .map(sale -> 
+                SaleDTO.builder()
+                    .saleId(sale.getSaleId().getSaleId())
+                    .createdAt(sale.getSaleId().getCreatedAt())
+                    .userId(sale.getSaleId().getUserId())
+                    .customerId(sale.getSaleId().getProductId())
+                    .productId(sale.getSaleId().getProductId())
+                    .progress(sale.getProgress())
+                    .activity(sale.getActivity())
+                    .amount(sale.getAmount())
+                    .lastUpdate(sale.getLastUpdate())
+                    .notes(sale.getNotes())
+                .build()
+            ).toList();
     }
     
     @PostMapping("update")

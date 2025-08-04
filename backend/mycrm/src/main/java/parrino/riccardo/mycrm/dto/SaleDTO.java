@@ -12,6 +12,8 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 public class SaleDTO {
+    private Long saleId;
+    private Date createdAt;
     private Long userId;
     private Long customerId;
     private Long productId;

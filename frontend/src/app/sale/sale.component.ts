@@ -1,21 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CustomerService } from '../service/customer.service';
 import { HttpClientModule } from '@angular/common/http';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {ScrollingModule} from '@angular/cdk/scrolling';
-import { Customer } from '../model/customer.model';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateCustomerDialogComponent } from '../create-customer-dialog/create-customer-dialog.component';
-import { DeleteCustomerComponent } from '../delete-customer/delete-customer.component';
-import { ModifyCustomerComponent } from '../modify-customer/modify-customer.component';
 import { Sale } from '../model/sale.model';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { SaleService } from '../service/sale.service';
 import { CreateSaleComponent } from '../create-sale/create-sale.component';
+import { SaleId } from '../model/saleId.model';
 
 @Component({
   selector: 'app-sale',
@@ -62,6 +58,7 @@ export class SaleComponent implements OnInit{
 
     createSaleDialogRef.afterClosed().subscribe( data => {
       if (data != false){
+        console.log(data);
         this.saleService.createSale(data).subscribe( value => {
           if (value)
             console.log("New user created!");
@@ -73,17 +70,41 @@ export class SaleComponent implements OnInit{
   }
 
   readSales() {
-    this.saleService.readSales();
+    this.saleService.readSales().subscribe( saleDtoData => {
+      const sales:Sale[] = [];
+      saleDtoData.forEach( sale => {
+        sales.push(
+          new Sale(
+            new SaleId (
+              sale.saleId,
+              sale.userId,
+              sale.customerId,
+              sale.productId,
+              sale.createdAt
+            ),
+            sale.userId,
+            sale.customerId,
+            sale.productId,
+            sale.progress,
+            sale.activity,
+            sale.amount,
+            sale.lastUpdate,
+            sale.notes
+          )
+        )
+      });
+      this.salesDataSource.data = sales;
+    });
   }
 
   deleteSale() {
-    this.saleService.deleteSale(this.currentSelectedSale).subscribe(value => {
-      value;
-    })
+    // this.saleService.deleteSale(this.currentSelectedSale).subscribe(value => {
+    //   value;
+    // })
   }
 
   modifySale() {
-    this.saleService.updateSale(this.currentSelectedSale);
+    // this.saleService.updateSale(this.currentSelectedSale);
   }
 
   rowClicked(saleRow:any) {
