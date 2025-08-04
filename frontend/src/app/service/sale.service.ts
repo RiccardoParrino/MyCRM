@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SaleDTO } from '../dto/sale.dto';
 import { Sale } from '../model/sale.model';
+import { SaleId } from '../model/saleId.model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,8 +41,8 @@ export class SaleService {
     return this.httpClient.post<Boolean>(this.updateUrl, sale);
   }
 
-  deleteSale(sale:Sale) : Observable<Boolean> {
-    return this.httpClient.get<Boolean>(this.deleteUrl);
+  deleteSale(saleId:SaleId) : Observable<Boolean> {
+    return this.httpClient.post<Boolean>(this.deleteUrl, saleId);
   }
 
 }

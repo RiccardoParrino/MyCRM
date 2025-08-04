@@ -100,9 +100,17 @@ export class SaleComponent implements OnInit{
   }
 
   deleteSale() {
-    // this.saleService.deleteSale(this.currentSelectedSale).subscribe(value => {
-    //   value;
-    // })
+    this.saleService.deleteSale(this.currentSelectedSale.saleId)
+      .subscribe(
+        value => {
+          if (value) {
+            console.log("Sale deleted successfully");
+            this.readSales();
+          } else {
+            console.log("Some error occurred!");
+          }
+        }
+      );
   }
 
   modifySale() {
