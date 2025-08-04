@@ -75,9 +75,15 @@ public class SaleService {
     }
     
     public Boolean updateSale(SaleDTO saleDTO) {
-        // if (saleRepository.existsById(saleDTO.getSaleId())) {
-        //     return this.createSale(saleDTO);
-        // }
+        if (saleRepository.existsById(SaleId.builder()
+                            .userId(saleDTO.getUserId())
+                            .customerId(saleDTO.getCustomerId())
+                            .productId(saleDTO.getProductId())
+                            .createdAt(saleDTO.getCreatedAt())
+                            .build())
+        ) {
+            return this.createSale(saleDTO);
+        }
         return false;
     }
     

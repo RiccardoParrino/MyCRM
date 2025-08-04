@@ -124,6 +124,7 @@ export class SaleComponent implements OnInit{
     
     createSaleDialogRef.afterClosed().subscribe( data => {
       if (data) {
+        console.log(data);
         const saleDTO = {
           'saleId' : this.currentSelectedSale.saleId.saleId,
           'createdAt' : this.currentSelectedSale.saleId.createdAt,
