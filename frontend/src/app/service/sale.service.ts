@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { SaleDTO } from '../dto/sale.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -13,16 +15,20 @@ export class SaleService {
 
   constructor(private httpClient:HttpClient) {}
 
-  readSales() {
+  readSales() : Observable<SaleDTO[]> {
+    return this.httpClient.get<SaleDTO[]>(this.readUrl);
   }
 
-  createSale() {
+  createSale(sale:SaleDTO) : Observable<Boolean> {
+    return this.httpClient.post<Boolean>(this.createUrl, sale);
   }
 
-  updateSale() {
+  updateSale(sale:SaleDTO) : Observable<Boolean> {
+    return this.httpClient.post<Boolean>(this.updateUrl, sale);
   }
 
-  deleteSale() {
+  deleteSale(sale:SaleDTO) : Observable<Boolean> {
+    return this.httpClient.get<Boolean>(this.deleteUrl);
   }
 
 }

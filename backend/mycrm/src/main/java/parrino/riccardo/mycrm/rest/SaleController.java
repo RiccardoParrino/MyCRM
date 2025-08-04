@@ -1,5 +1,6 @@
 package parrino.riccardo.mycrm.rest;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,27 +29,12 @@ public class SaleController {
     }
 
     @GetMapping("read")
-    public SaleDTO readSale(@RequestParam SaleId param) {
-        Optional<Sale> optionalSale = saleService.readSale(param);
-        if (optionalSale.isPresent()) {
-            Sale sale = optionalSale.get();
-            SaleDTO saleDTO = SaleDTO.builder()
-                .user(sale.getUser())
-                .customer(sale.getCustomer())
-                .product(sale.getProduct())
-                .progress(sale.getProgress())
-                .activity(sale.getActivity())
-                .amount(sale.getAmount())
-                .lastUpdate(sale.getLastUpdate())
-                .notes(sale.getNotes())
-                .build();
-            return saleDTO;
-        }
+    public List<SaleDTO> readSale() {
         return null;
     }
     
-    @GetMapping("update")
-    public Boolean updateSale(@RequestParam SaleDTO saleDTO) {
+    @PostMapping("update")
+    public Boolean updateSale(@RequestBody SaleDTO saleDTO) {
         return saleService.updateSale(saleDTO);
     }
     
