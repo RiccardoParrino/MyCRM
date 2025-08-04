@@ -37,7 +37,7 @@ export class SaleComponent implements OnInit{
   displayedColumns: String[] = ["name", "progress", "activity", "customer", "amount", "product", "lastUpdate", "createdAt", "notes"];
   
   isRowSelected:boolean = false;
-  currentSelectedSale: Sale | undefined;
+  currentSelectedSale!: Sale;
 
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -58,7 +58,7 @@ export class SaleComponent implements OnInit{
   }
 
   deleteSale() {
-    this.saleService.deleteSale().subscribe(value => {
+    this.saleService.deleteSale(this.currentSelectedSale).subscribe(value => {
       value;
     })
   }

@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import { User } from '../dto/user.dto';
 import { __values } from 'tslib';
+import { UserDTO } from '../dto/user.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,7 @@ export class AuthService {
     return this.isLogged;
   }
 
-  registration(user:User) : Observable<boolean> {
+  registration(user:UserDTO) : Observable<boolean> {
     return this.http.post<boolean>(this.registrationUrl, user);
   }
 

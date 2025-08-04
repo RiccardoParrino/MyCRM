@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from '../dto/user.dto';
+import { UserDTO } from '../dto/user.dto';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,8 +12,8 @@ export class AdministrationService {
 
   constructor(private http:HttpClient) { }
 
-  getAllRegisteredUser() : Observable<User[]> {
-    return this.http.get<User[]>(this.allRegisteredUserUrl);
+  getAllRegisteredUser() : Observable<UserDTO[]> {
+    return this.http.get<UserDTO[]>(this.allRegisteredUserUrl);
   }
 
 }
