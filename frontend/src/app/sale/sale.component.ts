@@ -114,7 +114,7 @@ export class SaleComponent implements OnInit{
   }
 
   modifySale() {
-    // this.saleService.updateSale(this.currentSelectedSale);
+    this.saleService.updateSale(this.currentSelectedSale);
   }
 
   rowClicked(saleRow:any) {
