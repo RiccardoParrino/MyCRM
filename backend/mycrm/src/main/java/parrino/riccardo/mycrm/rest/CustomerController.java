@@ -8,8 +8,6 @@ import parrino.riccardo.mycrm.service.CustomerService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,34 +26,31 @@ public class CustomerController {
     }
 
     @GetMapping("/readCustomer")
-    public List<CustomerDTO> readCustomer() {
-        List<CustomerDTO> toReturn = new ArrayList<>();
-
-        for (int i = 0; i < 50; i++) {
-            toReturn.add(
+    public List<CustomerDTO> readCustomers() {
+        return this.customerService
+            .readCustomers()
+            .stream()
+            .map(customer -> 
                 CustomerDTO.builder()
-                    .customerId(Long.valueOf(i))
-                    .name("riccardo"+String.valueOf(i))
-                    .surname("parrino"+String.valueOf(i))
-                    .email("riccardo@gmail.com"+String.valueOf(i))
-                    .organizationName("BIG COMPANY LTD"+String.valueOf(i))
-                    .city("Alcamo"+String.valueOf(i))
-                    .region("Sicily"+String.valueOf(i))
-                    .state("Italy"+String.valueOf(i))
-                    .coreBusiness("Product"+String.valueOf(i))
-                    .phoneNumber("1231231231"+String.valueOf(i))
-                    .notes("GRAAANDEEE"+String.valueOf(i))
-                    .createdAt(new Date(i))
+                    .customerId(customer.getCustomerId())
+                    .name(customer.getName())
+                    .surname(customer.getSurname())
+                    .email(customer.getEmail())
+                    .phoneNumber(customer.getPhoneNumber())
+                    .organizationName(customer.getOrganizationName())
+                    .city(customer.getCity())
+                    .region(customer.getRegion())
+                    .state(customer.getState())
+                    .coreBusiness(customer.getCoreBusiness())
+                    .createdAt(customer.getCreatedAt())
+                    .notes(customer.getNotes())
                     .build()
-            );
-        }
-
-        return toReturn;
+        ).toList();
     }
     
     @PostMapping("/updateCustomer")
     public Boolean updateCustomer(@RequestBody CustomerDTO customerDTO) {
-        return this.customerService.updateCustomer(customerDTO.getName());
+        return this.customerService.updateCustomer(customerDTO);
     }
 
     @GetMapping("/deleteCustomer")

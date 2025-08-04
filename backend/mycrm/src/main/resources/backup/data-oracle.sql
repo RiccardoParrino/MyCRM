@@ -1,14 +1,14 @@
 INSERT INTO MYCRM.USERS
-(USER_ID, EMAIL, NAME, PASSWORD, PHONE_NUMBER, SURNAME, USERNAME)
-VALUES("MYCRM"."ISEQ$$_76950".nextval, 'riccardo@gmail.com', 'riccardo', 'mycrm', '1231231', 'parrino', 'ric');
+(USER_ID, EMAIL, NAME, PASSWORD, PHONE_NUMBER, SURNAME, USERNAME, ORGANIZATION_NAME)
+VALUES("MYCRM"."ISEQ$$_76950".nextval, 'riccardo@gmail.com', 'riccardo', 'mycrm', '1231231', 'parrino', 'ric', 'WOW spa');
 
 INSERT INTO MYCRM.USERS
-(USER_ID, EMAIL, NAME, PASSWORD, PHONE_NUMBER, SURNAME, USERNAME)
-VALUES("MYCRM"."ISEQ$$_76950".nextval, 'francesco@gmail.com', 'francesco', 'mycrm', '1231231', 'rossi', 'fra');
+(USER_ID, EMAIL, NAME, PASSWORD, PHONE_NUMBER, SURNAME, USERNAME, ORGANIZATION_NAME)
+VALUES("MYCRM"."ISEQ$$_76950".nextval, 'francesco@gmail.com', 'francesco', 'mycrm', '1231231', 'rossi', 'fra', 'TOP ltd');
 
 INSERT INTO MYCRM.USERS
-(USER_ID, EMAIL, NAME, PASSWORD, PHONE_NUMBER, SURNAME, USERNAME)
-VALUES("MYCRM"."ISEQ$$_76950".nextval, 'giuseppe@gmail.com', 'giuseppe', 'mycrm', '1231231', 'verdi', 'giu');
+(USER_ID, EMAIL, NAME, PASSWORD, PHONE_NUMBER, SURNAME, USERNAME, ORGANIZATION_NAME)
+VALUES("MYCRM"."ISEQ$$_76950".nextval, 'giuseppe@gmail.com', 'giuseppe', 'mycrm', '1231231', 'verdi', 'giu', 'BIG srl');
 
 INSERT INTO MYCRM.CUSTOMER
 (CUSTOMER_ID, CITY, CORE_BUSINESS, CREATED_AT, EMAIL, NAME, NOTES, ORGANIZATION_NAME, PHONE_NUMBER, REGION, STATE, SURNAME)
