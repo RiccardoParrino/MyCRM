@@ -24,7 +24,7 @@ export class SaleService {
     const saleDTO = {
       'saleId' : sale.saleId.saleId,
       'createdAt' : sale.saleId.createdAt,
-      'user': sale.saleId.userId,
+      'userId': sale.saleId.userId,
       'customerId': sale.saleId.customerId,
       'productId': sale.saleId.productId,
       'progress': sale.progress,

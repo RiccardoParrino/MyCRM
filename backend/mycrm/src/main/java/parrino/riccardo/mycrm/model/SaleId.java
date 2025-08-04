@@ -5,17 +5,25 @@ import java.util.Date;
 import java.util.Objects;
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Embeddable
 public class SaleId implements Serializable{
     
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long saleId;
+
     private Long userId;
     private Long customerId;
     private Long productId;

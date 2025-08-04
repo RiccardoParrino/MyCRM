@@ -65,6 +65,7 @@ public class SaleService {
                 return false;
             }
         } catch (Exception e) {
+            System.out.println(e);
             return false;
         }
     }

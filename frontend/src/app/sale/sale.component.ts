@@ -60,10 +60,12 @@ export class SaleComponent implements OnInit{
       if (data != false){
         console.log(data);
         this.saleService.createSale(data).subscribe( value => {
-          if (value)
-            console.log("New user created!");
-          else
+          if (value){
+            console.log("New sale created!");
+            this.readSales();
+          } else {
             console.log("Some error occurred");
+          }
         } );
       }
     });
