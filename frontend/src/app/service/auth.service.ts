@@ -11,8 +11,8 @@ import { __values } from 'tslib';
 export class AuthService {
 
   public isLogged: boolean = false;
-  private registrationUrl: string = 'http://localhost:8080/registration';
-  private loginUrl: string = 'http://localhost:8080/login';
+  private registrationUrl: string = 'http://localhost:8080/auth/registration';
+  private loginUrl: string = 'http://localhost:8080/auth/login';
 
   constructor(private http:HttpClient, private router:Router) {}
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,18 +15,19 @@ import parrino.riccardo.mycrm.model.Sale;
 import parrino.riccardo.mycrm.model.SaleId;
 import parrino.riccardo.mycrm.service.SaleService;
 
-@RestController("sale")
+@RestController
+@RequestMapping("sale")
 public class SaleController {
 
     @Autowired
     private SaleService saleService;
     
-    @PostMapping("/create")
+    @PostMapping("create")
     public Boolean createSale(@RequestBody SaleDTO saleDTO) {
         return saleService.createSale(saleDTO);
     }
 
-    @GetMapping("/read")
+    @GetMapping("read")
     public SaleDTO readSale(@RequestParam SaleId param) {
         Optional<Sale> optionalSale = saleService.readSale(param);
         if (optionalSale.isPresent()) {
@@ -45,12 +47,12 @@ public class SaleController {
         return null;
     }
     
-    @GetMapping("/update")
+    @GetMapping("update")
     public Boolean updateSale(@RequestParam SaleDTO saleDTO) {
         return saleService.updateSale(saleDTO);
     }
     
-    @GetMapping("/delete")
+    @GetMapping("delete")
     public Boolean deleteSaleById(@RequestParam SaleId saleId) {
         return saleService.deleteSale(saleId);
     }

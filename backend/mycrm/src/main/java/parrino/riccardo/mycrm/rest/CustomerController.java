@@ -7,6 +7,7 @@ import parrino.riccardo.mycrm.service.CustomerService;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -15,17 +16,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
+@RequestMapping("customer")
 public class CustomerController {
     
     @Autowired
     private CustomerService customerService;
 
-    @PostMapping("/createCustomer")
+    @PostMapping("create")
     public Boolean createCustomer(@RequestBody CustomerDTO customerDTO) {
         return this.customerService.createCustomer(customerDTO);
     }
 
-    @GetMapping("/readCustomer")
+    @GetMapping("read")
     public List<CustomerDTO> readCustomers() {
         return this.customerService
             .readCustomers()
@@ -48,12 +50,12 @@ public class CustomerController {
         ).toList();
     }
     
-    @PostMapping("/updateCustomer")
+    @PostMapping("update")
     public Boolean updateCustomer(@RequestBody CustomerDTO customerDTO) {
         return this.customerService.updateCustomer(customerDTO);
     }
 
-    @GetMapping("/deleteCustomer")
+    @GetMapping("delete")
     public Boolean deleteCustomer(@RequestParam Long customerId) {
         return this.customerService.deleteCustomer(customerId);
     }

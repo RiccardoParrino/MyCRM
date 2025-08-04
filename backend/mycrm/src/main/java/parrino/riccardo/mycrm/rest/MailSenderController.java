@@ -8,15 +8,17 @@ import parrino.riccardo.mycrm.service.MailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @RestController
+@RequestMapping("email")
 public class MailSenderController {
 
     @Autowired
     private MailSenderService mailSenderService;
 
-    @PostMapping("sendEmail")
+    @PostMapping("send")
     public boolean sendEmail(@RequestBody EmailDTO emailDto) {
         return this.mailSenderService
             .sendEmail(

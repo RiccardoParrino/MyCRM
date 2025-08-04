@@ -10,8 +10,10 @@ import parrino.riccardo.mycrm.dto.UserDTO;
 import parrino.riccardo.mycrm.model.User;
 import parrino.riccardo.mycrm.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
+@RequestMapping("user")
 public class UserController {
     
     @Autowired

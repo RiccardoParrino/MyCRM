@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class AdministrationService {
 
-  private allRegisteredUserUrl : string = 'http://localhost:8080/getAllUser';
+  private allRegisteredUserUrl : string = 'http://localhost:8080/user/getAllUser';
 
   constructor(private http:HttpClient) { }
 
