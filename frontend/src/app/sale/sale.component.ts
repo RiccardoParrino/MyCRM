@@ -58,11 +58,13 @@ export class SaleComponent implements OnInit{
   }
 
   deleteSale() {
-    this.saleService.createSale();
+    this.saleService.deleteSale().subscribe(value => {
+      value;
+    })
   }
 
   modifySale() {
-    this.saleService.updateSale();
+    this.saleService.updateSale(this.currentSelectedSale);
   }
 
   rowClicked(saleRow:any) {

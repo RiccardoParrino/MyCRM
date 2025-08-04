@@ -1,7 +1,6 @@
 package parrino.riccardo.mycrm.rest;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import parrino.riccardo.mycrm.dto.SaleDTO;
-import parrino.riccardo.mycrm.model.Sale;
 import parrino.riccardo.mycrm.model.SaleId;
 import parrino.riccardo.mycrm.service.SaleService;
 
