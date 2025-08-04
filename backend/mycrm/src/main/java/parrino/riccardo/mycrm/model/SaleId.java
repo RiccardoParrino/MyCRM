@@ -5,11 +5,13 @@ import java.util.Date;
 import java.util.Objects;
 
 import jakarta.persistence.Embeddable;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
 @Embeddable
 public class SaleId implements Serializable{
     

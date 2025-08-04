@@ -15,6 +15,7 @@ import { ModifyCustomerComponent } from '../modify-customer/modify-customer.comp
 import { Sale } from '../model/sale.model';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { SaleService } from '../service/sale.service';
+import { CreateSaleComponent } from '../create-sale/create-sale.component';
 
 @Component({
   selector: 'app-sale',
@@ -41,7 +42,9 @@ export class SaleComponent implements OnInit{
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private saleService:SaleService) {}
+  constructor(private saleService:SaleService,
+    private createSaleComponentMatDialog:MatDialog
+  ) {}
 
   ngAfterViewInit() {
     this.salesDataSource.sort = this.sort;
@@ -52,7 +55,21 @@ export class SaleComponent implements OnInit{
   }
 
   openCreateSaleDialog() {
-    
+    const createSaleDialogRef = this.createSaleComponentMatDialog.open(
+      CreateSaleComponent,
+      {width:'1000px',height:'600px', maxWidth:'1000px'}
+    );
+
+    createSaleDialogRef.afterClosed().subscribe( data => {
+      if (data != false){
+        this.saleService.createSale(data).subscribe( value => {
+          if (value)
+            console.log("New user created!");
+          else
+            console.log("Some error occurred");
+        } );
+      }
+    });
   }
 
   readSales() {
