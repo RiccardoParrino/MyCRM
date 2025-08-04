@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CustomerService } from '../service/customer.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,6 +14,7 @@ import { DeleteCustomerComponent } from '../delete-customer/delete-customer.comp
 import { ModifyCustomerComponent } from '../modify-customer/modify-customer.component';
 import { Sale } from '../model/sale.model';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { SaleService } from '../service/sale.service';
 
 @Component({
   selector: 'app-sale',
@@ -29,7 +30,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
   templateUrl: './sale.component.html',
   styleUrl: './sale.component.css'
 })
-export class SaleComponent {
+export class SaleComponent implements OnInit{
 
   sales: Sale[] = [];
   salesDataSource = new MatTableDataSource<Sale>();
@@ -40,19 +41,29 @@ export class SaleComponent {
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() {}
+  constructor(private saleService:SaleService) {}
 
   ngAfterViewInit() {
     this.salesDataSource.sort = this.sort;
   }
 
+  ngOnInit() {
+    this.readSales();
+  }
+
   openCreateSaleDialog() {}
 
-  readSales() {}
+  readSales() {
+    this.saleService.readSales();
+  }
 
-  deleteSale() {}
+  deleteSale() {
+    this.saleService.createSale();
+  }
 
-  modifySale() {}
+  modifySale() {
+    this.saleService.updateSale();
+  }
 
   rowClicked(saleRow:any) {
     this.currentSelectedSale = saleRow;
