@@ -1,1 +1,43 @@
-<p>modify-product works!</p>
+<h2 mat-dialog-title>Update Product</h2>
+<mat-dialog-content>
+  <form class="add-customer-form">
+
+    <!--Anagraphic Information-->
+    <div class="form-fields-container">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput value="{{name}}" [(ngModel)]="name" name="name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput value="{{description}}" [(ngModel)]="description" name="description">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Unit</mat-label>
+        <input matInput value="{{unit}}" [(ngModel)]="unit" name="unit">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Prices</mat-label>
+        <input matInput value="{{prices}}" [(ngModel)]="prices" name="prices">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Stock</mat-label>
+        <input matInput value="{{stock}}" [(ngModel)]="stock" name="stock">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Notes</mat-label>
+        <input matInput value="{{notes}}" [(ngModel)]="notes" name="notes">
+      </mat-form-field>
+    </div>
+
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-flat-button (click)="close()">Annulla</button>
+  <button mat-flat-button (click)="save()">Salva</button>
+</mat-dialog-actions>

@@ -110,7 +110,25 @@ export class ProductComponent {
   
     modifyProductDialogRef.afterClosed().subscribe( value => {
       if(value) {
-        console.log(value);
+        if (this.currentSelectedProduct) {
+          this.productService.updateSale(
+            new Product(
+              this.currentSelectedProduct?.productId,
+              value.name,
+              value.description,
+              value.unit,
+              value.prices,
+              value.stock,
+              value.notes
+            )
+          ).subscribe( value => {
+            if (value) {
+              console.log("Product updated successfully!");
+            } else {
+              console.log("Some errors occurred!");
+            }
+          } );
+        }
       }
     });
   }
