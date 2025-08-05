@@ -35,8 +35,9 @@ export class ProductService {
     return this.http.post<Boolean>(this.createUrl, productDTO);
   }
 
-  // updateSale(sale:any) : Observable<Boolean> {
-  // }
+  updateSale(sale:Product) : Observable<Boolean> {
+    return this.http.post<Boolean>(this.updateUrl, sale);
+  }
 
   deleteProduct(productId:number) : Observable<Boolean> {
     console.log("Here we go");

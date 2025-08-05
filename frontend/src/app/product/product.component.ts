@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {ScrollingModule} from '@angular/cdk/scrolling';
-import { Customer } from '../model/customer.model';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
@@ -12,6 +11,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { ProductService } from '../service/product.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateProductComponent } from '../create-product/create-product.component';
+import { ModifyProductComponent } from '../modify-product/modify-product.component';
 
 
 @Component({
@@ -41,7 +41,8 @@ export class ProductComponent {
 
   constructor (
     private productService:ProductService,
-    private createproductComponentMatDialog:MatDialog
+    private createproductComponentMatDialog:MatDialog,
+    private modifyProductComponentMatDialog:MatDialog
   ){}
 
   ngAfterViewInit() {
@@ -100,7 +101,37 @@ export class ProductComponent {
       } );
   }
 
-  modifyProduct() {}
+  modifyProduct() {
+    const modifyProductDialogRef = this.modifyProductComponentMatDialog.open(
+      ModifyProductComponent,
+      {width:'1000px',height:'600px',maxWidth:'1000px'}
+    );
+  
+    modifyProductDialogRef.afterClosed().subscribe( value => {
+      if(value) {
+        if (this.currentSelectedProduct) {
+          this.productService.updateSale(
+            new Product(
+              this.currentSelectedProduct?.productId,
+              value.name,
+              value.description,
+              value.unit,
+              value.prices,
+              value.stock,
+              value.notes
+            )
+          ).subscribe( value => {
+            if (value) {
+              console.log("Product updated successfully!");
+              this.readProducts();
+            } else {
+              console.log("Some errors occurred!");
+            }
+          } );
+        }
+      }
+    });
+  }
 
   rowClicked(productRow:any) {
     this.currentSelectedProduct = productRow;
