@@ -120,13 +120,9 @@ export class ProductComponent {
               value.stock,
               value.notes
             )
-          ).subscribe( value => {
-            if (value) {
-              console.log("Product updated successfully!");
-              this.readProducts();
-            } else {
-              console.log("Some errors occurred!");
-            }
+          ).subscribe( {
+            next: value => this.readProducts(),
+            error: value => console.log("some errors occurred!" + value)
           } );
         }
       }
