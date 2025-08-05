@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>Update sale</h2>
+<mat-dialog-content>
+  <form class="add-customer-form">
+
+    <!--Anagraphic Information-->
+    <div class="form-fields-container">
+      <mat-form-field>
+        <mat-label>CustomerId</mat-label>
+        <input matInput value="{{customerId}}" [(ngModel)]="customerId" name="customerId">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>ProductId</mat-label>
+        <input matInput value="{{productId}}" [(ngModel)]="productId" name="productId">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Progress</mat-label>
+        <input matInput value="{{progress}}" [(ngModel)]="progress" name="progress">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Activity</mat-label>
+        <input matInput value="{{activity}}" [(ngModel)]="activity" name="activity">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Amount</mat-label>
+        <input matInput value="{{amount}}" [(ngModel)]="amount" name="amount">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Notes</mat-label>
+        <input matInput value="{{notes}}" [(ngModel)]="notes" name="notes">
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-flat-button (click)="close()">Annulla</button>
+  <button mat-flat-button (click)="save()">Salva</button>
+</mat-dialog-actions>

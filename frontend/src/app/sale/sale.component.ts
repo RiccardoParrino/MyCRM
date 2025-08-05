@@ -12,6 +12,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { SaleService } from '../service/sale.service';
 import { CreateSaleComponent } from '../create-sale/create-sale.component';
 import { SaleId } from '../model/saleId.model';
+import { SaleModifyComponent } from '../sale-modify/sale-modify.component';
 
 @Component({
   selector: 'app-sale',
@@ -38,8 +39,10 @@ export class SaleComponent implements OnInit{
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private saleService:SaleService,
-    private createSaleComponentMatDialog:MatDialog
+  constructor(
+    private saleService:SaleService,
+    private createSaleComponentMatDialog:MatDialog,
+    private modifySaleComponentMatDialog:MatDialog
   ) {}
 
   ngAfterViewInit() {
@@ -114,7 +117,37 @@ export class SaleComponent implements OnInit{
   }
 
   modifySale() {
-    // this.saleService.updateSale(this.currentSelectedSale);
+    const createSaleDialogRef = this.createSaleComponentMatDialog.open(
+      SaleModifyComponent,
+      {width:'1000px',height:'600px', maxWidth:'1000px'}
+    );
+    
+    createSaleDialogRef.afterClosed().subscribe( data => {
+      if (data) {
+        console.log(data);
+        const saleDTO = {
+          'saleId' : this.currentSelectedSale.saleId.saleId,
+          'createdAt' : this.currentSelectedSale.saleId.createdAt,
+          'userId': this.currentSelectedSale.saleId.userId,
+          'customerId': data.customerId == '' ? this.currentSelectedSale.customerId : data.customerId,
+          'productId': data.productId == '' ? this.currentSelectedSale.productId : data.productId,
+          'progress': data.progress == '' ? this.currentSelectedSale.progress : data.progress,
+          'activity': data.activity == '' ? this.currentSelectedSale.activity : data.activity,
+          'amount': data.amount == '' ? this.currentSelectedSale.amount : data.amount,
+          'notes': data.notes == '' ? this.currentSelectedSale.notes : data.notes
+        };
+        this.saleService.updateSale(saleDTO).subscribe( value => {
+          console.log(value);
+          if (value) {
+            console.log("Sale modifiied successfully!");
+          }
+          else {
+            console.log("Some errors occurred!");
+          }
+          this.readSales();
+        });
+      }
+    } );
   }
 
   rowClicked(saleRow:any) {

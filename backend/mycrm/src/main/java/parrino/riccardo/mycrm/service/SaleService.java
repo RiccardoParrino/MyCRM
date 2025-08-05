@@ -75,9 +75,45 @@ public class SaleService {
     }
     
     public Boolean updateSale(SaleDTO saleDTO) {
-        // if (saleRepository.existsById(saleDTO.getSaleId())) {
-        //     return this.createSale(saleDTO);
-        // }
+        if (saleRepository.existsById(SaleId.builder()
+                            .saleId(saleDTO.getSaleId())
+                            .userId(saleDTO.getUserId())
+                            .customerId(saleDTO.getCustomerId())
+                            .productId(saleDTO.getProductId())
+                            .createdAt(saleDTO.getCreatedAt())
+                            .build())
+        ) {
+            Sale sale = Sale.builder()
+                .saleId(
+                    SaleId.builder()
+                        .saleId(saleDTO.getSaleId())
+                        .userId(saleDTO.getUserId())
+                        .customerId(saleDTO.getCustomerId())
+                        .productId(saleDTO.getProductId())
+                        .createdAt(new Date())
+                    .build()
+                )
+                .user(userRepository.findById(saleDTO.getUserId()).get())
+                .customer(customerRepository.findById(saleDTO.getCustomerId()).get())
+                .product(productRepository.findById(saleDTO.getProductId()).get())
+                .progress(saleDTO.getProgress())
+                .activity(saleDTO.getActivity())
+                .amount(saleDTO.getAmount())
+                .lastUpdate(new Date())
+                .notes(saleDTO.getNotes())
+                .build();
+            saleRepository.updateSale(
+                sale.getCustomer().getCustomerId(),
+                sale.getProduct().getProductId(),
+                sale.getActivity(),
+                sale.getProgress(),
+                sale.getAmount(),
+                sale.getLastUpdate(),
+                sale.getNotes(),
+                sale.getSaleId().getSaleId()
+            );
+            return true;
+        }
         return false;
     }
     
