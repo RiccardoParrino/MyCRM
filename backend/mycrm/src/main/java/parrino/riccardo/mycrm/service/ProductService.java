@@ -1,6 +1,6 @@
 package parrino.riccardo.mycrm.service;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
@@ -18,12 +18,26 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public String createProduct(ProductDTO productDTO) {
-        return "entity";
+    public Boolean createProduct(ProductDTO productDTO) {
+        try{
+            this.productRepository.save(Product.builder()
+                .name(productDTO.getName())
+                .description(productDTO.getDescription())
+                .unit(productDTO.getUnit())
+                .price(productDTO.getPrice())
+                .stock(productDTO.getStock())
+                .notes(productDTO.getNotes())
+                .build()
+            );
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
     }
 
-    public Optional<Product> readProduct(Long productId) {
-        return productRepository.findById(productId);
+    public List<Product> readProduct() {
+        return productRepository.findAll();
     }
     
     public Boolean updateProduct(ProductDTO productDTO) {

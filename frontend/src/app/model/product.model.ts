@@ -1,4 +1,5 @@
 export class Product {
+    productId:number;
     name:string;
     description:string;
     unit:string;
@@ -7,6 +8,7 @@ export class Product {
     notes:string;
 
     constructor (
+        productId:number,
         name:string,
         description:string,
         unit:string,
@@ -14,6 +16,7 @@ export class Product {
         stock:number,
         notes:string
     ) {
+        this.productId = productId;
         this.name = name;
         this.description = description;
         this.unit = unit;

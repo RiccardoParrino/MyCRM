@@ -1,5 +1,7 @@
 package parrino.riccardo.mycrm.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,19 +22,18 @@ public class ProductController {
     private ProductService productService;
     
     @PostMapping("create")
-    public String createProduct(@RequestBody ProductDTO productDTO) {
+    public Boolean createProduct(@RequestBody ProductDTO productDTO) {
         return productService.createProduct(productDTO);
     }
 
     @GetMapping("read")
-    public Product readProduct(@RequestParam Long productId) {
-        return productService.readProduct(productId).get();
+    public List<Product> readProduct() {
+        return productService.readProduct();
     }
     
     @PostMapping("update")
     public Boolean updateProduct(@RequestBody ProductDTO productDTO) {
-        this.productService.updateProduct(productDTO);
-        return true;
+        return this.productService.updateProduct(productDTO);
     }
     
     @GetMapping("delete")
