@@ -59,12 +59,13 @@ export class ProductComponent {
         this.productService.createProduct(data).subscribe(value => {
           if (value) {
             console.log("Product successfully created!");
+            this.readProducts();
           } else {
             console.log("Some errors occurred!");
           }
         });
       }
-    } )
+    })
   }
 
   readProducts() {
