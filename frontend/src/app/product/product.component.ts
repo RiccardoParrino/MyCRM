@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CustomerService } from '../service/customer.service';
 import { HttpClientModule } from '@angular/common/http';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {ScrollingModule} from '@angular/cdk/scrolling';
@@ -8,13 +7,11 @@ import { Customer } from '../model/customer.model';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import { MatDialog } from '@angular/material/dialog';
-import { CreateCustomerDialogComponent } from '../create-customer-dialog/create-customer-dialog.component';
-import { DeleteCustomerComponent } from '../delete-customer/delete-customer.component';
-import { ModifyCustomerComponent } from '../modify-customer/modify-customer.component';
 import { Product } from '../model/product.model';
-import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 import { ProductService } from '../service/product.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateProductComponent } from '../create-product/create-product.component';
 
 
 @Component({
@@ -43,14 +40,32 @@ export class ProductComponent {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor (
-    private productService:ProductService
+    private productService:ProductService,
+    private createproductComponentMatDialog:MatDialog
   ){}
 
   ngAfterViewInit() {
     this.productsDataSource.sort = this.sort;
   }
 
-  openCreateProductDialog() {}
+  openCreateProductDialog() {
+    const createProductDialogRef = this.createproductComponentMatDialog.open(
+      CreateProductComponent,
+      {width:'1000px',height:'600px',maxWidth:'1000px'}
+    );
+
+    createProductDialogRef.afterClosed().subscribe(data => {
+      if(data){
+        this.productService.createProduct(data).subscribe(value => {
+          if (value) {
+            console.log("Product successfully created!");
+          } else {
+            console.log("Some errors occurred!");
+          }
+        });
+      }
+    } )
+  }
 
   readProducts() {
     this.productService.readProducts().subscribe( products => {
@@ -58,6 +73,7 @@ export class ProductComponent {
       products.forEach( p =>
         this.products.push(
           new Product(
+            p.productId,
             p.name,
             p.description,
             p.unit,

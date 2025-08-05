@@ -18,8 +18,8 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public String createProduct(ProductDTO productDTO) {
-        return "entity";
+    public Boolean createProduct(ProductDTO productDTO) {
+        return true;
     }
 
     public List<Product> readProduct() {

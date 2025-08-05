@@ -1,1 +1,41 @@
-<p>create-product works!</p>
+<h2 mat-dialog-title>Add new Product</h2>
+<mat-dialog-content>
+
+  <form class="add-customer-form">
+    <h3>Product Information</h3>
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="" [(ngModel)]="name" name="name">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput placeholder="" value="" [(ngModel)]="description" name="description">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Unit</mat-label>
+        <input matInput placeholder="" value="" [(ngModel)]="unit" name="unit">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Price</mat-label>
+        <input matInput placeholder="" value="" [(ngModel)]="price" name="price">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Stock</mat-label>
+        <input matInput placeholder="" value="" [(ngModel)]="stock" name="stock">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Notes</mat-label>
+        <input matInput placeholder="" value="" [(ngModel)]="notes" name="notes">
+    </mat-form-field>
+  </form>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-flat-button (click)="close()">Annulla</button>
+  <button mat-flat-button (click)="save()">Salva</button>
+</mat-dialog-actions>
