@@ -5,7 +5,7 @@ import {FormsModule} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
-import { User } from '../dto/user.dto';
+import { User } from '../model/user.model';
 
 @Component({
   selector: 'app-registration',

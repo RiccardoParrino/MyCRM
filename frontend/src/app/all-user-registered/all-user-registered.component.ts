@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { User } from '../dto/user.dto';
+import { User } from '../model/user.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from "@angular/material/toolbar";
