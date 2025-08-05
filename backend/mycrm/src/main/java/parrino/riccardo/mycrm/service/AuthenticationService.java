@@ -18,8 +18,21 @@ public class AuthenticationService {
     @Autowired
     private UserService userService;
 
-    public Boolean createUser(UserDTO user) {
-        return true;
+    public Boolean createUser(UserDTO userDTO) {
+        return userService.createUser(
+            User
+                .builder()
+                .username(userDTO.getUsername())
+                .password(userDTO.getPassword())
+                .name(userDTO.getName())
+                .surname(userDTO.getSurname())
+                .email(userDTO.getEmail())
+                .phoneNumber(userDTO.getPhoneNumber())
+                .organizationName(userDTO.getOrganizationName())
+                .customers(null)
+                .produce(null)
+                .build()
+        );
     }
 
     public Boolean directLogin(LoginDTO loginDTO) {
