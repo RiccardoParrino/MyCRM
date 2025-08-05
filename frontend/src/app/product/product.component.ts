@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {ScrollingModule} from '@angular/cdk/scrolling';
-import { Customer } from '../model/customer.model';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
@@ -124,6 +123,7 @@ export class ProductComponent {
           ).subscribe( value => {
             if (value) {
               console.log("Product updated successfully!");
+              this.readProducts();
             } else {
               console.log("Some errors occurred!");
             }

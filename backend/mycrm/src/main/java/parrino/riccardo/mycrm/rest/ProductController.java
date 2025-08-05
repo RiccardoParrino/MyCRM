@@ -33,8 +33,7 @@ public class ProductController {
     
     @PostMapping("update")
     public Boolean updateProduct(@RequestBody ProductDTO productDTO) {
-        this.productService.updateProduct(productDTO);
-        return true;
+        return this.productService.updateProduct(productDTO);
     }
     
     @GetMapping("delete")
