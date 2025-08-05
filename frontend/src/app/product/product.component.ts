@@ -12,6 +12,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { ProductService } from '../service/product.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateProductComponent } from '../create-product/create-product.component';
+import { ModifyProductComponent } from '../modify-product/modify-product.component';
 
 
 @Component({
@@ -41,7 +42,8 @@ export class ProductComponent {
 
   constructor (
     private productService:ProductService,
-    private createproductComponentMatDialog:MatDialog
+    private createproductComponentMatDialog:MatDialog,
+    private modifyProductComponentMatDialog:MatDialog
   ){}
 
   ngAfterViewInit() {
@@ -100,7 +102,18 @@ export class ProductComponent {
       } );
   }
 
-  modifyProduct() {}
+  modifyProduct() {
+    const modifyProductDialogRef = this.modifyProductComponentMatDialog.open(
+      ModifyProductComponent,
+      {width:'1000px',height:'600px',maxWidth:'1000px'}
+    );
+  
+    modifyProductDialogRef.afterClosed().subscribe( value => {
+      if(value) {
+        console.log(value);
+      }
+    });
+  }
 
   rowClicked(productRow:any) {
     this.currentSelectedProduct = productRow;
