@@ -19,6 +19,16 @@ public class UserService {
         return this.userRepository.findByUsername(username);
     }
 
+    public Boolean createUser(User user) {
+        try{
+            userRepository.save(user);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
     public Boolean setPasswordToUser(String username, String password) {
         return true;
     }

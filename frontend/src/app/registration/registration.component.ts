@@ -18,15 +18,25 @@ export class RegistrationComponent {
   name = '';
   surname = '';
   email = '';
+  repeatedEmail = '';
   organizationName = '';
   phoneNumber = '';
   username = '';
   password = '';
+  repeatedPassword = '';
 
   constructor(private authService:AuthService, private router:Router) {
   }
 
   onSubmit() {
+    if (this.email != this.repeatedEmail ) {
+      alert("Inserisci la stessa mail!");
+      return;
+    }
+    if (this.password != this.repeatedPassword) {
+      alert("Inserisci la stessa password!");
+      return;
+    }
     const user = new User(
       this.username,
       this.password,
