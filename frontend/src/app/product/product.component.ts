@@ -14,6 +14,7 @@ import { DeleteCustomerComponent } from '../delete-customer/delete-customer.comp
 import { ModifyCustomerComponent } from '../modify-customer/modify-customer.component';
 import { Product } from '../model/product.model';
 import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
+import { ProductService } from '../service/product.service';
 
 
 @Component({
@@ -41,7 +42,9 @@ export class ProductComponent {
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor (){}
+  constructor (
+    private productService:ProductService
+  ){}
 
   ngAfterViewInit() {
     this.productsDataSource.sort = this.sort;
@@ -49,7 +52,24 @@ export class ProductComponent {
 
   openCreateProductDialog() {}
 
-  readProducts() {}
+  readProducts() {
+    this.productService.readProducts().subscribe( products => {
+      this.products = [];
+      products.forEach( p =>
+        this.products.push(
+          new Product(
+            p.name,
+            p.description,
+            p.unit,
+            p.price,
+            p.stock,
+            p.notes
+          )
+        )
+      )
+      this.productsDataSource.data = products;
+    });
+  }
 
   deleteProduct() {}
 

@@ -1,5 +1,7 @@
 package parrino.riccardo.mycrm.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,8 +27,8 @@ public class ProductController {
     }
 
     @GetMapping("read")
-    public Product readProduct(@RequestParam Long productId) {
-        return productService.readProduct(productId).get();
+    public List<Product> readProduct() {
+        return productService.readProduct();
     }
     
     @PostMapping("update")
