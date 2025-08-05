@@ -48,4 +48,13 @@ public class SaleId implements Serializable{
         return Objects.hash(this.saleId, this.userId, this.customerId, this.productId, this.createdAt);
     }
 
+    @Override
+    public String toString() {
+        return this.saleId + " " 
+                + this.userId + " " 
+                + this.customerId + " "
+                + this.productId + " "
+                + this.createdAt;
+    }
+
 }

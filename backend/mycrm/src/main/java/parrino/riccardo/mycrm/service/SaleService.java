@@ -76,13 +76,34 @@ public class SaleService {
     
     public Boolean updateSale(SaleDTO saleDTO) {
         if (saleRepository.existsById(SaleId.builder()
+                            .saleId(saleDTO.getSaleId())
                             .userId(saleDTO.getUserId())
                             .customerId(saleDTO.getCustomerId())
                             .productId(saleDTO.getProductId())
                             .createdAt(saleDTO.getCreatedAt())
                             .build())
         ) {
-            return this.createSale(saleDTO);
+            Sale sale = Sale.builder()
+                .saleId(
+                    SaleId.builder()
+                        .saleId(saleDTO.getSaleId())
+                        .userId(saleDTO.getUserId())
+                        .customerId(saleDTO.getCustomerId())
+                        .productId(saleDTO.getProductId())
+                        .createdAt(new Date())
+                    .build()
+                )
+                .user(userRepository.findById(saleDTO.getUserId()).get())
+                .customer(customerRepository.findById(saleDTO.getCustomerId()).get())
+                .product(productRepository.findById(saleDTO.getProductId()).get())
+                .progress(saleDTO.getProgress())
+                .activity(saleDTO.getActivity())
+                .amount(saleDTO.getAmount())
+                .lastUpdate(new Date())
+                .notes(saleDTO.getNotes())
+                .build();
+            saleRepository.updateSale();
+            return true;
         }
         return false;
     }

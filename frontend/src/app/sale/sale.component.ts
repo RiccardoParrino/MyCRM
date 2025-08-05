@@ -128,9 +128,24 @@ export class SaleComponent implements OnInit{
         const saleDTO = {
           'saleId' : this.currentSelectedSale.saleId.saleId,
           'createdAt' : this.currentSelectedSale.saleId.createdAt,
-          'userId': this.currentSelectedSale.saleId.userId
+          'userId': this.currentSelectedSale.saleId.userId,
+          'customerId': data.customerId == '' ? this.currentSelectedSale.customerId : data.customerId,
+          'productId': data.productId == '' ? this.currentSelectedSale.productId : data.productId,
+          'progress': data.progress == '' ? this.currentSelectedSale.progress : data.progress,
+          'activity': data.activity == '' ? this.currentSelectedSale.activity : data.activity,
+          'amount': data.amount == '' ? this.currentSelectedSale.amount : data.amount,
+          'notes': data.notes == '' ? this.currentSelectedSale.notes : data.notes
         };
-        this.saleService.updateSale(saleDTO);
+        this.saleService.updateSale(saleDTO).subscribe( value => {
+          console.log(value);
+          if (value) {
+            console.log("Sale modifiied successfully!");
+          }
+          else {
+            console.log("Some errors occurred!");
+          }
+          this.readSales();
+        });
       }
     } );
   }

@@ -38,6 +38,8 @@ export class SaleService {
   }
 
   updateSale(sale:any) : Observable<Boolean> {
+    console.log("sale.service.ts:41")
+    console.log(sale);
     return this.httpClient.post<Boolean>(this.updateUrl, sale);
   }
 
