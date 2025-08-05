@@ -22,7 +22,7 @@ public class ProductController {
     private ProductService productService;
     
     @PostMapping("create")
-    public String createProduct(@RequestBody ProductDTO productDTO) {
+    public Boolean createProduct(@RequestBody ProductDTO productDTO) {
         return productService.createProduct(productDTO);
     }
 
