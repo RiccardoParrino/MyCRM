@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ProductDTO } from '../dto/product.dto';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Product } from '../model/product.model';
 
 @Injectable({
@@ -38,7 +38,11 @@ export class ProductService {
   // updateSale(sale:any) : Observable<Boolean> {
   // }
 
-  // deleteSale(saleId:SaleId) : Observable<Boolean> {
-  // }
+  deleteProduct(productId:number) : Observable<Boolean> {
+    console.log("Here we go");
+    const params = new HttpParams()
+      .set( 'productId',productId );
+    return this.http.get<Boolean>(this.deleteUrl, {params:params});
+  }
   
 }

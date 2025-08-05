@@ -35,7 +35,7 @@ export class ProductComponent {
   displayedColumns: String[] = ["name", "description", "unit", "stock", "notes"];
 
   isRowSelected:boolean = false;
-  currentSelectedProduct: Customer | undefined;
+  currentSelectedProduct!: Product | undefined;
 
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -88,7 +88,17 @@ export class ProductComponent {
     });
   }
 
-  deleteProduct() {}
+  deleteProduct() {
+    if (this.currentSelectedProduct)
+      this.productService.deleteProduct(this.currentSelectedProduct.productId).subscribe( value => {
+        if(value){
+          console.log("Product successfully deleted");
+          this.readProducts();
+        } else {
+          console.log("Some errors occurred!");
+        }
+      } );
+  }
 
   modifyProduct() {}
 
