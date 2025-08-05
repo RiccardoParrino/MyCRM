@@ -19,7 +19,21 @@ public class ProductService {
     }
 
     public Boolean createProduct(ProductDTO productDTO) {
-        return true;
+        try{
+            this.productRepository.save(Product.builder()
+                .name(productDTO.getName())
+                .description(productDTO.getDescription())
+                .unit(productDTO.getUnit())
+                .price(productDTO.getPrice())
+                .stock(productDTO.getStock())
+                .notes(productDTO.getNotes())
+                .build()
+            );
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
     }
 
     public List<Product> readProduct() {
