@@ -102,7 +102,16 @@ public class SaleService {
                 .lastUpdate(new Date())
                 .notes(saleDTO.getNotes())
                 .build();
-            saleRepository.updateSale();
+            saleRepository.updateSale(
+                sale.getCustomer().getCustomerId(),
+                sale.getProduct().getProductId(),
+                sale.getActivity(),
+                sale.getProgress(),
+                sale.getAmount(),
+                sale.getLastUpdate(),
+                sale.getNotes(),
+                sale.getSaleId().getSaleId()
+            );
             return true;
         }
         return false;
