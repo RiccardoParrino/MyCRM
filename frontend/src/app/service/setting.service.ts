@@ -2,6 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
+import { UserDTO } from '../dto/user.dto';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,16 @@ export class SettingService {
   changePasswordUrl:string = "http://localhost:8080/auth/changePassword";
 
   constructor(private http:HttpClient,
-    private authService:AuthService
+    private authService:AuthService,
+    private userService:UserService
   ) {}
+
+  userDetails() : Observable<UserDTO> {
+    return this.userService.userDetails(
+      this.authService.usernameLogged,
+      this.authService.passwordLogged
+    )
+  }
 
   resetPassword() : Observable<Boolean> {
     const data = {

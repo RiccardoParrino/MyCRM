@@ -13,7 +13,11 @@ import parrino.riccardo.mycrm.model.User;
 public interface UserRepository extends JpaRepository<User, Long>{
     Optional<User> findByUsername(String string);
 
-    Optional<User> findByUsernameAndPassword(String username, String password);
+    @Query("SELECT u FROM User u WHERE u.username = :username AND u.password = :password")
+    Optional<User> findByUsernameAndPassword(
+        @Param("username") String username, 
+        @Param("password") String password
+    );
 
     @Transactional
     @Modifying
@@ -22,5 +26,18 @@ public interface UserRepository extends JpaRepository<User, Long>{
         @Param("username") String username, 
         @Param("oldPassword") String oldPassword, 
         @Param("newPassword") String newPassword
+    );
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE User u SET u.name = :name, u.surname = :surname, u.email = :email, u.phoneNumber = :phoneNumber, u.organizationName = :organizationName WHERE u.username = :username AND u.password = :password")
+    int updateUserDetails(
+        @Param("username") String username,
+        @Param("password") String password,
+        @Param("name") String name,
+        @Param("surname") String surname,
+        @Param("email") String email,
+        @Param("phoneNumber") String phoneNumber,
+        @Param("organizationName") String organizationName
     );
 }
