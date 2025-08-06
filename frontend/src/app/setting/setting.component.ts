@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { SettingService } from '../service/setting.service';
-import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-setting',
@@ -20,8 +19,8 @@ export class SettingComponent {
 
   resetPassword() {
     this.settingService.resetPassword().subscribe( response => {
-
-    } );
+      
+    });
   }
 
 }
