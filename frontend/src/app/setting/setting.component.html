@@ -1,58 +1,59 @@
 <mat-toolbar color="primary">
     <span class="toolbar-title">Settings page</span>
     <button mat-flat-button (click)="resetPassword()">Reset password</button>
+    <button mat-flat-button (click)="refresh()">Refresh page</button>
 </mat-toolbar>
 
 <form class="add-customer-form">
 
     <mat-form-field>
         <mat-label>Name</mat-label>
-        <input matInput placeholder="" value="" [(ngModel)]="name" name="name">
+        <input matInput placeholder="" disabled [(ngModel)]="name" name="name">
     </mat-form-field>
     
     <mat-form-field>
         <mat-label>New Name</mat-label>
-        <input matInput placeholder="" value="" [(ngModel)]="newName" name="newName">
+        <input matInput placeholder="" [(ngModel)]="newName" name="newName">
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Surname</mat-label>
-        <input matInput placeholder="" value="" [(ngModel)]="surname" name="surname">
+        <input matInput placeholder="" disabled [(ngModel)]="surname" name="surname">
     </mat-form-field>
     
     <mat-form-field>
         <mat-label>New Surname</mat-label>
-        <input matInput placeholder="" value="" [(ngModel)]="newSurname" name="newSurname">
+        <input matInput placeholder="" [(ngModel)]="newSurname" name="newSurname">
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Email</mat-label>
-        <input matInput placeholder="" value="" [(ngModel)]="email" name="email">
+        <input matInput placeholder="" disabled [(ngModel)]="email" name="email">
     </mat-form-field>
     
     <mat-form-field>
         <mat-label>New Email</mat-label>
-        <input matInput placeholder="" value="" [(ngModel)]="newEmail" name="newEmail">
+        <input matInput placeholder="" [(ngModel)]="newEmail" name="newEmail">
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Phone Number</mat-label>
-        <input matInput placeholder="" value="" [(ngModel)]="phoneNumber" name="phoneNumber">
+        <input matInput placeholder="" disabled [(ngModel)]="phoneNumber" name="phoneNumber">
     </mat-form-field>
     
     <mat-form-field>
         <mat-label>New Phone Number</mat-label>
-        <input matInput placeholder="" value="" [(ngModel)]="newPhoneNumber" name="newPhoneNumber">
+        <input matInput placeholder="" [(ngModel)]="newPhoneNumber" name="newPhoneNumber">
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Organization Name</mat-label>
-        <input matInput placeholder="" value="" [(ngModel)]="organizationName" name="organizationName">
+        <input matInput placeholder="" disabled [(ngModel)]="organizationName" name="organizationName">
     </mat-form-field>
     
     <mat-form-field>
         <mat-label>New Organization Name</mat-label>
-        <input matInput placeholder="" value="" [(ngModel)]="newOrganizationName" name="newOrganizationName">
+        <input matInput placeholder="" [(ngModel)]="newOrganizationName" name="newOrganizationName">
     </mat-form-field>
 </form>
 

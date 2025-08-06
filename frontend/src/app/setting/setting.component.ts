@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { SettingService } from '../service/setting.service';
 import { ResetPasswordComponent } from '../reset-password/reset-password.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AuthService } from '../service/auth.service';
-import { MatFormField } from '@angular/material/input';
+import { MatFormField, MatInputModule } from '@angular/material/input';
 import { MatLabel } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-setting',
-  imports: [RouterModule, MatToolbarModule, MatButtonModule, MatFormField, MatLabel, FormsModule],
+  imports: [MatDialogModule, MatInputModule, MatFormFieldModule, FormsModule, MatButtonModule, MatLabel, MatFormField, MatToolbarModule],
   templateUrl: './setting.component.html',
   styleUrl: './setting.component.css'
 })
@@ -37,7 +38,37 @@ export class SettingComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    
+    this.settingService.userDetails().subscribe( data => {
+      if (data != null) {
+        this.name = data.name,
+        this.surname = data.surname,
+        this.email = data.email,
+        this.phoneNumber = data.phoneNumber,
+        this.organizationName = data.organizationName
+      }
+    } )
+  }
+
+  refresh() {
+    this.name = '';
+    this.newName = '';
+    this.email = '';
+    this.newEmail = '';
+    this.surname = '';
+    this.newSurname = '';
+    this.phoneNumber = '';
+    this.newPhoneNumber = '';
+    this.organizationName = '';
+    this.newOrganizationName = '';
+    this.settingService.userDetails().subscribe( data => {
+      if (data != null) {
+        this.name = data.name,
+        this.surname = data.surname,
+        this.email = data.email,
+        this.phoneNumber = data.phoneNumber,
+        this.organizationName = data.organizationName
+      }
+    } );
   }
 
   resetPassword() {
