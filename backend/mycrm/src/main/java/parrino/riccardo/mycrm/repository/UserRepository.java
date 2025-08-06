@@ -8,4 +8,6 @@ import parrino.riccardo.mycrm.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long>{
     Optional<User> findByUsername(String string);
+
+    Optional<User> findByUsernameAndPassword(String username, String password);
 }

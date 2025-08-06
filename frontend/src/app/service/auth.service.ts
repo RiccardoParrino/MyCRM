@@ -11,6 +11,8 @@ import { UserDTO } from '../dto/user.dto';
 export class AuthService {
 
   public isLogged: boolean = false;
+  public usernameLogged:string = '';
+  public passwordLogged:string = '';
   private registrationUrl: string = 'http://localhost:8080/auth/registration';
   private loginUrl: string = 'http://localhost:8080/auth/login';
 

@@ -40,8 +40,8 @@ public class AuthenticationService {
         return user.isPresent() ? loginDTO.getPassword().equals(user.get().getPassword()) : false;
     }
 
-    public Boolean resetPassword(String username) {
-        Optional<User> user = this.userService.findUserByUsername(username);
+    public Boolean resetPassword(String username, String password) {
+        Optional<User> user = this.userService.findUserByUsernameAndPassword(username, password);
 
         if (user.isEmpty())
             return false;

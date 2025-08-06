@@ -27,6 +27,8 @@ export class LoginComponent {
     this.authService.login(this.username, this.password).subscribe( value => {
       if (value){
         this.authService.isLogged = true;
+        this.authService.usernameLogged = this.username;
+        this.authService.passwordLogged = this.password;
         this.router.navigate(['customers']);
       }
       else { 

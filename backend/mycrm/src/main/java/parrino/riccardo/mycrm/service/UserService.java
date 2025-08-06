@@ -19,6 +19,10 @@ public class UserService {
         return this.userRepository.findByUsername(username);
     }
 
+    public Optional<User> findUserByUsernameAndPassword(String username, String password) {
+        return this.userRepository.findByUsernameAndPassword(username, password);
+    }
+
     public Boolean createUser(User user) {
         try{
             userRepository.save(user);
