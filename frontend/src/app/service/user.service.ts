@@ -8,7 +8,8 @@ import { UserDTO } from '../dto/user.dto';
 })
 export class UserService {
 
-  userDetailsUrl:string = 'http://localhost:8080/user/updateUserDetails'
+  userDetailsUrl:string = 'http://localhost:8080/user/userDetails'
+  updateUserDetailsUrl:string = 'http://localhost:8080/user/updateUserDetails'
 
   constructor(
     private http:HttpClient
@@ -23,6 +24,7 @@ export class UserService {
   }
 
   updateUserDetails(updateUserDTO: { username:string, password:string, name: string; surname: string; email: string; phoneNumber: string; organizationName: string; }) : Observable<Boolean>{
-    return this.http.post<Boolean>(this.userDetailsUrl, updateUserDTO);
+    console.log(updateUserDTO);
+    return this.http.post<Boolean>(this.updateUserDetailsUrl, updateUserDTO);
   }
 }

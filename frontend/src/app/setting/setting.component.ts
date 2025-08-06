@@ -103,16 +103,6 @@ export class SettingComponent implements OnInit {
   }
 
   save() {
-    this.name = '';
-    this.newName = '';
-    this.email = '';
-    this.newEmail = '';
-    this.surname = '';
-    this.newSurname = '';
-    this.phoneNumber = '';
-    this.newPhoneNumber = '';
-    this.organizationName = '';
-    this.newOrganizationName = '';
     const updateUserDTO = {
       'username': this.authService.usernameLogged,
       'password': this.authService.passwordLogged,

@@ -29,8 +29,6 @@ public class UserController {
     public Boolean updateUserDetails(@RequestBody UpdateUserDTO updateUserDTO) {
         return userService.updateUserDetails(updateUserDTO);
     }
-    
-    
 
     @PostMapping("userDetails")
     public UserDTO getUserDetails(@RequestBody LoginDTO loginDTO) {

@@ -13,7 +13,11 @@ import parrino.riccardo.mycrm.model.User;
 public interface UserRepository extends JpaRepository<User, Long>{
     Optional<User> findByUsername(String string);
 
-    Optional<User> findByUsernameAndPassword(String username, String password);
+    @Query("SELECT u FROM User u WHERE u.username = :username AND u.password = :password")
+    Optional<User> findByUsernameAndPassword(
+        @Param("username") String username, 
+        @Param("password") String password
+    );
 
     @Transactional
     @Modifying
