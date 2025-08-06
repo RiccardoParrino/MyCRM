@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
+import { UserDTO } from '../dto/user.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,10 @@ export class SettingService {
   constructor(private http:HttpClient,
     private authService:AuthService
   ) {}
+
+  userDetails() : Observable<UserDTO> {
+    
+  }
 
   resetPassword() : Observable<Boolean> {
     const data = {

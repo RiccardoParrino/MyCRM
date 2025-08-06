@@ -2,3 +2,60 @@
     <span class="toolbar-title">Settings page</span>
     <button mat-flat-button (click)="resetPassword()">Reset password</button>
 </mat-toolbar>
+
+<form class="add-customer-form">
+
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="" value="" [(ngModel)]="name" name="name">
+    </mat-form-field>
+    
+    <mat-form-field>
+        <mat-label>New Name</mat-label>
+        <input matInput placeholder="" value="" [(ngModel)]="newName" name="newName">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Surname</mat-label>
+        <input matInput placeholder="" value="" [(ngModel)]="surname" name="surname">
+    </mat-form-field>
+    
+    <mat-form-field>
+        <mat-label>New Surname</mat-label>
+        <input matInput placeholder="" value="" [(ngModel)]="newSurname" name="newSurname">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="" value="" [(ngModel)]="email" name="email">
+    </mat-form-field>
+    
+    <mat-form-field>
+        <mat-label>New Email</mat-label>
+        <input matInput placeholder="" value="" [(ngModel)]="newEmail" name="newEmail">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Phone Number</mat-label>
+        <input matInput placeholder="" value="" [(ngModel)]="phoneNumber" name="phoneNumber">
+    </mat-form-field>
+    
+    <mat-form-field>
+        <mat-label>New Phone Number</mat-label>
+        <input matInput placeholder="" value="" [(ngModel)]="newPhoneNumber" name="newPhoneNumber">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Organization Name</mat-label>
+        <input matInput placeholder="" value="" [(ngModel)]="organizationName" name="organizationName">
+    </mat-form-field>
+    
+    <mat-form-field>
+        <mat-label>New Organization Name</mat-label>
+        <input matInput placeholder="" value="" [(ngModel)]="newOrganizationName" name="newOrganizationName">
+    </mat-form-field>
+</form>
+
+<mat-toolbar color="primary" class="footer-toolbar">
+    <button mat-flat-button (click)="save()">Save</button>
+</mat-toolbar>
