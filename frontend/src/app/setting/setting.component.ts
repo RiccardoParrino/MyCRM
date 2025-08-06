@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Route, Router, RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { SettingService } from '../service/setting.service';
@@ -18,7 +18,8 @@ export class SettingComponent {
   constructor (
     private settingService:SettingService,
     private authService:AuthService,
-    private resetPasswordComponentDialog:MatDialog
+    private resetPasswordComponentDialog:MatDialog,
+    private route:Router
   ) {}
 
   resetPassword() {
@@ -37,6 +38,7 @@ export class SettingComponent {
             if (response) {
               console.log("Password changed successfully!");
               this.authService.logout();
+              this.route.navigate(['/login']);
             }
             else {
               console.log("Some errors occurred!");

@@ -24,11 +24,12 @@ export class SettingService {
   }
 
   changePassword(oldPassword:string, newPassword:string) : Observable<Boolean> {
-    const params = new HttpParams()
-      .set('username', this.authService.usernameLogged)
-      .set('oldPassword', oldPassword)
-      .set('newPassword', newPassword);
-    return this.http.post<Boolean>(this.changePasswordUrl, params);
+    const changePasswordDTO = {
+      'username':this.authService.usernameLogged,
+      'oldPassword':oldPassword,
+      'newPassword':newPassword
+    }
+    return this.http.post<Boolean>(this.changePasswordUrl, changePasswordDTO);
   }
 
 }
