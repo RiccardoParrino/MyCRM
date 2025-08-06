@@ -19,6 +19,10 @@ public class UserService {
         return this.userRepository.findByUsername(username);
     }
 
+    public Optional<User> findUserByUsernameAndPassword(String username, String password) {
+        return this.userRepository.findByUsernameAndPassword(username, password);
+    }
+
     public Boolean createUser(User user) {
         try{
             userRepository.save(user);
@@ -29,8 +33,8 @@ public class UserService {
         }
     }
 
-    public Boolean setPasswordToUser(String username, String password) {
-        return true;
+    public Boolean setPasswordToUser(String username, String oldPassword, String newPassword) {
+        return userRepository.updatePasswordByUsernameAndPassword(username, oldPassword, newPassword) > 0;
     }
 
     public List<User> getAllUser() {
