@@ -2,60 +2,64 @@
     <span class="toolbar-title">Settings page</span>
     <button mat-flat-button (click)="resetPassword()">Reset password</button>
     <button mat-flat-button (click)="refresh()">Refresh page</button>
+    <span class="example-spacer"></span>
+    <span class="toolbar-title">MyCRM</span>
 </mat-toolbar>
 
-<form class="add-customer-form">
+<div class="setting-form-container">
+    <h2>User information</h2>
+    <form class="setting-form">
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="" disabled [(ngModel)]="name" name="name">
+        </mat-form-field>
+        
+        <mat-form-field>
+            <mat-label>New Name</mat-label>
+            <input matInput placeholder="" [(ngModel)]="newName" name="newName">
+        </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="" disabled [(ngModel)]="name" name="name">
-    </mat-form-field>
-    
-    <mat-form-field>
-        <mat-label>New Name</mat-label>
-        <input matInput placeholder="" [(ngModel)]="newName" name="newName">
-    </mat-form-field>
+        <mat-form-field>
+            <mat-label>Surname</mat-label>
+            <input matInput placeholder="" disabled [(ngModel)]="surname" name="surname">
+        </mat-form-field>
+        
+        <mat-form-field>
+            <mat-label>New Surname</mat-label>
+            <input matInput placeholder="" [(ngModel)]="newSurname" name="newSurname">
+        </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Surname</mat-label>
-        <input matInput placeholder="" disabled [(ngModel)]="surname" name="surname">
-    </mat-form-field>
-    
-    <mat-form-field>
-        <mat-label>New Surname</mat-label>
-        <input matInput placeholder="" [(ngModel)]="newSurname" name="newSurname">
-    </mat-form-field>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="" disabled [(ngModel)]="email" name="email">
+        </mat-form-field>
+        
+        <mat-form-field>
+            <mat-label>New Email</mat-label>
+            <input matInput placeholder="" [(ngModel)]="newEmail" name="newEmail">
+        </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="" disabled [(ngModel)]="email" name="email">
-    </mat-form-field>
-    
-    <mat-form-field>
-        <mat-label>New Email</mat-label>
-        <input matInput placeholder="" [(ngModel)]="newEmail" name="newEmail">
-    </mat-form-field>
+        <mat-form-field>
+            <mat-label>Phone Number</mat-label>
+            <input matInput placeholder="" disabled [(ngModel)]="phoneNumber" name="phoneNumber">
+        </mat-form-field>
+        
+        <mat-form-field>
+            <mat-label>New Phone Number</mat-label>
+            <input matInput placeholder="" [(ngModel)]="newPhoneNumber" name="newPhoneNumber">
+        </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Phone Number</mat-label>
-        <input matInput placeholder="" disabled [(ngModel)]="phoneNumber" name="phoneNumber">
-    </mat-form-field>
-    
-    <mat-form-field>
-        <mat-label>New Phone Number</mat-label>
-        <input matInput placeholder="" [(ngModel)]="newPhoneNumber" name="newPhoneNumber">
-    </mat-form-field>
-
-    <mat-form-field>
-        <mat-label>Organization Name</mat-label>
-        <input matInput placeholder="" disabled [(ngModel)]="organizationName" name="organizationName">
-    </mat-form-field>
-    
-    <mat-form-field>
-        <mat-label>New Organization Name</mat-label>
-        <input matInput placeholder="" [(ngModel)]="newOrganizationName" name="newOrganizationName">
-    </mat-form-field>
-</form>
+        <mat-form-field>
+            <mat-label>Organization Name</mat-label>
+            <input matInput placeholder="" disabled [(ngModel)]="organizationName" name="organizationName">
+        </mat-form-field>
+        
+        <mat-form-field>
+            <mat-label>New Organization Name</mat-label>
+            <input matInput placeholder="" [(ngModel)]="newOrganizationName" name="newOrganizationName">
+        </mat-form-field>
+    </form>
+</div>
 
 <mat-toolbar color="primary" class="footer-toolbar">
     <button mat-flat-button (click)="save()">Save</button>
