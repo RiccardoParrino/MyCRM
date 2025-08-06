@@ -54,12 +54,12 @@ public class AuthenticationService {
             "New password: " + temporaryPassword
         );
 
-        this.userService.setPasswordToUser(username, temporaryPassword);
+        this.userService.setPasswordToUser(username, password, temporaryPassword);
         return true;
     }
 
-    public Boolean changePassword(String username, String newPassword) {
-        return this.userService.setPasswordToUser(username, newPassword);
+    public Boolean changePassword(String username, String oldPassword, String newPassword) {
+        return this.userService.setPasswordToUser(username, oldPassword, newPassword);
     }
 
 }

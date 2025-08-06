@@ -33,8 +33,8 @@ public class UserService {
         }
     }
 
-    public Boolean setPasswordToUser(String username, String password) {
-        return true;
+    public Boolean setPasswordToUser(String username, String oldPassword, String newPassword) {
+        return userRepository.updatePasswordByUsernameAndPassword(username, oldPassword, newPassword) > 0;
     }
 
     public List<User> getAllUser() {
