@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import parrino.riccardo.mycrm.dto.LoginDTO;
+import parrino.riccardo.mycrm.dto.UpdateUserDTO;
 import parrino.riccardo.mycrm.model.User;
 import parrino.riccardo.mycrm.repository.UserRepository;
 
@@ -48,6 +49,18 @@ public class UserService {
 
     public List<User> getAllUser() {
         return this.userRepository.findAll();
+    }
+
+    public Boolean updateUserDetails(UpdateUserDTO updateUserDTO) {
+        return userRepository.updateUserDetails(
+            updateUserDTO.getUsername(),
+            updateUserDTO.getPassword(),
+            updateUserDTO.getName(),
+            updateUserDTO.getSurname(),
+            updateUserDTO.getEmail(),
+            updateUserDTO.getPhoneNumber(),
+            updateUserDTO.getOrganizationNumber()
+        ) > 0;
     }
 
 }

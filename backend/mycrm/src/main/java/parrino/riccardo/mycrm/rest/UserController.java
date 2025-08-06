@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import parrino.riccardo.mycrm.dto.LoginDTO;
+import parrino.riccardo.mycrm.dto.UpdateUserDTO;
 import parrino.riccardo.mycrm.dto.UserDTO;
 import parrino.riccardo.mycrm.model.User;
 import parrino.riccardo.mycrm.service.UserService;
@@ -16,12 +17,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
+
 @RestController
 @RequestMapping("user")
 public class UserController {
     
     @Autowired
     private UserService userService;
+
+    @PostMapping("updateUserDetails")
+    public Boolean updateUserDetails(@RequestBody UpdateUserDTO updateUserDTO) {
+        return userService.updateUserDetails(updateUserDTO);
+    }
+    
+    
 
     @PostMapping("userDetails")
     public UserDTO getUserDetails(@RequestBody LoginDTO loginDTO) {
