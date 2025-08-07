@@ -4,6 +4,8 @@ import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,6 +15,8 @@ import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import parrino.riccardo.mycrm.model.User;
 
 @Configuration
 @EnableWebSecurity
@@ -35,13 +39,11 @@ public class WebConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/", "/login").permitAll()
+                .requestMatchers("/", "/login", "/registration").permitAll()
                 .anyRequest().authenticated()
             )
-            .formLogin((form) -> form
-                .loginPage("/login")
-                .permitAll())
-            .logout((logout)->logout.permitAll());
+            .formLogin(form -> form.disable())
+            .httpBasic(httpBasic -> httpBasic.disable());
 
         return http.build();
     }
@@ -52,10 +54,31 @@ public class WebConfig {
     }
 
     @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
+    }
+
+    @Bean
     public UserDetailsManager jdbcUserDetailsManager (DataSource dataSource, PasswordEncoder passwordEncoder) {
 
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
-        
+
+        jdbcUserDetailsManager.setUserExistsSql("SELECT 1 FROM MYCRM.USERS WHERE USERNAME = ?");
+
+        jdbcUserDetailsManager.setCreateUserSql("INSERT INTO MYCRM.USERS (USERNAME, PASSWORD, ENABLED) VALUES (?, ?, ?)");
+
+        jdbcUserDetailsManager.setCreateAuthoritySql("INSERT INTO MYCRM.AUTHORITIES (USERNAME, AUTHORITY) VALUES (?, ?)");
+
+        jdbcUserDetailsManager.setUsersByUsernameQuery("SELECT USERNAME, PASSWORD, ENABLED FROM MYCRM.USERS WHERE USERNAME = ?");
+        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("SELECT USERNAME, AUTHORITY FROM MYCRM.AUTHORITIES WHERE USERNAME = ?");
+
+        jdbcUserDetailsManager.createUser(new MyUserPrincipal(
+            User.builder()
+            .username("ric")
+            .password(getPasswordEncoder().encode("mycrm"))
+            .enabled(true)
+            .build()
+        ));
         return jdbcUserDetailsManager;
     }
 

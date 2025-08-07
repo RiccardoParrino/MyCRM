@@ -1,5 +1,6 @@
 package parrino.riccardo.mycrm.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -34,7 +35,7 @@ public class User {
     private Boolean enabled;
     
     @ManyToMany
-    private List<Role> roles;
+    private final List<Role> roles = new ArrayList<>();
 
     @ManyToMany
     List<Customer> customers;
