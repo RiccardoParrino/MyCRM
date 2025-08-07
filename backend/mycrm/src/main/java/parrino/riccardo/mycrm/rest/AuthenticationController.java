@@ -28,7 +28,11 @@ public class AuthenticationController {
         return this.authenticationService.createUser(user);
     }
 
-    @PostMapping("login")
+    @PostMapping(
+        value = "login",
+        consumes = "application/json", 
+        produces = "application/json"
+    )
     public ResponseEntity<AuthResponse> directLogin(@RequestBody LoginDTO loginDTO) {
         return this.authenticationService.directLogin(loginDTO);
     }
