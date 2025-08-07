@@ -23,7 +23,11 @@ public class AuthenticationController {
     @Autowired
     private AuthenticationService authenticationService;
     
-    @PostMapping("registration")
+    @PostMapping(
+        value = "registration",
+        consumes = "application/json", 
+        produces = "application/json"
+    )
     public Boolean createUser(@RequestBody UserDTO user) {
         return this.authenticationService.createUser(user);
     }
@@ -37,22 +41,38 @@ public class AuthenticationController {
         return this.authenticationService.directLogin(loginDTO);
     }
     
-    @PostMapping("updateUser")
+    @PostMapping( 
+        value = "updateUser",
+        consumes = "application/json", 
+        produces = "application/json"
+    )
     public Boolean updateUser(@RequestBody String entity) {
         return true;
     }
     
-    @GetMapping("deleteUser")
+    @GetMapping( 
+        value="deleteUser",
+        consumes = "application/json", 
+        produces = "application/json"
+    )
     public Boolean deleteUser(@RequestParam String param) {
         return true;
     }
 
-    @PostMapping("resetPassword")
+    @PostMapping(
+        value = "resetPassword",
+        consumes = "application/json", 
+        produces = "application/json"
+    )
     public Boolean resetPassword(@RequestBody LoginDTO loginDTO) {
         return this.authenticationService.resetPassword(loginDTO.getUsername(),loginDTO.getPassword());
     }
 
-    @PostMapping("changePassword")
+    @PostMapping(
+        value = "changePassword",
+        consumes = "application/json", 
+        produces = "application/json"
+    )
     public Boolean changePassword(@RequestBody ChangePasswordDTO changePasswordDTO) {
         return authenticationService.changePassword(
             changePasswordDTO.getUsername(), 

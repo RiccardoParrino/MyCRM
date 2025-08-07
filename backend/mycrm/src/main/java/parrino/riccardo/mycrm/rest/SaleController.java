@@ -26,7 +26,11 @@ public class SaleController {
         return saleService.createSale(saleDTO);
     }
 
-    @GetMapping("read")
+    @GetMapping(
+        value = "read",
+        consumes = "application/json", 
+        produces = "application/json"
+    )
     public List<SaleDTO> readSale() {
         List<Sale> sales = saleService.readSale();
         return sales
