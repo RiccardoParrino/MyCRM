@@ -5,10 +5,12 @@ import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
@@ -16,8 +18,6 @@ import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import parrino.riccardo.mycrm.model.User;
 
 @Configuration
 @EnableWebSecurity
@@ -42,23 +42,37 @@ public class WebConfig {
             .cors(Customizer.withDefaults())
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests((requests) -> requests
-                .requestMatchers("auth/login", "auth/registration").permitAll()
+                .requestMatchers("/auth/login").permitAll()
+                .requestMatchers("/auth/registration").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form.disable())
-            .httpBasic(httpBasic -> httpBasic.disable());
+            .httpBasic(httpBasic -> httpBasic.disable())
+            .authenticationManager(authenticationManager());
 
         return http.build();
     }
 
     @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    public AuthenticationManager authenticationManager() {
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(myDetailsService());
+        authenticationProvider.setPasswordEncoder(passwordEncoder());
+
+        ProviderManager providerManager = new ProviderManager(authenticationProvider);
+        providerManager.setEraseCredentialsAfterAuthentication(false);
+
+        return providerManager;
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
+    public UserDetailsService myDetailsService() {
+        return new MyUserDetailsService();
+    }
+
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
@@ -75,13 +89,13 @@ public class WebConfig {
         jdbcUserDetailsManager.setUsersByUsernameQuery("SELECT USERNAME, PASSWORD, ENABLED FROM MYCRM.USERS WHERE USERNAME = ?");
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("SELECT USERNAME, AUTHORITY FROM MYCRM.AUTHORITIES WHERE USERNAME = ?");
 
-        jdbcUserDetailsManager.createUser(new MyUserPrincipal(
-            User.builder()
-            .username("ric")
-            .password(passwordEncoder().encode("mycrm"))
-            .enabled(true)
-            .build()
-        ));
+        // jdbcUserDetailsManager.createUser(new MyUserPrincipal(
+        //     User.builder()
+        //     .username("ric")
+        //     .password(passwordEncoder().encode("mycrm"))
+        //     .enabled(true)
+        //     .build()
+        // ));
         return jdbcUserDetailsManager;
     }
 

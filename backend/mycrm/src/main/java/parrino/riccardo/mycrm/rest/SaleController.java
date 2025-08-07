@@ -35,7 +35,7 @@ public class SaleController {
                 SaleDTO.builder()
                     .saleId(sale.getSaleId().getSaleId())
                     .createdAt(sale.getSaleId().getCreatedAt())
-                    .userId(sale.getSaleId().getUserId())
+                    .username(sale.getSaleId().getUsername())
                     .customerId(sale.getSaleId().getCustomerId())
                     .productId(sale.getSaleId().getProductId())
                     .progress(sale.getProgress())

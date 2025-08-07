@@ -3,6 +3,9 @@ package parrino.riccardo.mycrm.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
@@ -26,6 +29,9 @@ public class AuthenticationService {
 
     @Autowired
     private UserDetailsManager jdbcUserDetailsManager;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     public Boolean createUser(UserDTO userDTO) {
         if ( jdbcUserDetailsManager.userExists(userDTO.getUsername()) ) {
@@ -52,7 +58,22 @@ public class AuthenticationService {
 
     public Boolean directLogin(LoginDTO loginDTO) {
         Optional<User> user = this.userService.findUserByUsername(loginDTO.getUsername());
-        return user.isPresent() ? loginDTO.getPassword().equals(user.get().getPassword()) : false;
+        
+        if ( user.isEmpty() ) {
+            return false;
+        }
+
+        try {
+            Authentication authenticationRequest =
+                UsernamePasswordAuthenticationToken.unauthenticated(loginDTO.getUsername(), loginDTO.getPassword());
+
+            Authentication authenticationResponse = this.authenticationManager
+                .authenticate(authenticationRequest);
+                
+            return authenticationResponse.isAuthenticated();
+        } catch (Exception e){
+            return false;
+        }
     }
 
     public Boolean resetPassword(String username, String password) {

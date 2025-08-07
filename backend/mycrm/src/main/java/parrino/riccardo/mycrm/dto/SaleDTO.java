@@ -14,7 +14,7 @@ import lombok.Setter;
 public class SaleDTO {
     private Long saleId;
     private Date createdAt;
-    private Long userId;
+    private String username;
     private Long customerId;
     private Long productId;
     private String progress;

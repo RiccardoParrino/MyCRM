@@ -26,7 +26,7 @@ public class Sale {
     private SaleId saleId;
 
     @ManyToOne
-    @MapsId("userId")
+    @MapsId("username")
     private User user;
 
     @ManyToOne
