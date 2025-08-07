@@ -3,8 +3,11 @@ package parrino.riccardo.mycrm.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
 
+import parrino.riccardo.mycrm.authentication.MyUserPrincipal;
 import parrino.riccardo.mycrm.dto.LoginDTO;
 import parrino.riccardo.mycrm.dto.UserDTO;
 import parrino.riccardo.mycrm.model.User;
@@ -18,12 +21,23 @@ public class AuthenticationService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UserDetailsManager jdbcUserDetailsManager;
+
     public Boolean createUser(UserDTO userDTO) {
-        return userService.createUser(
+        if ( jdbcUserDetailsManager.userExists(userDTO.getUsername()) ) {
+            System.out.println("Username already used!");
+            return false;
+        }
+
+        jdbcUserDetailsManager.createUser( new MyUserPrincipal ( 
             User
                 .builder()
                 .username(userDTO.getUsername())
-                .password(userDTO.getPassword())
+                .password(passwordEncoder.encode(userDTO.getPassword()))
                 .name(userDTO.getName())
                 .surname(userDTO.getSurname())
                 .email(userDTO.getEmail())
@@ -31,8 +45,9 @@ public class AuthenticationService {
                 .organizationName(userDTO.getOrganizationName())
                 .customers(null)
                 .produce(null)
-                .build()
-        );
+            .build() 
+        ));
+        return true;
     }
 
     public Boolean directLogin(LoginDTO loginDTO) {
