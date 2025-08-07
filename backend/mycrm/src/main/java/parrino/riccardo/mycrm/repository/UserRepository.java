@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import jakarta.transaction.Transactional;
 import parrino.riccardo.mycrm.model.User;
 
-public interface UserRepository extends JpaRepository<User, Long>{
+public interface UserRepository extends JpaRepository<User, String>{
     Optional<User> findByUsername(String string);
 
     @Query("SELECT u FROM User u WHERE u.username = :username AND u.password = :password")

@@ -24,7 +24,7 @@ public class SaleId implements Serializable{
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long saleId;
 
-    private Long userId;
+    private String username;
     private Long customerId;
     private Long productId;
     private Date createdAt;
@@ -37,7 +37,7 @@ public class SaleId implements Serializable{
             return false;
         SaleId otherSale = (SaleId) o;
         return this.getSaleId().equals(otherSale.getSaleId()) &&
-               this.getUserId().equals(otherSale.getUserId()) &&
+               this.getUsername().equals(otherSale.getUsername()) &&
                this.getCustomerId().equals(otherSale.getCustomerId()) &&
                this.getProductId().equals(otherSale.getProductId()) &&
                this.getCreatedAt().equals(otherSale.getCreatedAt());
@@ -45,13 +45,13 @@ public class SaleId implements Serializable{
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.saleId, this.userId, this.customerId, this.productId, this.createdAt);
+        return Objects.hash(this.saleId, this.username, this.customerId, this.productId, this.createdAt);
     }
 
     @Override
     public String toString() {
         return this.saleId + " " 
-                + this.userId + " " 
+                + this.username + " " 
                 + this.customerId + " "
                 + this.productId + " "
                 + this.createdAt;

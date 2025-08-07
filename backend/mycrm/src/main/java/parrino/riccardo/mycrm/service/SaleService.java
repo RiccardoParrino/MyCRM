@@ -37,20 +37,20 @@ public class SaleService {
     public Boolean createSale(SaleDTO saleDTO) {
         try {
             if (
-                userRepository.findById(saleDTO.getUserId()).isPresent() &&
+                userRepository.findById(saleDTO.getUsername()).isPresent() &&
                 customerRepository.findById(saleDTO.getCustomerId()).isPresent() &&
                 productRepository.findById(saleDTO.getProductId()).isPresent()
             ) {
                 Sale sale = Sale.builder()
                     .saleId(
                         SaleId.builder()
-                            .userId(saleDTO.getUserId())
+                            .username(saleDTO.getUsername())
                             .customerId(saleDTO.getCustomerId())
                             .productId(saleDTO.getProductId())
                             .createdAt(new Date())
                         .build()
                     )
-                    .user(userRepository.findById(saleDTO.getUserId()).get())
+                    .user(userRepository.findById(saleDTO.getUsername()).get())
                     .customer(customerRepository.findById(saleDTO.getCustomerId()).get())
                     .product(productRepository.findById(saleDTO.getProductId()).get())
                     .progress(saleDTO.getProgress())
@@ -77,7 +77,7 @@ public class SaleService {
     public Boolean updateSale(SaleDTO saleDTO) {
         if (saleRepository.existsById(SaleId.builder()
                             .saleId(saleDTO.getSaleId())
-                            .userId(saleDTO.getUserId())
+                            .username(saleDTO.getUsername())
                             .customerId(saleDTO.getCustomerId())
                             .productId(saleDTO.getProductId())
                             .createdAt(saleDTO.getCreatedAt())
@@ -87,13 +87,13 @@ public class SaleService {
                 .saleId(
                     SaleId.builder()
                         .saleId(saleDTO.getSaleId())
-                        .userId(saleDTO.getUserId())
+                        .username(saleDTO.getUsername())
                         .customerId(saleDTO.getCustomerId())
                         .productId(saleDTO.getProductId())
                         .createdAt(new Date())
                     .build()
                 )
-                .user(userRepository.findById(saleDTO.getUserId()).get())
+                .user(userRepository.findById(saleDTO.getUsername()).get())
                 .customer(customerRepository.findById(saleDTO.getCustomerId()).get())
                 .product(productRepository.findById(saleDTO.getProductId()).get())
                 .progress(saleDTO.getProgress())
