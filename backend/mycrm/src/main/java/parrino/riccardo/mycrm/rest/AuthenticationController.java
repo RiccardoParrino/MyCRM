@@ -2,6 +2,7 @@ package parrino.riccardo.mycrm.rest;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import parrino.riccardo.mycrm.dto.AuthResponse;
 import parrino.riccardo.mycrm.dto.ChangePasswordDTO;
 import parrino.riccardo.mycrm.dto.LoginDTO;
 import parrino.riccardo.mycrm.dto.UserDTO;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -27,7 +29,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("login")
-    public Boolean directLogin(@RequestBody LoginDTO loginDTO) {
+    public ResponseEntity<AuthResponse> directLogin(@RequestBody LoginDTO loginDTO) {
         return this.authenticationService.directLogin(loginDTO);
     }
     

@@ -18,8 +18,8 @@ export class AuthService {
 
   constructor(private http:HttpClient, private router:Router) {}
 
-  login(username:string, password:string) : Observable<boolean> {
-    return this.http.post<boolean>(this.loginUrl,{username, password});
+  login(username:string, password:string) : Observable<any> {
+    return this.http.post<{token:string}>(this.loginUrl,{username, password});
   }
 
   logout() {

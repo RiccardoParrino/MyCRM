@@ -3,6 +3,8 @@ package parrino.riccardo.mycrm.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -11,6 +13,7 @@ import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
 
 import parrino.riccardo.mycrm.authentication.MyUserPrincipal;
+import parrino.riccardo.mycrm.dto.AuthResponse;
 import parrino.riccardo.mycrm.dto.LoginDTO;
 import parrino.riccardo.mycrm.dto.UserDTO;
 import parrino.riccardo.mycrm.model.User;
@@ -32,6 +35,9 @@ public class AuthenticationService {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JWTService jwtService;
 
     public Boolean createUser(UserDTO userDTO) {
         if ( jdbcUserDetailsManager.userExists(userDTO.getUsername()) ) {
@@ -56,11 +62,11 @@ public class AuthenticationService {
         return true;
     }
 
-    public Boolean directLogin(LoginDTO loginDTO) {
+    public ResponseEntity<AuthResponse> directLogin(LoginDTO loginDTO) {
         Optional<User> user = this.userService.findUserByUsername(loginDTO.getUsername());
         
         if ( user.isEmpty() ) {
-            return false;
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new AuthResponse("user doesn't exists"));
         }
 
         try {
@@ -69,10 +75,12 @@ public class AuthenticationService {
 
             Authentication authenticationResponse = this.authenticationManager
                 .authenticate(authenticationRequest);
-                
-            return authenticationResponse.isAuthenticated();
+
+            String token = jwtService.generateToken(loginDTO.getUsername());
+            
+            return ResponseEntity.ok(new AuthResponse(token));
         } catch (Exception e){
-            return false;
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new AuthResponse("bad credentials"));
         }
     }
 
