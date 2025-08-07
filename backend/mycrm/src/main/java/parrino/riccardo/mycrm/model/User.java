@@ -1,5 +1,6 @@
 package parrino.riccardo.mycrm.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -13,6 +14,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import parrino.riccardo.mycrm.authentication.Role;
 
 @Getter
 @Setter
@@ -34,6 +36,9 @@ public class User {
     private String email;
     private String phoneNumber;
     private String organizationName;
+    
+    @ManyToMany
+    private final List<Role> roles = new ArrayList<>();
 
     @ManyToMany
     List<Customer> customers;
