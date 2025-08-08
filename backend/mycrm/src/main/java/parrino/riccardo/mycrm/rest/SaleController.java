@@ -27,14 +27,16 @@ public class SaleController {
     @Autowired
     private SaleService saleService;
     
-    @PostMapping("create")
+    @PostMapping(value = "create", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
     public Boolean createSale(@RequestBody SaleDTO saleDTO) {
         return saleService.createSale(saleDTO);
     }
 
-    @PostMapping(value = "/search", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "read", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Search in reservation units", security = {@SecurityRequirement(name = "token")})
+    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
     public List<SaleDTO> readSale() {
         List<Sale> sales = saleService.readSale();
         return sales
@@ -55,12 +57,16 @@ public class SaleController {
             ).toList();
     }
     
-    @PostMapping("update")
+    @PostMapping(value = "update", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
     public Boolean updateSale(@RequestBody SaleDTO saleDTO) {
         return saleService.updateSale(saleDTO);
     }
     
-    @PostMapping("delete")
+    @PostMapping(value = "delete", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
     public Boolean deleteSaleBySaleId(@RequestBody SaleId saleId) {
         saleService.deleteSale(saleId);
         return true;

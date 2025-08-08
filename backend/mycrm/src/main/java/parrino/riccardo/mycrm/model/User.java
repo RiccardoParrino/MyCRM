@@ -14,7 +14,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import parrino.riccardo.mycrm.authentication.Authorities;
-import parrino.riccardo.mycrm.authentication.Role;
 
 @Getter
 @Setter
