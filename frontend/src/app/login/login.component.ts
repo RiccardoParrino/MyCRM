@@ -31,7 +31,8 @@ export class LoginComponent {
         this.authService.isLogged = true;
         this.authService.usernameLogged = this.username;
         this.authService.passwordLogged = this.password;
-        localStorage.setItem('mycrm-jwt-token', value.token);
+        localStorage.setItem('mycrm-jwt-token', value.accessToken);
+        localStorage.setItem('mycrm-refresh-token', value.refreshToken);
         this.router.navigate(['customers']);
       }
       else { 

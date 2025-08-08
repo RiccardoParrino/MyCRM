@@ -15,6 +15,9 @@ export class AuthService {
   public passwordLogged:string = '';
   private registrationUrl: string = 'http://localhost:8080/auth/registration';
   private loginUrl: string = 'http://localhost:8080/auth/login';
+  private isRefreshing = false;
+  private refreshSubject = new Subject<string>();
+  private accessToken = localStorage.getItem('mycrm-jwt-token');
 
   constructor(private http:HttpClient, private router:Router) {}
 
@@ -22,8 +25,22 @@ export class AuthService {
     return this.http.post<{token:string}>(this.loginUrl,{username, password});
   }
 
+  setAccessToken() {
+
+    localStorage.setItem('mycrm-jwt-token');
+  }
+
+  getAccessToken(): string | null {
+    return localStorage.getItem('mycrm-jwt-token');
+  }
+
+  getRefreshToken(): string {
+    return localStorage.getItem('mycrm-refresh-token')
+  }
+
   logout() {
     localStorage.removeItem('mycrm-jwt-token');
+    localStorage.removeItem('mycrm-refresh-token');
     this.isLogged = false;
   }
 
@@ -33,6 +50,10 @@ export class AuthService {
 
   registration(user:UserDTO) : Observable<boolean> {
     return this.http.post<boolean>(this.registrationUrl, user);
+  }
+
+  refreshToken() : Observable<any> {
+
   }
 
 }

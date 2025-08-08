@@ -16,11 +16,20 @@ public class JWTService {
 
     private final SecretKey secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     
-    public String generateToken(String username) {
+    public String generateAccessToken(String username) {
         return Jwts.builder()
             .subject(username)
             .issuedAt(new Date())
             .expiration(new Date(System.currentTimeMillis() + 1*60*1000))
+            .signWith(SignatureAlgorithm.HS256, secretKey)
+            .compact();
+    }
+
+    public String generateRefreshToken(String username) {
+        return Jwts.builder()
+            .subject(username)
+            .issuedAt(new Date())
+            .expiration(new Date(System.currentTimeMillis() + 5*60*1000))
             .signWith(SignatureAlgorithm.HS256, secretKey)
             .compact();
     }

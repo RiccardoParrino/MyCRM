@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
@@ -62,11 +63,18 @@ public class AuthenticationService {
         return true;
     }
 
+    public ResponseEntity<AuthResponse> refreshToken () {
+        String accessToken = jwtService.generateAccessToken(SecurityContextHolder.getContext().getAuthentication().getName());
+        String refreshToken = jwtService.generateRefreshToken(SecurityContextHolder.getContext().getAuthentication().getName());
+        
+        return ResponseEntity.ok(new AuthResponse(accessToken, refreshToken, ""));
+    }
+
     public ResponseEntity<AuthResponse> directLogin(LoginDTO loginDTO) {
         Optional<User> user = this.userService.findUserByUsername(loginDTO.getUsername());
         
         if ( user.isEmpty() ) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new AuthResponse("user doesn't exists"));
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new AuthResponse(null, null, "user doesn't exists"));
         }
 
         try {
@@ -76,11 +84,12 @@ public class AuthenticationService {
             Authentication authenticationResponse = this.authenticationManager
                 .authenticate(authenticationRequest);
 
-            String token = jwtService.generateToken(loginDTO.getUsername());
+            String accessToken = jwtService.generateAccessToken(loginDTO.getUsername());
+            String refreshToken = jwtService.generateRefreshToken(loginDTO.getUsername());
             
-            return ResponseEntity.ok(new AuthResponse(token));
+            return ResponseEntity.ok(new AuthResponse(accessToken, refreshToken, ""));
         } catch (Exception e){
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new AuthResponse("bad credentials"));
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new AuthResponse(null,null, "bad credentials"));
         }
     }
 

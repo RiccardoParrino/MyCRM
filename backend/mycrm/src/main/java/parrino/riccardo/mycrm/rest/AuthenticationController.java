@@ -42,6 +42,13 @@ public class AuthenticationController {
         return this.authenticationService.directLogin(loginDTO);
     }
 
+    @PostMapping(value = "refreshToken", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "mycrm-jwt-token")})
+    public ResponseEntity<AuthResponse> refreshToken() {
+        return this.authenticationService.refreshToken();
+    }
+
     @PostMapping(value = "updateUser", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "mycrm-jwt-token")})
