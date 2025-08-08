@@ -2,7 +2,7 @@ import { SaleId } from "./saleId.model";
 
 export class Sale {
     saleId:SaleId;
-    userId:number;
+    username:string;
     customerId:number;
     productId:number;
     progress:string;
@@ -13,7 +13,7 @@ export class Sale {
 
     constructor (
         saleId:SaleId,
-        userId:number,
+        username:string,
         customerId:number,
         productId:number,
         progress:string,
@@ -23,7 +23,7 @@ export class Sale {
         notes:string
     ) {
         this.saleId = saleId;
-        this.userId = userId;
+        this.username = username;
         this.customerId = customerId;
         this.productId = productId;
         this.progress = progress;

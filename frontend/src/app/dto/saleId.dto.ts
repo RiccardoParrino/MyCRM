@@ -1,6 +1,6 @@
 export interface SaleIdDTO {
     saleId:number;
-    userId:number;
+    username:string;
     customerId:number;
     productId:number;
     createdAt:Date;

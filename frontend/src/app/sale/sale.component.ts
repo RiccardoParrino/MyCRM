@@ -82,12 +82,12 @@ export class SaleComponent implements OnInit{
           new Sale(
             new SaleId (
               sale.saleId,
-              sale.userId,
+              sale.username,
               sale.customerId,
               sale.productId,
               sale.createdAt
             ),
-            sale.userId,
+            sale.username,
             sale.customerId,
             sale.productId,
             sale.progress,
@@ -128,7 +128,7 @@ export class SaleComponent implements OnInit{
         const saleDTO = {
           'saleId' : this.currentSelectedSale.saleId.saleId,
           'createdAt' : this.currentSelectedSale.saleId.createdAt,
-          'userId': this.currentSelectedSale.saleId.userId,
+          'username': this.currentSelectedSale.saleId.username,
           'customerId': data.customerId == '' ? this.currentSelectedSale.customerId : data.customerId,
           'productId': data.productId == '' ? this.currentSelectedSale.productId : data.productId,
           'progress': data.progress == '' ? this.currentSelectedSale.progress : data.progress,

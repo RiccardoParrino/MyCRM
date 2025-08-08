@@ -15,7 +15,7 @@ import { SaleId } from '../model/saleId.model';
 })
 export class CreateSaleComponent {
 
-  userId:number = 0;
+  username:string = '';
   customerId:number = 0;
   productId:number = 0;
   progress:string = '';
@@ -32,12 +32,12 @@ export class CreateSaleComponent {
     const sale = new Sale(
       new SaleId(
         -1,
-        this.userId,
+        this.username,
         this.customerId,
         this.productId,
         new Date()
       ),
-      this.userId,
+      this.username,
       this.customerId,
       this.productId,
       this.progress,
