@@ -32,14 +32,14 @@ public class UserController {
 
     @PostMapping(value = "updateUserDetails", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
+    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "mycrm-jwt-token")})
     public Boolean updateUserDetails(@RequestBody UpdateUserDTO updateUserDTO) {
         return userService.updateUserDetails(updateUserDTO);
     }
 
     @PostMapping(value = "userDetails", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
+    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "mycrm-jwt-token")})
     public UserDTO getUserDetails(@RequestBody UserDetailsDTO userDetailsDTO) {
         User user = userService.getUserDetails(userDetailsDTO);
         if (user != null)

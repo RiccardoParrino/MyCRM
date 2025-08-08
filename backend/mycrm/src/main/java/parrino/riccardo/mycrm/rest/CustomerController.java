@@ -29,7 +29,7 @@ public class CustomerController {
 
     @PostMapping(value = "create", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
+    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "mycrm-jwt-token")})
     public Boolean createCustomer(@RequestBody CustomerDTO customerDTO) {
         return this.customerService.createCustomer(customerDTO);
     }
@@ -59,14 +59,14 @@ public class CustomerController {
     
     @PostMapping(value = "update", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
+    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "mycrm-jwt-token")})
     public Boolean updateCustomer(@RequestBody CustomerDTO customerDTO) {
         return this.customerService.updateCustomer(customerDTO);
     }
 
     @GetMapping(value = "delete", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
+    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "mycrm-jwt-token")})
     public Boolean deleteCustomer(@RequestParam Long customerId) {
         return this.customerService.deleteCustomer(customerId);
     }

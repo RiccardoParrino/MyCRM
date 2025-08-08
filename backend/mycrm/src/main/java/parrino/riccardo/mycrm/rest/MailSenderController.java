@@ -25,7 +25,7 @@ public class MailSenderController {
 
     @PostMapping(value = "send", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
+    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "mycrm-jwt-token")})
     public boolean sendEmail(@RequestBody EmailDTO emailDto) {
         return this.mailSenderService
             .sendEmail(

@@ -29,14 +29,14 @@ public class SaleController {
     
     @PostMapping(value = "create", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
+    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "mycrm-jwt-token")})
     public Boolean createSale(@RequestBody SaleDTO saleDTO) {
         return saleService.createSale(saleDTO);
     }
 
     @GetMapping(value = "read", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
+    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "mycrm-jwt-token")})
     public List<SaleDTO> readSale() {
         List<Sale> sales = saleService.readSale();
         return sales
@@ -59,14 +59,14 @@ public class SaleController {
     
     @PostMapping(value = "update", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
+    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "mycrm-jwt-token")})
     public Boolean updateSale(@RequestBody SaleDTO saleDTO) {
         return saleService.updateSale(saleDTO);
     }
     
     @PostMapping(value = "delete", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
+    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "mycrm-jwt-token")})
     public Boolean deleteSaleBySaleId(@RequestBody SaleId saleId) {
         saleService.deleteSale(saleId);
         return true;
