@@ -85,7 +85,7 @@ public class AuthenticationService {
     }
 
     public Boolean resetPassword(String username, String password) {
-        Optional<User> user = this.userService.findUserByUsernameAndPassword(username, password);
+        Optional<User> user = this.userService.findUserByUsername(username);
 
         if (user.isEmpty())
             return false;

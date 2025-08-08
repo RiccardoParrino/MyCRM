@@ -1,7 +1,5 @@
 package parrino.riccardo.mycrm.authentication;
 
-import java.util.ArrayList;
-
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
@@ -22,8 +20,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import parrino.riccardo.mycrm.model.User;
 
 @Configuration
 @EnableWebSecurity

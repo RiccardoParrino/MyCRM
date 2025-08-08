@@ -112,6 +112,7 @@ export class SettingComponent implements OnInit {
       'phoneNumber' : this.newPhoneNumber == '' ? this.phoneNumber : this.newPhoneNumber,
       'organizationName' : this.newOrganizationName == '' ? this.organizationName : this.newOrganizationName
     }
+    console.log(updateUserDTO);
     this.userService.updateUserDetails(updateUserDTO).subscribe( response => {
       if (response) {
         console.log("User data update successfully!");

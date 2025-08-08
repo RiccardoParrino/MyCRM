@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import parrino.riccardo.mycrm.dto.LoginDTO;
 import parrino.riccardo.mycrm.dto.UpdateUserDTO;
+import parrino.riccardo.mycrm.dto.UserDetailsDTO;
 import parrino.riccardo.mycrm.model.User;
 import parrino.riccardo.mycrm.repository.UserRepository;
 
@@ -17,8 +17,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
     
-    public User getUserDetails(LoginDTO loginDTO){
-        Optional<User> user = userRepository.findByUsernameAndPassword(loginDTO.getUsername(), loginDTO.getPassword());
+    public User getUserDetails(UserDetailsDTO userDetailsDTO){
+        Optional<User> user = userRepository.findByUsername(userDetailsDTO.getUsername());
         if (user.isPresent())
             return user.get();
         else
@@ -27,10 +27,6 @@ public class UserService {
 
     public Optional<User> findUserByUsername(String username) {
         return this.userRepository.findByUsername(username);
-    }
-
-    public Optional<User> findUserByUsernameAndPassword(String username, String password) {
-        return this.userRepository.findByUsernameAndPassword(username, password);
     }
 
     public Boolean createUser(User user) {
@@ -54,12 +50,11 @@ public class UserService {
     public Boolean updateUserDetails(UpdateUserDTO updateUserDTO) {
         return userRepository.updateUserDetails(
             updateUserDTO.getUsername(),
-            updateUserDTO.getPassword(),
             updateUserDTO.getName(),
             updateUserDTO.getSurname(),
             updateUserDTO.getEmail(),
             updateUserDTO.getPhoneNumber(),
-            updateUserDTO.getOrganizationNumber()
+            updateUserDTO.getOrganizationName()
         ) > 0;
     }
 

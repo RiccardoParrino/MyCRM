@@ -13,12 +13,6 @@ import parrino.riccardo.mycrm.model.User;
 public interface UserRepository extends JpaRepository<User, String>{
     Optional<User> findByUsername(String string);
 
-    @Query("SELECT u FROM User u WHERE u.username = :username AND u.password = :password")
-    Optional<User> findByUsernameAndPassword(
-        @Param("username") String username, 
-        @Param("password") String password
-    );
-
     @Transactional
     @Modifying
     @Query("UPDATE User u SET u.password = :newPassword WHERE u.username = :username AND u.password = :oldPassword")
@@ -30,10 +24,9 @@ public interface UserRepository extends JpaRepository<User, String>{
 
     @Transactional
     @Modifying
-    @Query("UPDATE User u SET u.name = :name, u.surname = :surname, u.email = :email, u.phoneNumber = :phoneNumber, u.organizationName = :organizationName WHERE u.username = :username AND u.password = :password")
+    @Query("UPDATE User u SET u.name = :name, u.surname = :surname, u.email = :email, u.phoneNumber = :phoneNumber, u.organizationName = :organizationName WHERE u.username = :username")
     int updateUserDetails(
         @Param("username") String username,
-        @Param("password") String password,
         @Param("name") String name,
         @Param("surname") String surname,
         @Param("email") String email,
