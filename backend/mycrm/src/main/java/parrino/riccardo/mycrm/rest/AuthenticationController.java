@@ -49,7 +49,7 @@ public class AuthenticationController {
         return true;
     }
     
-    @PostMapping(value = "deleteUser", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "deleteUser", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
     public Boolean deleteUser(@RequestParam String param) {
@@ -62,7 +62,7 @@ public class AuthenticationController {
     public Boolean resetPassword(@RequestBody LoginDTO loginDTO) {
         return this.authenticationService.resetPassword(loginDTO.getUsername(),loginDTO.getPassword());
     }
-    
+
     @PostMapping(value = "changePassword", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})

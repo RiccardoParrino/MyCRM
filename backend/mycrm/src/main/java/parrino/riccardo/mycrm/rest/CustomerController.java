@@ -66,7 +66,7 @@ public class CustomerController {
         return this.customerService.updateCustomer(customerDTO);
     }
 
-    @PostMapping(value = "delete", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "delete", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
     public Boolean deleteCustomer(@RequestParam Long customerId) {
