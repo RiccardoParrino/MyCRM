@@ -12,6 +12,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import parrino.riccardo.mycrm.authentication.Authorities;
 import parrino.riccardo.mycrm.authentication.Role;
 
 @Getter
@@ -35,7 +36,7 @@ public class User {
     private Boolean enabled;
     
     @ManyToMany
-    private final List<Role> roles = new ArrayList<>();
+    private final List<Authorities> roles = new ArrayList<>();
 
     @ManyToMany
     List<Customer> customers;
