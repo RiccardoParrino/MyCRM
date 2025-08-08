@@ -102,25 +102,25 @@ public class WebConfig {
         jdbcUserDetailsManager.setUsersByUsernameQuery("SELECT USERNAME, PASSWORD, ENABLED FROM MYCRM.USERS WHERE USERNAME = ?");
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("SELECT USER_USERNAME as USERNAME, ROLES_AUTHORITY FROM MYCRM.USERS_ROLES WHERE USER_USERNAME = ?");
 
-        Authorities userRole = Authorities.builder()
-            .authority("USER")
-            .build();
+        // Authorities userRole = Authorities.builder()
+        //     .authority("USER")
+        //     .build();
 
-        Authorities adminRole = Authorities.builder()
-            .authority("ADMIN")
-            .build();
+        // Authorities adminRole = Authorities.builder()
+        //     .authority("ADMIN")
+        //     .build();
 
-        User user = User.builder()
-            .username("ric")
-            .password(passwordEncoder().encode("mycrm"))
-            .build();
+        // User user = User.builder()
+        //     .username("ric")
+        //     .password(passwordEncoder().encode("mycrm"))
+        //     .build();
         
-        user.getRoles().add(userRole);
+        // user.getRoles().add(userRole);
 
-        jdbcUserDetailsManager.createUser(
-            new MyUserPrincipal(
-                user
-        ));
+        // jdbcUserDetailsManager.createUser(
+        //     new MyUserPrincipal(
+        //         user
+        // ));
         return jdbcUserDetailsManager;
     }
 
