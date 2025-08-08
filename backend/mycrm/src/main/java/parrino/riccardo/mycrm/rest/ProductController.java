@@ -33,7 +33,7 @@ public class ProductController {
         return productService.createProduct(productDTO);
     }
 
-    @GetMapping(value = "read", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "read", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
     public List<Product> readProduct() {
@@ -48,7 +48,7 @@ public class ProductController {
     }
     
 
-    @GetMapping(value = "delete", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "delete", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
     public Boolean deleteProduct(@RequestParam Long productId) {
