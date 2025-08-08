@@ -2,6 +2,8 @@ package parrino.riccardo.mycrm.rest;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import parrino.riccardo.mycrm.dto.CustomerDTO;
 import parrino.riccardo.mycrm.service.CustomerService;
 
@@ -12,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @RestController
 @RequestMapping("customer")
@@ -22,12 +27,16 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @PostMapping("create")
+    @PostMapping(value = "create", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
     public Boolean createCustomer(@RequestBody CustomerDTO customerDTO) {
         return this.customerService.createCustomer(customerDTO);
     }
 
-    @GetMapping("read")
+    @GetMapping(value = "read", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
     public List<CustomerDTO> readCustomers() {
         return this.customerService
             .readCustomers()
@@ -50,12 +59,16 @@ public class CustomerController {
         ).toList();
     }
     
-    @PostMapping("update")
+    @PostMapping(value = "update", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
     public Boolean updateCustomer(@RequestBody CustomerDTO customerDTO) {
         return this.customerService.updateCustomer(customerDTO);
     }
 
-    @GetMapping("delete")
+    @PostMapping(value = "delete", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
     public Boolean deleteCustomer(@RequestParam Long customerId) {
         return this.customerService.deleteCustomer(customerId);
     }
