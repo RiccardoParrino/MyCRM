@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
@@ -12,7 +13,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import parrino.riccardo.mycrm.authentication.Role;
+import parrino.riccardo.mycrm.authentication.Authorities;
 
 @Getter
 @Setter
@@ -34,8 +35,8 @@ public class User {
     private String organizationName;
     private Boolean enabled;
     
-    @ManyToMany
-    private final List<Role> roles = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    private final List<Authorities> roles = new ArrayList<>();
 
     @ManyToMany
     List<Customer> customers;

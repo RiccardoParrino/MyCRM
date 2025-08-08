@@ -10,12 +10,14 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -48,9 +50,16 @@ public class WebConfig {
             )
             .formLogin(form -> form.disable())
             .httpBasic(httpBasic -> httpBasic.disable())
-            .authenticationManager(authenticationManager());
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authenticationManager(authenticationManager())
+            .addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
+    }
+
+    @Bean
+    public JwtAuthenticationFilter jwtAuthFilter() {
+        return new JwtAuthenticationFilter();
     }
 
     @Bean
@@ -84,17 +93,29 @@ public class WebConfig {
 
         jdbcUserDetailsManager.setCreateUserSql("INSERT INTO MYCRM.USERS (USERNAME, PASSWORD, ENABLED) VALUES (?, ?, ?)");
 
-        jdbcUserDetailsManager.setCreateAuthoritySql("INSERT INTO MYCRM.AUTHORITIES (USERNAME, AUTHORITY) VALUES (?, ?)");
+        jdbcUserDetailsManager.setCreateAuthoritySql("INSERT INTO MYCRM.USERS_ROLES (USER_USERNAME, ROLES_AUTHORITY) VALUES (?, ?)");
 
         jdbcUserDetailsManager.setUsersByUsernameQuery("SELECT USERNAME, PASSWORD, ENABLED FROM MYCRM.USERS WHERE USERNAME = ?");
-        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("SELECT USERNAME, AUTHORITY FROM MYCRM.AUTHORITIES WHERE USERNAME = ?");
+        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("SELECT USER_USERNAME as USERNAME, ROLES_AUTHORITY FROM MYCRM.USERS_ROLES WHERE USER_USERNAME = ?");
 
-        // jdbcUserDetailsManager.createUser(new MyUserPrincipal(
-        //     User.builder()
+        // Authorities userRole = Authorities.builder()
+        //     .authority("USER")
+        //     .build();
+
+        // Authorities adminRole = Authorities.builder()
+        //     .authority("ADMIN")
+        //     .build();
+
+        // User user = User.builder()
         //     .username("ric")
         //     .password(passwordEncoder().encode("mycrm"))
-        //     .enabled(true)
-        //     .build()
+        //     .build();
+        
+        // user.getRoles().add(userRole);
+
+        // jdbcUserDetailsManager.createUser(
+        //     new MyUserPrincipal(
+        //         user
         // ));
         return jdbcUserDetailsManager;
     }

@@ -1,12 +1,9 @@
 package parrino.riccardo.mycrm.authentication;
 
-import java.util.Collection;
-
 import org.springframework.security.core.GrantedAuthority;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,20 +16,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Role implements GrantedAuthority {
-
-    @Id
-    private String id;
-
-    @ManyToMany
-    private Collection<Authorities> authorities;
-
-    @Override
-    public String getAuthority() {
-        return this.id;
-    }
+public class Authorities implements GrantedAuthority {
     
-    public Collection<Authorities> getAuthorities() {
-        return this.authorities;
-    }
+    @Id
+    private String authority;
+
 }

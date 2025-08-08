@@ -25,7 +25,7 @@ export class SaleService {
     const saleDTO = {
       'saleId' : sale.saleId.saleId,
       'createdAt' : sale.saleId.createdAt,
-      'userId': sale.saleId.userId,
+      'username': sale.saleId.username,
       'customerId': sale.saleId.customerId,
       'productId': sale.saleId.productId,
       'progress': sale.progress,
@@ -38,7 +38,6 @@ export class SaleService {
   }
 
   updateSale(sale:any) : Observable<Boolean> {
-    console.log("sale.service.ts:41")
     console.log(sale);
     return this.httpClient.post<Boolean>(this.updateUrl, sale);
   }

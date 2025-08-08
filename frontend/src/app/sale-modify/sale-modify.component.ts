@@ -29,7 +29,14 @@ export class SaleModifyComponent {
   constructor(
     public modifySaleDialogRef:MatDialogRef<SaleModifyComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) {
+    this.customerId = data.customerId;
+    this.productId = data.productId;
+    this.progress = data.progress;
+    this.activity = data.activity;
+    this.amount = data.amount;
+    this.notes = data.notes;
+  }
   
   save() {
     const saleDTO = {

@@ -22,7 +22,7 @@ export class ProductService {
     return this.http.get<ProductDTO[]>(this.readUrl);
   }
 
-  createProduct(product:Product) : Observable<Boolean> {
+  createProduct(product:Product) : Observable<ProductDTO> {
     const productDTO = {
       'productId':product.productId,
       'name':product.name,
@@ -32,7 +32,7 @@ export class ProductService {
       'stock':product.stock,
       'notes':product.notes
     }
-    return this.http.post<Boolean>(this.createUrl, productDTO);
+    return this.http.post<ProductDTO>(this.createUrl, productDTO);
   }
 
   updateSale(sale:Product) : Observable<Boolean> {

@@ -16,11 +16,10 @@ export class UserService {
   ) { }
 
   userDetails(username:string, password:string) : Observable<UserDTO> {
-    const userDTO = {
-      'username': username,
-      'password': password
+    const userDetailsDTO = {
+      'username': username
     }
-    return this.http.post<UserDTO>(this.userDetailsUrl, userDTO);
+    return this.http.post<UserDTO>(this.userDetailsUrl, userDetailsDTO);
   }
 
   updateUserDetails(updateUserDTO: { username:string, password:string, name: string; surname: string; email: string; phoneNumber: string; organizationName: string; }) : Observable<Boolean>{

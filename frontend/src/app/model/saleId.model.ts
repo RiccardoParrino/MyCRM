@@ -1,19 +1,19 @@
 export class SaleId {
     saleId:number;
-    userId:number;
+    username:string;
     customerId:number;
     productId:number;
     createdAt:Date;
 
     constructor (
         saleId:number,
-        userId:number,
+        username:string,
         customerId:number,
         productId:number,
         createdAt:Date
     ) {
         this.saleId = saleId;
-        this.userId = userId;
+        this.username = username;
         this.customerId = customerId;
         this.productId = productId;
         this.createdAt = createdAt;

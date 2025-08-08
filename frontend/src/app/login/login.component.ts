@@ -24,11 +24,14 @@ export class LoginComponent {
   }
 
   onSubmit() {
+    localStorage.removeItem('mycrm-jwt-token');
     this.authService.login(this.username, this.password).subscribe( value => {
+      console.log(value);
       if (value){
         this.authService.isLogged = true;
         this.authService.usernameLogged = this.username;
         this.authService.passwordLogged = this.password;
+        localStorage.setItem('mycrm-jwt-token', value.token);
         this.router.navigate(['customers']);
       }
       else { 
