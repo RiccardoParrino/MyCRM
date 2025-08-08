@@ -2,10 +2,12 @@ package parrino.riccardo.mycrm.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import parrino.riccardo.mycrm.dto.SaleDTO;
+import parrino.riccardo.mycrm.model.Product;
 import parrino.riccardo.mycrm.model.Sale;
 import parrino.riccardo.mycrm.model.SaleId;
 import parrino.riccardo.mycrm.repository.CustomerRepository;
@@ -35,6 +37,7 @@ public class SaleService {
 
 
     public Boolean createSale(SaleDTO saleDTO) {
+        Optional<Product> product = productRepository.findById(saleDTO.getProductId());
         try {
             if (
                 userRepository.findById(saleDTO.getUsername()).isPresent() &&

@@ -119,7 +119,7 @@ export class SaleComponent implements OnInit{
   modifySale() {
     const createSaleDialogRef = this.createSaleComponentMatDialog.open(
       SaleModifyComponent,
-      {width:'1000px',height:'600px', maxWidth:'1000px'}
+      {width:'1000px',height:'600px', maxWidth:'1000px', data:this.currentSelectedSale}
     );
     
     createSaleDialogRef.afterClosed().subscribe( data => {
