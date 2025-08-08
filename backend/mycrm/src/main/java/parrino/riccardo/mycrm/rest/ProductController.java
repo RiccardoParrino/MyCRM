@@ -29,7 +29,7 @@ public class ProductController {
     @PostMapping(value = "create", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
-    public Boolean createProduct(@RequestBody ProductDTO productDTO) {
+    public Product createProduct(@RequestBody ProductDTO productDTO) {
         return productService.createProduct(productDTO);
     }
 

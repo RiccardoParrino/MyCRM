@@ -18,9 +18,9 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public Boolean createProduct(ProductDTO productDTO) {
+    public Product createProduct(ProductDTO productDTO) {
         try{
-            this.productRepository.save(Product.builder()
+            Product productCreated = this.productRepository.save(Product.builder()
                 .name(productDTO.getName())
                 .description(productDTO.getDescription())
                 .unit(productDTO.getUnit())
@@ -29,10 +29,10 @@ public class ProductService {
                 .notes(productDTO.getNotes())
                 .build()
             );
-            return true;
+            return productCreated;
         } catch (Exception e) {
             System.out.println(e);
-            return false;
+            return null;
         }
     }
 

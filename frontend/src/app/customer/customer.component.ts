@@ -76,6 +76,7 @@ export class CustomerComponent {
   readCustomers() {
     this.customerService.readCustomers().subscribe(
       (customers) => {
+        console.log(customers);
         this.customers = [];  
         customers.forEach(item => {
           this.customers.push(

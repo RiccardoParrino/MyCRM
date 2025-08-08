@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +35,7 @@ public class CustomerController {
         return this.customerService.createCustomer(customerDTO);
     }
 
-    @GetMapping(value = "read", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
+    @GetMapping(value = "read", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<CustomerDTO> readCustomers() {
         return this.customerService
             .readCustomers()
@@ -66,7 +65,7 @@ public class CustomerController {
         return this.customerService.updateCustomer(customerDTO);
     }
 
-    @GetMapping(value = "delete", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "delete", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "token")})
     public Boolean deleteCustomer(@RequestParam Long customerId) {
