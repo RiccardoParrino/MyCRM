@@ -24,6 +24,7 @@ export class LoginComponent {
   }
 
   onSubmit() {
+    localStorage.removeItem('token');
     this.authService.login(this.username, this.password).subscribe( value => {
       console.log(value);
       if (value){
