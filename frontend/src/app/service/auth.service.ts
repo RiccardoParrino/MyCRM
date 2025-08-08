@@ -19,11 +19,11 @@ export class AuthService {
   constructor(private http:HttpClient, private router:Router) {}
 
   login(username:string, password:string) : Observable<any> {
-    console.log("ciao");
     return this.http.post<{token:string}>(this.loginUrl,{username, password});
   }
 
   logout() {
+    localStorage.removeItem('mycrm-jwt-token');
     this.isLogged = false;
   }
 
