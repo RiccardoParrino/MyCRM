@@ -4,15 +4,19 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.security.web.access.HttpStatusAccessDeniedHandler;
 import org.springframework.stereotype.Service;
 
+import parrino.riccardo.mycrm.authentication.MyUserDetailsService;
 import parrino.riccardo.mycrm.authentication.MyUserPrincipal;
 import parrino.riccardo.mycrm.dto.AuthResponse;
 import parrino.riccardo.mycrm.dto.LoginDTO;
@@ -40,6 +44,9 @@ public class AuthenticationService {
     @Autowired
     private JWTService jwtService;
 
+    @Autowired
+    private MyUserDetailsService myUserDetailsService;
+
     public Boolean createUser(UserDTO userDTO) {
         if ( jdbcUserDetailsManager.userExists(userDTO.getUsername()) ) {
             System.out.println("Username already used!");
@@ -63,11 +70,17 @@ public class AuthenticationService {
         return true;
     }
 
-    public ResponseEntity<AuthResponse> refreshToken () {
-        String accessToken = jwtService.generateAccessToken(SecurityContextHolder.getContext().getAuthentication().getName());
-        String refreshToken = jwtService.generateRefreshToken(SecurityContextHolder.getContext().getAuthentication().getName());
-        
-        return ResponseEntity.ok(new AuthResponse(accessToken, refreshToken, ""));
+    public ResponseEntity<AuthResponse> refreshToken (String refreshToken) {
+        String username = jwtService.extractUsername(refreshToken);
+        UserDetails userDetails = myUserDetailsService.loadUserByUsername(username);
+
+        if ( jwtService.isTokenValid(refreshToken, userDetails) ) {
+            String accessToken = jwtService.generateAccessToken(SecurityContextHolder.getContext().getAuthentication().getName());
+            String newRefreshToken = jwtService.generateRefreshToken(SecurityContextHolder.getContext().getAuthentication().getName());
+            
+            return ResponseEntity.ok(new AuthResponse(accessToken, refreshToken, ""));
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
     }
 
     public ResponseEntity<AuthResponse> directLogin(LoginDTO loginDTO) {
