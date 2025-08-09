@@ -20,7 +20,7 @@ public class JWTService {
         return Jwts.builder()
             .subject(username)
             .issuedAt(new Date())
-            .expiration(new Date(System.currentTimeMillis() + 1*60*1000))
+            .expiration(new Date(System.currentTimeMillis() + 5*60*1000))
             .signWith(SignatureAlgorithm.HS256, secretKey)
             .compact();
     }

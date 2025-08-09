@@ -8,7 +8,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   
   const authService = inject(AuthService);
   const router = inject(Router);
-  const accesstoken = authService.getAccessToken();
+  let accesstoken = authService.getAccessToken();
   const tokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
   let isRefreshing = false;
 
@@ -22,6 +22,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   return next(authReq).pipe(
     catchError( (error) => {
       if ( error.status === 403 ) {
+        accesstoken = null;
         return handle403Error(error);
       }
       return throwError(()=>error);
