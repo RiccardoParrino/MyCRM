@@ -1,13 +1,18 @@
 package parrino.riccardo.mycrm.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.OptimisticLockingFailureException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import parrino.riccardo.mycrm.authentication.MyUserDetailsService;
 import parrino.riccardo.mycrm.dto.CustomerDTO;
 import parrino.riccardo.mycrm.model.Customer;
+import parrino.riccardo.mycrm.model.User;
 import parrino.riccardo.mycrm.repository.CustomerRepository;
 
 @Service
@@ -15,6 +20,9 @@ public class CustomerService {
     
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private UserService userService;
 
     public Boolean createCustomer(CustomerDTO customerDTO) {
         Customer customer = Customer
@@ -32,11 +40,26 @@ public class CustomerService {
             .notes(customerDTO.getNotes())
             .build();
         this.customerRepository.save(customer);
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Optional<User> user = userService.findUserByUsername(username);
+
+        if (user.isPresent()) {
+            user.get().getCustomers().add(customer);
+            userService.saveUser(user.get());
+        }
+
         return true;
     }
 
     public List<Customer> readCustomers() {
-        return this.customerRepository.findAll();
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Optional<User> user = userService.findUserByUsername(username);
+
+        if (user.isPresent()) {
+            return user.get().getCustomers();
+        }
+        return null;
     }
     
     public Boolean updateCustomer(CustomerDTO customerDTO) {
