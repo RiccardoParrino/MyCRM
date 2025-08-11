@@ -1,4 +1,4 @@
-.example-container {
+mat-sidenav-container {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -6,29 +6,11 @@
   right: 0;
 }
 
-.icon-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding-bottom: 16px;
-}
-
-.sale-sidenavbar-icon {
-  width: 100%;
-}
-
 mat-sidenav {
   width: 180px;
   border: 1px solid black;
 }
 
-mat-nav-list {
-  
-}
-
 mat-icon {
-  height: 100%;
   margin-right: 12px;
 }
