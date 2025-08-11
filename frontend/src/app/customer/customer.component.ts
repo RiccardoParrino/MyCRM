@@ -108,7 +108,7 @@ export class CustomerComponent implements OnInit, AfterViewInit{
   openCreateCustomerDialog() : void {
     console.log("Create Customer Dialog opened!");
     const dialogRef = this.createCustomerDialog.open(CreateCustomerDialogComponent, 
-      {width:'1000px',height:'600px', maxWidth:'1000px'}
+      {width:'1000px',height:'650px', maxWidth:'1000px'}
     );
 
     dialogRef.afterClosed().subscribe ( data => {
