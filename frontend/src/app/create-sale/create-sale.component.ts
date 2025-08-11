@@ -1,5 +1,5 @@
-import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { Component } from '@angular/core';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,7 +15,6 @@ import { SaleId } from '../model/saleId.model';
 })
 export class CreateSaleComponent {
 
-  username:string = '';
   customerId:number = 0;
   productId:number = 0;
   progress:string = '';
@@ -32,12 +31,12 @@ export class CreateSaleComponent {
     const sale = new Sale(
       new SaleId(
         -1,
-        this.username,
+        '',
         this.customerId,
         this.productId,
         new Date()
       ),
-      this.username,
+      '',
       this.customerId,
       this.productId,
       this.progress,
