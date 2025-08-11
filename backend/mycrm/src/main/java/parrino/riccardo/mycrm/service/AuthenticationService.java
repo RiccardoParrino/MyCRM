@@ -8,10 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
 
+import parrino.riccardo.mycrm.authentication.MyUserDetailsService;
 import parrino.riccardo.mycrm.authentication.MyUserPrincipal;
 import parrino.riccardo.mycrm.dto.AuthResponse;
 import parrino.riccardo.mycrm.dto.LoginDTO;
@@ -39,6 +42,9 @@ public class AuthenticationService {
     @Autowired
     private JWTService jwtService;
 
+    @Autowired
+    private MyUserDetailsService myUserDetailsService;
+
     public Boolean createUser(UserDTO userDTO) {
         if ( jdbcUserDetailsManager.userExists(userDTO.getUsername()) ) {
             System.out.println("Username already used!");
@@ -62,11 +68,24 @@ public class AuthenticationService {
         return true;
     }
 
+    public ResponseEntity<AuthResponse> refreshToken (String refreshToken) {
+        String username = jwtService.extractUsername(refreshToken);
+        UserDetails userDetails = myUserDetailsService.loadUserByUsername(username);
+
+        if ( jwtService.isTokenValid(refreshToken, userDetails) ) {
+            String accessToken = jwtService.generateAccessToken(SecurityContextHolder.getContext().getAuthentication().getName());
+            String newRefreshToken = jwtService.generateRefreshToken(SecurityContextHolder.getContext().getAuthentication().getName());
+            
+            return ResponseEntity.ok(new AuthResponse(accessToken, refreshToken, ""));
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+    }
+
     public ResponseEntity<AuthResponse> directLogin(LoginDTO loginDTO) {
         Optional<User> user = this.userService.findUserByUsername(loginDTO.getUsername());
         
         if ( user.isEmpty() ) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new AuthResponse("user doesn't exists"));
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new AuthResponse(null, null, "user doesn't exists"));
         }
 
         try {
@@ -76,11 +95,12 @@ public class AuthenticationService {
             Authentication authenticationResponse = this.authenticationManager
                 .authenticate(authenticationRequest);
 
-            String token = jwtService.generateToken(loginDTO.getUsername());
+            String accessToken = jwtService.generateAccessToken(loginDTO.getUsername());
+            String refreshToken = jwtService.generateRefreshToken(loginDTO.getUsername());
             
-            return ResponseEntity.ok(new AuthResponse(token));
+            return ResponseEntity.ok(new AuthResponse(accessToken, refreshToken, ""));
         } catch (Exception e){
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new AuthResponse("bad credentials"));
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new AuthResponse(null,null, "bad credentials"));
         }
     }
 

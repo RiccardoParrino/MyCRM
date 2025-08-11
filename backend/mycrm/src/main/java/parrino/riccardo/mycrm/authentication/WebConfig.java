@@ -44,8 +44,7 @@ public class WebConfig {
             .cors(Customizer.withDefaults())
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/auth/login").permitAll()
-                .requestMatchers("/auth/registration").permitAll()
+                .requestMatchers("/auth/login", "/auth/registration", "/auth/refreshToken").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form.disable())
