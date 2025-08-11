@@ -82,7 +82,13 @@ public class SaleService {
     }
 
     public List<Sale> readSale() {
-        return saleRepository.findAll();
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Optional<User> user = userService.findUserByUsername(username);
+
+        return saleRepository.findAll()
+            .stream()
+            .filter(sale -> sale.getSaleId().getUsername().equals(username))
+            .toList();
     }
     
     public Boolean updateSale(SaleDTO saleDTO) {
