@@ -96,7 +96,6 @@ public class CustomerService {
     
     public Boolean deleteCustomer(Long customerId) {
         try {
-
             String username = SecurityContextHolder.getContext().getAuthentication().getName();
             Optional<User> user = userService.findUserByUsername(username);
 
@@ -109,7 +108,6 @@ public class CustomerService {
                 );
                 userService.saveUser(user.get());
             }
-
             this.customerRepository.deleteById(customerId);
             return true;
         } catch (IllegalArgumentException ex) {

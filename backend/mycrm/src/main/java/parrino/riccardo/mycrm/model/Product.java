@@ -30,4 +30,14 @@ public class Product {
     private String price;
     private Integer stock;
     private String notes;
+
+    @Override
+    public boolean equals (Object product) {
+        if (product instanceof Product) {
+            Product c2 = (Product) product;
+            return this.productId == c2.getProductId();
+        }
+        return false;
+    }
+
 }
