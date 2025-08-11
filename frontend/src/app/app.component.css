@@ -20,14 +20,15 @@
 }
 
 mat-sidenav {
-  width: 150px;
+  width: 180px;
   border: 1px solid black;
 }
 
 mat-nav-list {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: start;
-  row-gap: 12px;
+  
+}
+
+mat-icon {
+  height: 100%;
+  margin-right: 12px;
 }

@@ -2,13 +2,30 @@
   
   <mat-sidenav mode="side" opened *ngIf="showAppComponentContainer">
     <mat-nav-list>
-      <a mat-list-item routerLink="customers"><mat-icon>home</mat-icon> MyCRM</a>
-      <hr>
-      <a mat-list-item routerLink="sales"><mat-icon>sell</mat-icon> Sales</a>
-      <a mat-list-item routerLink="products"><mat-icon>inventory</mat-icon> Inventory</a>
-      <a mat-list-item routerLink="customers"><mat-icon>contact_page</mat-icon> Customers</a>
-      <a mat-list-item routerLink="settings"><mat-icon>settings</mat-icon> Settings</a>
-      <a mat-list-item routerLink=""> <mat-icon>logout</mat-icon> Logout</a>
+      <a mat-list-item routerLink="">
+        <mat-icon matListIcon>home</mat-icon>
+        <span matLine>MyCRM</span>
+      </a>
+      <a mat-list-item routerLink="sales">
+        <mat-icon matListIcon>sell</mat-icon>
+        <span matLine>Sales</span>
+      </a>
+      <a mat-list-item routerLink="products">
+        <mat-icon matListIcon>inventory</mat-icon>
+        <span matLine>Inventory</span>
+      </a>
+      <a mat-list-item routerLink="customers">
+        <mat-icon matListIcon>contact_page</mat-icon>
+        <span matLine>Customers</span>
+      </a>
+      <a mat-list-item routerLink="settings">
+        <mat-icon matListIcon>settings</mat-icon>
+        <span matLine>Settings</span>
+      </a>
+      <a mat-list-item routerLink="logout">
+        <mat-icon matListIcon>logout</mat-icon>
+        <span matLine>Logout</span>
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   
