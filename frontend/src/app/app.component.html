@@ -1,32 +1,79 @@
 <mat-sidenav-container>
   
   <mat-sidenav mode="side" opened *ngIf="showAppComponentContainer">
+
     <mat-nav-list>
-      <a mat-list-item routerLink="">
-        <mat-icon matListIcon>home</mat-icon>
-        <span matLine>MyCRM</span>
-      </a>
-      <a mat-list-item routerLink="sales">
-        <mat-icon matListIcon>sell</mat-icon>
-        <span matLine>Sales</span>
-      </a>
-      <a mat-list-item routerLink="products">
-        <mat-icon matListIcon>inventory</mat-icon>
-        <span matLine>Inventory</span>
-      </a>
-      <a mat-list-item routerLink="customers">
-        <mat-icon matListIcon>contact_page</mat-icon>
-        <span matLine>Customers</span>
-      </a>
-      <a mat-list-item routerLink="settings">
-        <mat-icon matListIcon>settings</mat-icon>
-        <span matLine>Settings</span>
-      </a>
-      <a mat-list-item routerLink="logout">
-        <mat-icon matListIcon>logout</mat-icon>
-        <span matLine>Logout</span>
-      </a>
+
+      <mat-list-item mat-list-item routerLink="customer">
+        <div class="menu-item-container">
+          <div class="mat-icon-container">
+            <mat-icon matListIcon>home</mat-icon>
+          </div>
+          <div class="title-menu-container">
+            MyCRM
+          </div>
+        </div>
+      </mat-list-item>
+
+      <hr>
+
+      <mat-list-item mat-list-item routerLink="sales">
+        <div class="menu-item-container">
+          <div class="mat-icon-container">
+            <mat-icon matListIcon>sell</mat-icon>
+          </div>
+          <div class="title-menu-container">
+            Sales
+          </div>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item mat-list-item routerLink="products">
+        <div class="menu-item-container">
+          <div class="mat-icon-container">
+            <mat-icon matListIcon>inventory</mat-icon>
+          </div>
+          <div class="title-menu-container">
+            Inventory
+          </div>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item mat-list-item routerLink="customers">
+        <div class="menu-item-container">
+          <div class="mat-icon-container">
+            <mat-icon matListIcon>contact_page</mat-icon>
+          </div>
+          <div class="title-menu-container">
+            Customers
+          </div>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item mat-list-item routerLink="settings">
+        <div class="menu-item-container">
+          <div class="mat-icon-container">
+            <mat-icon matListIcon>settings</mat-icon>
+          </div>
+          <div class="title-menu-container">
+            Settings
+          </div>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item mat-list-item routerLink="">
+        <div class="menu-item-container">
+          <div class="mat-icon-container">
+            <mat-icon matListIcon>logout</mat-icon>
+          </div>
+          <div class="title-menu-container">
+            Logout
+          </div>
+        </div>
+      </mat-list-item>
+
     </mat-nav-list>
+
   </mat-sidenav>
   
   <mat-sidenav-content>

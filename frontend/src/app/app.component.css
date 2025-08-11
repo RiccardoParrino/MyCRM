@@ -4,6 +4,7 @@ mat-sidenav-container {
   bottom: 0;
   left: 0;
   right: 0;
+  border-radius: 0px!important;
 }
 
 mat-sidenav {
@@ -11,6 +12,17 @@ mat-sidenav {
   border: 1px solid black;
 }
 
-mat-icon {
+.menu-item-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.mat-icon-container {
   margin-right: 12px;
+  margin-top: 4px;
+}
+
+mat-icon {
 }
