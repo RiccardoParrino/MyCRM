@@ -1,24 +1,19 @@
 <mat-sidenav-container class="example-container">
-  <mat-sidenav mode="side" opened  *ngIf="showAppComponentContainer">
+  
+  <mat-sidenav mode="side" opened *ngIf="showAppComponentContainer">
     <mat-nav-list>
-      <div class="icon-container">
-        <a mat-list-item routerLink=""><img class="sale-sidenavbar-icon" src="assets/hamburger-icon.png" alt="" title="Expand"></a>
-      </div>  
-      <div class="icon-container">
-        <a mat-list-item routerLink="sales"><img class="sale-sidenavbar-icon" src="assets/sale-icon.png" alt="" title="Sale Section"></a>
-      </div>
-      <div class="icon-container">
-        <a mat-list-item routerLink="products"><img class="sale-sidenavbar-icon" src="assets/product-icon.png" alt="" title="Product Section"></a>
-      </div>
-      <div class="icon-container">
-        <a mat-list-item routerLink="customers"><img class="sale-sidenavbar-icon" src="assets/customer-icon.png" alt="" title="Customer Section"></a>
-      </div>
-      <div class="icon-container">
-        <a mat-list-item routerLink="settings"><img class="sale-sidenavbar-icon" src="assets/settings-icon.png" alt="" title="Settings"></a>
-      </div>
+      <a mat-list-item routerLink="customers"><mat-icon>home</mat-icon> MyCRM</a>
+      <hr>
+      <a mat-list-item routerLink="sales"><mat-icon>sell</mat-icon> Sales</a>
+      <a mat-list-item routerLink="products"><mat-icon>inventory</mat-icon> Inventory</a>
+      <a mat-list-item routerLink="customers"><mat-icon>contact_page</mat-icon> Customers</a>
+      <a mat-list-item routerLink="settings"><mat-icon>settings</mat-icon> Settings</a>
+      <a mat-list-item routerLink=""> <mat-icon>logout</mat-icon> Logout</a>
     </mat-nav-list>
   </mat-sidenav>
+  
   <mat-sidenav-content>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
+
 </mat-sidenav-container>

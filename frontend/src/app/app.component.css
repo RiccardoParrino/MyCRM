@@ -20,10 +20,14 @@
 }
 
 mat-sidenav {
-  width: 78px;
+  width: 150px;
+  border: 1px solid black;
 }
 
 mat-nav-list {
-  text-align: center;
-  padding-bottom: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  row-gap: 12px;
 }
