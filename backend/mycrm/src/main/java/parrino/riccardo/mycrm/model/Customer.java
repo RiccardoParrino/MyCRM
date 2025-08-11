@@ -40,4 +40,13 @@ public class Customer {
 
     @ManyToMany
     List<Product> purchase;
+
+    @Override
+    public boolean equals (Object customer) {
+        if (customer instanceof Customer) {
+            Customer c2 = (Customer) customer;
+            return this.customerId == c2.getCustomerId();
+        }
+        return false;
+    }
 }

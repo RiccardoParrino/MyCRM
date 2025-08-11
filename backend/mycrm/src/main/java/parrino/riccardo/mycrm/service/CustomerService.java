@@ -6,10 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import parrino.riccardo.mycrm.authentication.MyUserDetailsService;
 import parrino.riccardo.mycrm.dto.CustomerDTO;
 import parrino.riccardo.mycrm.model.Customer;
 import parrino.riccardo.mycrm.model.User;
@@ -79,6 +77,16 @@ public class CustomerService {
                 .notes(customerDTO.getNotes())
             .build();
             customerRepository.save(customer);
+
+            String username = SecurityContextHolder.getContext().getAuthentication().getName();
+            Optional<User> user = userService.findUserByUsername(username);
+
+            if (user.isPresent()) {
+                user.get().getCustomers().remove(customer);
+                user.get().getCustomers().add(customer);
+                userService.saveUser(user.get());
+            }
+
             return true;
         } else {
             System.out.println("Customer not found with id: " + customerDTO.getCustomerId());

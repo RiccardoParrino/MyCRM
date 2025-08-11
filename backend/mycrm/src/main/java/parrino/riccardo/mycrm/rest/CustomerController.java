@@ -6,7 +6,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import parrino.riccardo.mycrm.dto.CustomerDTO;
 import parrino.riccardo.mycrm.service.CustomerService;
-import parrino.riccardo.mycrm.service.UserService;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
