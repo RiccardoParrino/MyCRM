@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CustomerService } from '../service/customer.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -28,7 +28,7 @@ import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
   templateUrl: './customer.component.html',
   styleUrl: './customer.component.css'
 })
-export class CustomerComponent {
+export class CustomerComponent implements OnInit, AfterViewInit{
 
   customers: Customer[] = [];
   customersDataSource = new MatTableDataSource<Customer>();
@@ -44,6 +44,10 @@ export class CustomerComponent {
     private createCustomerDialog:MatDialog,
     private deleteCustomerDialog:MatDialog,
     private modifyCustomerDialog:MatDialog) {
+  }
+
+  ngOnInit() {
+    this.readCustomers();
   }
 
   ngAfterViewInit() {

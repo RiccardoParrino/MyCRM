@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -28,7 +28,7 @@ import { ModifyProductComponent } from '../modify-product/modify-product.compone
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
-export class ProductComponent {
+export class ProductComponent implements OnInit, AfterViewInit{
 
   products: Product[] = [];
   productsDataSource = new MatTableDataSource<Product>();
@@ -44,6 +44,10 @@ export class ProductComponent {
     private createproductComponentMatDialog:MatDialog,
     private modifyProductComponentMatDialog:MatDialog
   ){}
+
+  ngOnInit() {
+    this.readProducts();
+  }
 
   ngAfterViewInit() {
     this.productsDataSource.sort = this.sort;
