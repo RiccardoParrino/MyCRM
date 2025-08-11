@@ -29,6 +29,10 @@ public class UserService {
         return this.userRepository.findByUsername(username);
     }
 
+    public Boolean saveUser(User user) {
+        return this.createUser(user);
+    }
+
     public Boolean createUser(User user) {
         try{
             userRepository.save(user);

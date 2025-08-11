@@ -2,12 +2,17 @@ package parrino.riccardo.mycrm.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import parrino.riccardo.mycrm.dto.SaleDTO;
+import parrino.riccardo.mycrm.model.Customer;
+import parrino.riccardo.mycrm.model.Product;
 import parrino.riccardo.mycrm.model.Sale;
 import parrino.riccardo.mycrm.model.SaleId;
+import parrino.riccardo.mycrm.model.User;
 import parrino.riccardo.mycrm.repository.CustomerRepository;
 import parrino.riccardo.mycrm.repository.ProductRepository;
 import parrino.riccardo.mycrm.repository.SaleRepository;
@@ -20,26 +25,32 @@ public class SaleService {
     private final SaleRepository saleRepository;
     private final CustomerRepository customerRepository;
     private final ProductRepository productRepository;
+    private final UserService userService;
 
     public SaleService(
         UserRepository userRepository,
         SaleRepository saleRepository,
         CustomerRepository customerRepository,
-        ProductRepository productRepository
+        ProductRepository productRepository,
+        UserService userService
     ) {
         this.userRepository = userRepository;
         this.saleRepository = saleRepository;
         this.customerRepository = customerRepository;
         this.productRepository = productRepository;
+        this.userService = userService;
     }
 
 
     public Boolean createSale(SaleDTO saleDTO) {
         try {
+            String username = SecurityContextHolder.getContext().getAuthentication().getName();
+            Optional<User> user = userService.findUserByUsername(username);
+
             if (
-                userRepository.findById(saleDTO.getUsername()).isPresent() &&
-                customerRepository.findById(saleDTO.getCustomerId()).isPresent() &&
-                productRepository.findById(saleDTO.getProductId()).isPresent()
+                user.isPresent() &&
+                user.get().getCustomers().indexOf(Customer.builder().customerId(saleDTO.getCustomerId()).build()) >= 0 &&
+                user.get().getProduce().indexOf(Product.builder().productId(saleDTO.getProductId()).build()) >= 0
             ) {
                 Sale sale = Sale.builder()
                     .saleId(
@@ -50,7 +61,7 @@ public class SaleService {
                             .createdAt(new Date())
                         .build()
                     )
-                    .user(userRepository.findById(saleDTO.getUsername()).get())
+                    .user(user.get())
                     .customer(customerRepository.findById(saleDTO.getCustomerId()).get())
                     .product(productRepository.findById(saleDTO.getProductId()).get())
                     .progress(saleDTO.getProgress())
@@ -71,7 +82,13 @@ public class SaleService {
     }
 
     public List<Sale> readSale() {
-        return saleRepository.findAll();
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Optional<User> user = userService.findUserByUsername(username);
+
+        return saleRepository.findAll()
+            .stream()
+            .filter(sale -> sale.getSaleId().getUsername().equals(username))
+            .toList();
     }
     
     public Boolean updateSale(SaleDTO saleDTO) {
