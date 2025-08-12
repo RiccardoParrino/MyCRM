@@ -1,37 +1,51 @@
-<h2 mat-dialog-title>Add new Product</h2>
+<h2 mat-dialog-title>Create new product</h2>
 <mat-dialog-content>
 
-  <form class="add-customer-form">
-    <h3>Product Information</h3>
-    <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="" [(ngModel)]="name" name="name">
-    </mat-form-field>
+  <form class="add-form-container">
+    <div class="section-form-container">
+      <h3>Product Information</h3>
+      <div class="form-container">
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="" [(ngModel)]="name" name="name">
+        </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Description</mat-label>
-        <input matInput placeholder="" value="" [(ngModel)]="description" name="description">
-    </mat-form-field>
+        <mat-form-field>
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="" value="" [(ngModel)]="description" name="description">
+        </mat-form-field>
+      </div>
+    </div>
 
-    <mat-form-field>
-        <mat-label>Unit</mat-label>
-        <input matInput placeholder="" value="" [(ngModel)]="unit" name="unit">
-    </mat-form-field>
+    <div class="section-form-container">
+      <h3>Quantitative Information</h3>
+      <div class="form-container">
+        <mat-form-field>
+            <mat-label>Unit</mat-label>
+            <input matInput placeholder="" value="" [(ngModel)]="unit" name="unit">
+        </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Price</mat-label>
-        <input matInput placeholder="" value="" [(ngModel)]="price" name="price">
-    </mat-form-field>
+        <mat-form-field>
+            <mat-label>Price</mat-label>
+            <input matInput placeholder="" value="" [(ngModel)]="price" name="price">
+        </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Stock</mat-label>
-        <input matInput placeholder="" value="" [(ngModel)]="stock" name="stock">
-    </mat-form-field>
+        <mat-form-field>
+            <mat-label>Stock</mat-label>
+            <input matInput placeholder="" value="" [(ngModel)]="stock" name="stock">
+        </mat-form-field>
+      </div>
+    </div>
 
-    <mat-form-field>
-        <mat-label>Notes</mat-label>
-        <input matInput placeholder="" value="" [(ngModel)]="notes" name="notes">
-    </mat-form-field>
+    <div class="section-form-container">
+      <h3>Quantitative Information</h3>
+      <div class="form-container">
+        <mat-form-field>
+            <mat-label>Notes</mat-label>
+            <input matInput placeholder="" value="" [(ngModel)]="notes" name="notes">
+        </mat-form-field>
+      </div>
+    </div>
   </form>
 
 </mat-dialog-content>

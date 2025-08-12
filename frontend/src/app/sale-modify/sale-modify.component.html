@@ -1,19 +1,26 @@
 <h2 mat-dialog-title>Update sale</h2>
 <mat-dialog-content>
-  <form class="add-customer-form">
+  <form class="add-form-container">
 
     <!--Anagraphic Information-->
-    <div class="form-fields-container">
-      <mat-form-field>
-        <mat-label>CustomerId</mat-label>
-        <input matInput value="{{customerId}}" [(ngModel)]="customerId" name="customerId">
-      </mat-form-field>
+    <div class="section-form-container">
+      <h2>Sale information</h2>
+      <div class="form-container">
+        <mat-form-field>
+          <mat-label>CustomerId</mat-label>
+          <input matInput value="{{customerId}}" [(ngModel)]="customerId" name="customerId">
+        </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>ProductId</mat-label>
-        <input matInput value="{{productId}}" [(ngModel)]="productId" name="productId">
-      </mat-form-field>
+        <mat-form-field>
+          <mat-label>ProductId</mat-label>
+          <input matInput value="{{productId}}" [(ngModel)]="productId" name="productId">
+        </mat-form-field>
+      </div>
+    </div>
 
+    <div class="section-form-container">
+      <h2>Sale progression information</h2>
+      <div class="form-container">  
       <mat-form-field>
         <mat-label>Progress</mat-label>
         <input matInput value="{{progress}}" [(ngModel)]="progress" name="progress">
@@ -28,12 +35,19 @@
         <mat-label>Amount</mat-label>
         <input matInput value="{{amount}}" [(ngModel)]="amount" name="amount">
       </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Notes</mat-label>
-        <input matInput value="{{notes}}" [(ngModel)]="notes" name="notes">
-      </mat-form-field>
+      </div>
     </div>
+    
+    <div class="section-form-container">
+      <h2>Additional Information</h2>
+      <div class="form-container">  
+        <mat-form-field>
+          <mat-label>Notes</mat-label>
+          <input matInput value="{{notes}}" [(ngModel)]="notes" name="notes">
+        </mat-form-field>
+      </div>
+    </div>
+
   </form>
 </mat-dialog-content>
 

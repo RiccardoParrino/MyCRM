@@ -1,42 +1,56 @@
-<h2 mat-dialog-title>Add new Sale</h2>
+<h3 mat-dialog-title>Create new sale</h3>
 <mat-dialog-content>
 
-  <form class="add-customer-form">
-    <h3>Sale Information</h3>
-    <mat-form-field>
-        <mat-label>CustomerId</mat-label>
-        <input matInput placeholder="" value="" [(ngModel)]="customerId" name="customerId">
-    </mat-form-field>
+  <form class="add-customer-form-container">
+    <div class="section-form-container">
+        <h2>Sale information</h2>
+        <div class="form-container">
+            <mat-form-field>
+                <mat-label>CustomerId</mat-label>
+                <input matInput placeholder="" value="" [(ngModel)]="customerId" name="customerId">
+            </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>ProductId</mat-label>
-        <input matInput placeholder="" value="" [(ngModel)]="productId" name="productId">
-    </mat-form-field>
+            <mat-form-field>
+                <mat-label>ProductId</mat-label>
+                <input matInput placeholder="" value="" [(ngModel)]="productId" name="productId">
+            </mat-form-field>
+        </div>
+    </div>
 
-    <mat-form-field>
-        <mat-label>Progress</mat-label>
-        <input matInput placeholder="" value="" [(ngModel)]="progress" name="progress">
-    </mat-form-field>
+    <div class="section-form-container">
+        <h2>Sale progress information</h2>
+        <div class="form-container">
+            <mat-form-field>
+                <mat-label>Progress</mat-label>
+                <input matInput placeholder="" value="" [(ngModel)]="progress" name="progress">
+            </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Activity</mat-label>
-        <input matInput placeholder="" value="" [(ngModel)]="activity" name="activity">
-    </mat-form-field>
+            <mat-form-field>
+                <mat-label>Activity</mat-label>
+                <input matInput placeholder="" value="" [(ngModel)]="activity" name="activity">
+            </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Amount</mat-label>
-        <input matInput placeholder="" value="" [(ngModel)]="amount" name="amount">
-    </mat-form-field>
+            <mat-form-field>
+                <mat-label>Amount</mat-label>
+                <input matInput placeholder="" value="" [(ngModel)]="amount" name="amount">
+            </mat-form-field>
+        </div>
+    </div>
 
-    <mat-form-field>
-        <mat-label>Last Update</mat-label>
-        <input matInput placeholder="" value="" [(ngModel)]="lastUpdate" name="lastUpdate">
-    </mat-form-field>
+    <div class="section-form-container">
+        <h2>Additional information</h2>
+        <div class="form-container">
+            <mat-form-field>
+                <mat-label>Last Update</mat-label>
+                <input matInput placeholder="" value="" [(ngModel)]="lastUpdate" name="lastUpdate">
+            </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Notes</mat-label>
-        <input matInput placeholder="" value="" [(ngModel)]="notes" name="notes">
-    </mat-form-field>
+            <mat-form-field>
+                <mat-label>Notes</mat-label>
+                <input matInput placeholder="" value="" [(ngModel)]="notes" name="notes">
+            </mat-form-field>
+        </div>
+    </div>
   </form>
 
 </mat-dialog-content>

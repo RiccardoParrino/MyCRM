@@ -108,7 +108,7 @@ export class ProductComponent implements OnInit, AfterViewInit{
   modifyProduct() {
     const modifyProductDialogRef = this.modifyProductComponentMatDialog.open(
       ModifyProductComponent,
-      {width:'1000px',height:'600px',maxWidth:'1000px'}
+      {width:'1000px',height:'600px',maxWidth:'1000px', data:this.currentSelectedProduct}
     );
   
     modifyProductDialogRef.afterClosed().subscribe( value => {

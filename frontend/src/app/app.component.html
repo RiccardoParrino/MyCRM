@@ -1,24 +1,83 @@
-<mat-sidenav-container class="example-container">
-  <mat-sidenav mode="side" opened  *ngIf="showAppComponentContainer">
+<mat-sidenav-container>
+  
+  <mat-sidenav mode="side" opened *ngIf="showAppComponentContainer">
+
     <mat-nav-list>
-      <div class="icon-container">
-        <a mat-list-item routerLink=""><img class="sale-sidenavbar-icon" src="assets/hamburger-icon.png" alt="" title="Expand"></a>
-      </div>  
-      <div class="icon-container">
-        <a mat-list-item routerLink="sales"><img class="sale-sidenavbar-icon" src="assets/sale-icon.png" alt="" title="Sale Section"></a>
-      </div>
-      <div class="icon-container">
-        <a mat-list-item routerLink="products"><img class="sale-sidenavbar-icon" src="assets/product-icon.png" alt="" title="Product Section"></a>
-      </div>
-      <div class="icon-container">
-        <a mat-list-item routerLink="customers"><img class="sale-sidenavbar-icon" src="assets/customer-icon.png" alt="" title="Customer Section"></a>
-      </div>
-      <div class="icon-container">
-        <a mat-list-item routerLink="settings"><img class="sale-sidenavbar-icon" src="assets/settings-icon.png" alt="" title="Settings"></a>
-      </div>
+
+      <mat-list-item mat-list-item routerLink="home">
+        <div class="menu-item-container">
+          <div class="mat-icon-container">
+            <mat-icon matListIcon>home</mat-icon>
+          </div>
+          <div class="title-menu-container">
+            <h3>MyCRM</h3>
+          </div>
+        </div>
+      </mat-list-item>
+
+      <hr>
+
+      <mat-list-item mat-list-item routerLink="sales">
+        <div class="menu-item-container">
+          <div class="mat-icon-container">
+            <mat-icon matListIcon>sell</mat-icon>
+          </div>
+          <div class="title-menu-container">
+            <h4>Sales</h4>
+          </div>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item mat-list-item routerLink="products">
+        <div class="menu-item-container">
+          <div class="mat-icon-container">
+            <mat-icon matListIcon>inventory</mat-icon>
+          </div>
+          <div class="title-menu-container">
+            <h4>Products</h4>
+          </div>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item mat-list-item routerLink="customers">
+        <div class="menu-item-container">
+          <div class="mat-icon-container">
+            <mat-icon matListIcon>contact_page</mat-icon>
+          </div>
+          <div class="title-menu-container">
+            <h4>Customers</h4>
+          </div>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item mat-list-item routerLink="settings">
+        <div class="menu-item-container">
+          <div class="mat-icon-container">
+            <mat-icon matListIcon>settings</mat-icon>
+          </div>
+          <div class="title-menu-container">
+            <h4>Settings</h4>
+          </div>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item mat-list-item routerLink="" (click)="logout()">
+        <div class="menu-item-container">
+          <div class="mat-icon-container">
+            <mat-icon matListIcon>logout</mat-icon>
+          </div>
+          <div class="title-menu-container">
+            <h4>Logout</h4>
+          </div>
+        </div>
+      </mat-list-item>
+
     </mat-nav-list>
+
   </mat-sidenav>
+  
   <mat-sidenav-content>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
+
 </mat-sidenav-container>

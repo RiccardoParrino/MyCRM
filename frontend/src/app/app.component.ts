@@ -5,10 +5,11 @@ import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { filter } from 'rxjs';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatSidenavModule, MatListModule, RouterModule, NgIf],
+  imports: [RouterOutlet, MatSidenavModule, MatListModule, RouterModule, NgIf, MatIcon],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -23,4 +24,10 @@ export class AppComponent {
         this.showAppComponentContainer = !['/login','/registration'].includes(event.urlAfterRedirects);
       });
   }
+
+  logout() {
+    localStorage.removeItem('mycrm-jwt-token');
+    localStorage.removeItem('mycrm-refresh-token');
+  }
+
 }
