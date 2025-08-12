@@ -27,6 +27,11 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
         localStorage.removeItem('mycrm-refresh-token');
         router.navigate(['login']);
         // return handle403Error(error);
+      } else if (error.status === 401) {
+        alert('Credenziali errate');
+        localStorage.removeItem('mycrm-jwt-token');
+        localStorage.removeItem('mycrm-refresh-token');
+        router.navigate(['login']);
       }
       return throwError(()=>error);
     })
