@@ -24,4 +24,5 @@ export class AppComponent {
         this.showAppComponentContainer = !['/login','/registration'].includes(event.urlAfterRedirects);
       });
   }
+
 }

@@ -45,8 +45,8 @@ export class AuthService {
   }
 
   private storeTokens(tokens:{accessToken:string, refreshToken:string, msgError:string}) {
-    localStorage.setItem('access_token', tokens.accessToken);
-    localStorage.setItem('refresh_token', tokens.refreshToken);
+    localStorage.setItem('mycrm-jwt-token', tokens.accessToken);
+    localStorage.setItem('mycrm-refresh-token', tokens.refreshToken);
   }
 
   refreshToken() : Observable<any> {
@@ -78,7 +78,8 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return this.isLogged;
+    return localStorage.getItem('mycrm-jwt-token') != undefined 
+      && localStorage.getItem('mycrm-refresh-token') != undefined;
   }
 
   registration(user:UserDTO) : Observable<boolean> {
