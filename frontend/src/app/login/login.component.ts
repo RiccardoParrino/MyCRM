@@ -34,7 +34,7 @@ export class LoginComponent {
         console.log(value.accessToken);
         localStorage.setItem('mycrm-jwt-token', value.accessToken);
         localStorage.setItem('mycrm-refresh-token', value.refreshToken);
-        this.router.navigate(['customers']);
+        this.router.navigate(['home']);
       }
       else { 
         alert('Credenziali errate');
