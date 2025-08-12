@@ -25,4 +25,9 @@ export class AppComponent {
       });
   }
 
+  logout() {
+    localStorage.removeItem('mycrm-jwt-token');
+    localStorage.removeItem('mycrm-refresh-token');
+  }
+
 }
