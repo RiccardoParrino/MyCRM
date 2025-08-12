@@ -24,7 +24,14 @@ export class ModifyProductComponent {
   constructor(
     private modifyProductComponentMatDialogRef:MatDialogRef<ModifyProductComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any
-  ) {}
+  ) {
+    this.name = data.name;
+    this.description = data.description;
+    this.unit = data.unit;
+    this.prices = data.prices;
+    this.stock = data.stock;
+    this.notes = data.notes;
+  }
 
   save() {
     this.modifyProductComponentMatDialogRef.close( 
