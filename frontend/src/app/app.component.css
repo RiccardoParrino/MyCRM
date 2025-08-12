@@ -23,6 +23,9 @@ mat-list-item {
 }
 
 .mat-icon-container {
-  margin-right: 12px;
   margin-top: 4px;
+}
+
+.title-menu-container {
+  margin-left: 12px;
 }
