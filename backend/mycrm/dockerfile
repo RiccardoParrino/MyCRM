@@ -1,0 +1,9 @@
+FROM openjdk:17-jdk-slim
+
+WORKDIR /MyCRM
+
+COPY target/*.jar MyCRM.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "MyCRM.jar"]
