@@ -128,4 +128,19 @@
 		</plugins>
 	</build>
 
+	<profiles>
+        <profile>
+            <id>mysql</id>
+            <properties>
+                <activeProfile>mysql</activeProfile>
+            </properties>
+        </profile>
+		<profile>
+            <id>oracle</id>
+            <properties>
+                <activeProfile>oracle</activeProfile>
+            </properties>
+        </profile>
+	</profiles>
+
 </project>
