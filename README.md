@@ -8,41 +8,41 @@ Here you can find some screeshots from the live project.
 
 **Login page** - An illustration of the Login page
 
-![Logo](readme-images/login-page.png)
+![login-page](readme-images/login-page.png)
 
 **Home Page** - An illustration of the Home Page
 
-![Logo](readme-images/home-page.png)
+![home-page](readme-images/home-page.png)
 
 **Product Page** - An illustration of the Product Page
 
-![Logo](readme-images/product-page.png)
+![product-page](readme-images/product-page.png)
 
 **Create New Product Modal** - An illustration of the Create New Product Modal
 
-![Logo](readme-images/create-new-product-page.png)
+![create-new-product-page](readme-images/create-new-product-page.png)
 
 **Customer Page** - An illustration of the Customer Page
 
-![Logo](readme-images/customer-page.png)
+![customer-page](readme-images/customer-page.png)
 
 **Add New Customer Modal** - An illustration of the login page
 
-![Logo](readme-images/add-new-customer-page.png)
+![add-new-customer-page](readme-images/add-new-customer-page.png)
 
 **Sales Page** - An illustration of the Sales Page
 
-![Logo](readme-images/sales-page.png)
+![sales-page](readme-images/sales-page.png)
 
 **Create New Sale Modal** - An illustration of the Create New Sale Modal
 
-![Logo](readme-images/create-new-sale-page.png)
+![create-new-sale-page](readme-images/create-new-sale-page.png)
 
 **Settings Page** - An illustration of the Settings Page
 
-![Logo](readme-images/settings-page.png)
+![settings-page](readme-images/settings-page.png)
 
-# MyCRM - en
+# Project Overview
 
 Project for Demonstration and Non-Commercial Purposes
 
@@ -54,7 +54,7 @@ The project will be deployed on Amazon AWS cloud platform as an integral part of
 
 You may not use the software in any way.
 
-# MyCRM - it
+# Informazioni sul Progetto
 
 Progetto a scopo dimostrativo e non commerciale.
 
@@ -62,6 +62,6 @@ Questo progetto è stato sviluppato interamente da me, come forma di pratica dop
 
 Il progetto ha il fine di dimostrare le competenze acquisite, dalla prospettiva sviluppo (frontend-Angular e backend-Spring Boot) e dalla prospettiva organizzativa (basata su software Jira in versione free).
 
-Il progetto verrà rilasciato su piattaforma cloud amazon aws, come parte integrante delle competenze acquisite, ma visibile soltanto su richiesta, dati i costi di gestione della piattaforma stessa.
+Il progetto verrà rilasciato su piattaforma Cloud Amazon AWS, come parte integrante delle competenze acquisite, ma visibile soltanto su richiesta, dati i costi di gestione della piattaforma stessa.
 
 Non puoi usare il software in alcun modo.
