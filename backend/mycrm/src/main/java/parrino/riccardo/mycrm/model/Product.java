@@ -8,11 +8,13 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Entity
 @Table(name = "product")
@@ -28,4 +30,14 @@ public class Product {
     private String price;
     private Integer stock;
     private String notes;
+
+    @Override
+    public boolean equals (Object product) {
+        if (product instanceof Product) {
+            Product c2 = (Product) product;
+            return this.productId == c2.getProductId();
+        }
+        return false;
+    }
+
 }

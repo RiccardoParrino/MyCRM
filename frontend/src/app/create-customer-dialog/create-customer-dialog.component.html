@@ -1,67 +1,75 @@
 <h2 mat-dialog-title>Add new Customer</h2>
 <mat-dialog-content>
-  <form class="add-customer-form">
+  <form class="add-form-container">
 
     <!--Anagraphic Information-->
-    <div class="form-fields-container">
+    <div class="section-form-container">
       <h3>Anagraphical Information</h3>
-      <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Giuseppe" [(ngModel)]="name" name="name">
-      </mat-form-field>
+      <div class="form-container">
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Giuseppe" [(ngModel)]="name" name="name">
+        </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Surname</mat-label>
-        <input matInput placeholder="Rossi" value="" [(ngModel)]="surname" name="surname">
-      </mat-form-field>
+        <mat-form-field>
+          <mat-label>Surname</mat-label>
+          <input matInput placeholder="Rossi" value="" [(ngModel)]="surname" name="surname">
+        </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="Rossi" value="" [(ngModel)]="email" name="email">
-      </mat-form-field>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Rossi" value="" [(ngModel)]="email" name="email">
+        </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Phone Number</mat-label>
-        <input matInput placeholder="Rossi" value="" [(ngModel)]="phoneNumber" name="phoneNumber">
-      </mat-form-field>
+        <mat-form-field>
+          <mat-label>Phone Number</mat-label>
+          <input matInput placeholder="Rossi" value="" [(ngModel)]="phoneNumber" name="phoneNumber">
+        </mat-form-field>
+      </div>
     </div>
 
     <!--Organizational Information-->
-    <div class="form-fields-container">
-      <h3>Organizational Information</h3>
-      <mat-form-field>
-        <mat-label>Organization Name</mat-label>
-        <input matInput placeholder="Rossi" value="" [(ngModel)]="organizationName" name="organizationName">
-      </mat-form-field>
+    <div class="section-form-container">
+      <h3>Organization Information</h3>
+        <div class="form-container">
+          <mat-form-field>
+            <mat-label>Organization Name</mat-label>
+            <input matInput placeholder="Rossi" value="" [(ngModel)]="organizationName" name="organizationName">
+          </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>City</mat-label>
-        <input matInput placeholder="Rossi" value="" [(ngModel)]="city" name="city">
-      </mat-form-field>
+          <mat-form-field>
+            <mat-label>City</mat-label>
+            <input matInput placeholder="Rossi" value="" [(ngModel)]="city" name="city">
+          </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Region</mat-label>
-        <input matInput placeholder="Rossi" value="" [(ngModel)]="region" name="region">
-      </mat-form-field>
+          <mat-form-field>
+            <mat-label>Region</mat-label>
+            <input matInput placeholder="Rossi" value="" [(ngModel)]="region" name="region">
+          </mat-form-field>
+        </div>
 
-      <mat-form-field>
-        <mat-label>State</mat-label>
-        <input matInput placeholder="Rossi" value="" [(ngModel)]="state" name="state">
-      </mat-form-field>
+        <div class="form-container">
+          <mat-form-field>
+            <mat-label>State</mat-label>
+            <input matInput placeholder="Rossi" value="" [(ngModel)]="state" name="state">
+          </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Core Business</mat-label>
-        <input matInput placeholder="Rossi" value="" [(ngModel)]="coreBusiness" name="coreBusiness">
-      </mat-form-field>
+          <mat-form-field>
+            <mat-label>Core Business</mat-label>
+            <input matInput placeholder="Rossi" value="" [(ngModel)]="coreBusiness" name="coreBusiness">
+          </mat-form-field>
+      </div>
     </div>
 
     <!--Notes-->
-    <div class="form-fields-container">
-      <h3>Notes</h3>
-      <mat-form-field>
-        <mat-label>Notes</mat-label>
-        <input matInput placeholder="Rossi" value="" [(ngModel)]="notes" name="notes">
-      </mat-form-field>
+    <div class="section-form-container">
+      <h3>Additional information</h3>
+      <div class="form-container">
+        <mat-form-field>
+          <mat-label>Notes</mat-label>
+          <input matInput placeholder="Rossi" value="" [(ngModel)]="notes" name="notes">
+        </mat-form-field>
+      </div>
     </div>
 
   </form>

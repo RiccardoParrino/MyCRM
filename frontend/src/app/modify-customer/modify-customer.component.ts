@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { Customer } from '../model/customer.model';
 import { ConfirmModifyCustomerComponent } from '../confirm-modify-customer/confirm-modify-customer.component';
-import { ConfirmCreateCustomerComponent } from '../confirm-create-customer/confirm-create-customer.component';
 
 @Component({
   selector: 'app-modify-customer',
@@ -16,6 +15,7 @@ import { ConfirmCreateCustomerComponent } from '../confirm-create-customer/confi
   styleUrl: './modify-customer.component.css'
 })
 export class ModifyCustomerComponent {
+  customerId:number = -1;
   name:string = '';
   surname:string = '';
   email:string = '';
@@ -32,6 +32,7 @@ export class ModifyCustomerComponent {
     public modifyCustomerDialogRef:MatDialogRef<ModifyCustomerComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    this.customerId = data.customerId;
     this.name = data.name;
     this.surname = data.surname;
     this.email = data.email;
@@ -56,7 +57,7 @@ export class ModifyCustomerComponent {
     confirmDialogRef.afterClosed().subscribe( (result) => {
       if (result) {
         const newCustomer = new Customer(
-          -1,
+          this.customerId,
           this.name,
           this.surname,
           this.email,

@@ -37,6 +37,7 @@
     margin: 0px auto;
     margin-top: 32px;
     border: 1px solid black;
+    border-radius: 16px;
 }
 
 mat-selection-list {

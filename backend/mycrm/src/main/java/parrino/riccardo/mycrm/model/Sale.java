@@ -2,34 +2,44 @@ package parrino.riccardo.mycrm.model;
 
 import java.util.Date;
 
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Entity
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
 @Table(name = "sale")
 public class Sale {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long saleId;
+    @EmbeddedId
+    private SaleId saleId;
 
-    private String userId;
-    private String customerId;
-    private String productId;
+    @ManyToOne
+    @MapsId("username")
+    private User user;
+
+    @ManyToOne
+    @MapsId("customerId")
+    private Customer customer;
+
+    @ManyToOne
+    @MapsId("productId")
+    private Product product;
+
     private String progress;
     private String activity;
     private String amount;
-    private Date date;
-    private Date createdAt;
+    private Date lastUpdate;
+    private String notes;
 }

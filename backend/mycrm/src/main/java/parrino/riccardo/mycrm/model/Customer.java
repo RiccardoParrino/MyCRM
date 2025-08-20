@@ -1,23 +1,27 @@
 package parrino.riccardo.mycrm.model;
 
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "Customer")
+@Table(name = "customer")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,4 +37,16 @@ public class Customer {
     private String coreBusiness;
     private Date createdAt;
     private String notes;
+
+    @ManyToMany
+    List<Product> purchase;
+
+    @Override
+    public boolean equals (Object customer) {
+        if (customer instanceof Customer) {
+            Customer c2 = (Customer) customer;
+            return this.customerId == c2.getCustomerId();
+        }
+        return false;
+    }
 }

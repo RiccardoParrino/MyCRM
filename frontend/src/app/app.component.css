@@ -1,4 +1,4 @@
-.example-container {
+mat-sidenav-container {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -6,24 +6,26 @@
   right: 0;
 }
 
-.icon-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding-bottom: 16px;
-}
-
-.sale-sidenavbar-icon {
-  width: 100%;
-}
-
 mat-sidenav {
-  width: 78px;
+  width: 192px;
+  border: 1px solid black;
 }
 
-mat-nav-list {
-  text-align: center;
-  padding-bottom: 64px;
+mat-list-item {
+  padding: 12px;
+}
+
+.menu-item-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.mat-icon-container {
+  margin-top: 4px;
+}
+
+.title-menu-container {
+  margin-left: 12px;
 }

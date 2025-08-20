@@ -1,38 +1,79 @@
 package parrino.riccardo.mycrm.rest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import parrino.riccardo.mycrm.dto.UpdateUserDTO;
+import parrino.riccardo.mycrm.dto.UserDTO;
+import parrino.riccardo.mycrm.dto.UserDetailsDTO;
+import parrino.riccardo.mycrm.model.User;
 import parrino.riccardo.mycrm.service.UserService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
 
 @RestController
+@RequestMapping("user")
 public class UserController {
-
+    
     @Autowired
     private UserService userService;
-    
-    @PostMapping("/createUser")
-    public String createUser(@RequestBody String entity) {
-        return userService.createUser(entity);
+
+    @PostMapping(value = "updateUserDetails", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "mycrm-jwt-token")})
+    public Boolean updateUserDetails(@RequestBody UpdateUserDTO updateUserDTO) {
+        return userService.updateUserDetails(updateUserDTO);
     }
 
-    @GetMapping("/readUser")
-    public String readUser(@RequestParam String param) {
-        return userService.readUser(param);
+    @PostMapping(value = "userDetails", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Read all sales", security = {@SecurityRequirement(name = "mycrm-jwt-token")})
+    public UserDTO getUserDetails(@RequestBody UserDetailsDTO userDetailsDTO) {
+        User user = userService.getUserDetails(userDetailsDTO);
+        if (user != null)
+            return UserDTO.builder()
+                    .username(user.getUsername())
+                    .password(user.getPassword())
+                    .name(user.getName())
+                    .surname(user.getSurname())
+                    .email(user.getEmail())
+                    .phoneNumber(user.getPhoneNumber())
+                    .organizationName(user.getOrganizationName())
+                .build();
+        else
+            return null;
     }
     
-    @GetMapping("/updateUser")
-    public String updateUser(@RequestParam String param) {
-        return userService.updateUser(param);
-    }
 
-    @GetMapping("/deleteUser")
-    public String deleteUser(@RequestParam String param) {
-        return userService.deleteUser(param);
+    @GetMapping("getAllUser")
+    public List<UserDTO> getAllUser() {
+        List<User> usersList = this.userService.getAllUser();
+        List<UserDTO> listToReturn = new ArrayList<>();
+        usersList.forEach(
+            (user) -> listToReturn.add( UserDTO
+                .builder()
+                .email(user.getEmail())
+                .name(user.getName())
+                .username(user.getUsername())
+                .surname(user.getSurname())
+                .organizationName(user.getOrganizationName())
+                .phoneNumber(user.getPhoneNumber())
+                .build())
+        );
+        return listToReturn;
     }
+    
 
 }

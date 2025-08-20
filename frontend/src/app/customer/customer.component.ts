@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CustomerService } from '../service/customer.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateCustomerDialogComponent } from '../create-customer-dialog/create-customer-dialog.component';
 import { DeleteCustomerComponent } from '../delete-customer/delete-customer.component';
 import { ModifyCustomerComponent } from '../modify-customer/modify-customer.component';
+import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
 
 @Component({
   selector: 'app-customer',
@@ -21,12 +22,13 @@ import { ModifyCustomerComponent } from '../modify-customer/modify-customer.comp
     ScrollingModule,
     MatListModule, 
     MatButtonModule, 
-    MatTableModule
+    MatTableModule,
+    MatSortModule
   ],
   templateUrl: './customer.component.html',
   styleUrl: './customer.component.css'
 })
-export class CustomerComponent {
+export class CustomerComponent implements OnInit, AfterViewInit{
 
   customers: Customer[] = [];
   customersDataSource = new MatTableDataSource<Customer>();
@@ -35,11 +37,21 @@ export class CustomerComponent {
   isRowSelected:boolean = false;
   currentSelectedCustomer: Customer | undefined;
 
+  @ViewChild(MatSort) sort!: MatSort;
+
   constructor(
     private customerService:CustomerService, 
     private createCustomerDialog:MatDialog,
     private deleteCustomerDialog:MatDialog,
     private modifyCustomerDialog:MatDialog) {
+  }
+
+  ngOnInit() {
+    this.readCustomers();
+  }
+
+  ngAfterViewInit() {
+    this.customersDataSource.sort = this.sort;
   }
 
   modifyCustomer() : void {
@@ -53,6 +65,7 @@ export class CustomerComponent {
       if (data) {
         this.customerService.updateCustomer(data).subscribe( result => {
           if (result) {
+            console.log(data)
             console.log("Customer successfully updated!");
             this.readCustomers();
           }
@@ -67,6 +80,7 @@ export class CustomerComponent {
   readCustomers() {
     this.customerService.readCustomers().subscribe(
       (customers) => {
+        console.log(customers);
         this.customers = [];  
         customers.forEach(item => {
           this.customers.push(
@@ -94,16 +108,16 @@ export class CustomerComponent {
   openCreateCustomerDialog() : void {
     console.log("Create Customer Dialog opened!");
     const dialogRef = this.createCustomerDialog.open(CreateCustomerDialogComponent, 
-      {width:'1000px',height:'600px', maxWidth:'1000px'}
+      {width:'1000px',height:'650px', maxWidth:'1000px'}
     );
 
     dialogRef.afterClosed().subscribe ( data => {
       if (data) {
         this.customerService.createCustomer(data).subscribe( result => {
         if ( result ) {
-          console.log("customer creato correttamente");
+          this.readCustomers();
         } else {
-          console.log("errore!");
+          alert("Some errors occurred!");
         }
       });
       }
@@ -118,8 +132,12 @@ export class CustomerComponent {
     deleteDialogRef.afterClosed().subscribe( result => {
       if (result) {
         if (this.currentSelectedCustomer) {
-          this.customerService.deleteCustomer(this.currentSelectedCustomer.customerId).subscribe ( 
-            (value) => console.log("customer deleted successfully!")
+          this.customerService.deleteCustomer(this.currentSelectedCustomer.customerId).subscribe ( value => {
+            if (value) {
+              this.readCustomers();
+            } else {
+              alert("Some errors occurred!");
+            }}
           );
         }
       } else {

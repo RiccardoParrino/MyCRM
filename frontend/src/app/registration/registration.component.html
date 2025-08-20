@@ -1,0 +1,51 @@
+<form class="registration-form">
+  <h1>Sign in to MyCRM</h1>
+  <mat-form-field class="input-text">
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="" value="" [(ngModel)]="name" name="name">
+  </mat-form-field>
+
+  <mat-form-field class="input-text">
+    <mat-label>Surname</mat-label>
+    <input matInput placeholder="" value="" [(ngModel)]="surname" name="surname">
+  </mat-form-field>
+
+  <mat-form-field class="input-text">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="" value="" [(ngModel)]="email" name="email">
+  </mat-form-field>
+
+  <mat-form-field class="input-text">
+    <mat-label>Repeat email</mat-label>
+    <input matInput placeholder="" value="" [(ngModel)]="repeatedEmail" name="repeatedEmail">
+  </mat-form-field>
+
+  <mat-form-field class="input-text">
+    <mat-label>Organization</mat-label>
+    <input matInput placeholder="" value="" type="text" [(ngModel)]="organizationName" name="organizationName">
+  </mat-form-field>
+
+  <mat-form-field class="input-text">
+    <mat-label>Phone Number</mat-label>
+    <input matInput placeholder="" value="" type="text" [(ngModel)]="phoneNumber" name="phoneNumber">
+  </mat-form-field>
+
+  <mat-form-field class="input-text">
+    <mat-label>Username</mat-label>
+    <input matInput placeholder="" value="" [(ngModel)]="username" name="username">
+  </mat-form-field>
+
+  <mat-form-field class="input-text">
+    <mat-label>Password</mat-label>
+    <input matInput placeholder="" value="" type="password" [(ngModel)]="password" name="password">
+  </mat-form-field>
+
+  <mat-form-field class="input-text">
+    <mat-label>Repeat Password</mat-label>
+    <input matInput placeholder="" value="" type="password" [(ngModel)]="repeatedPassword" name="repeatedPassword">
+  </mat-form-field>
+  
+  <div class="button-container">
+    <button mat-flat-button (click)="onSubmit()">Sign In</button>
+  </div>
+</form>

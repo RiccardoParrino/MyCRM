@@ -8,10 +8,10 @@ import { CustomerDTO } from '../dto/customer.dto';
 })
 export class CustomerService {
 
-  readCustomerAPI:string = 'http://localhost:8080/readCustomer';
-  createCustomerAPI:string = 'http://localhost:8080/createCustomer';
-  deleteCustomerAPI:string = 'http://localhost:8080/deleteCustomer';
-  updateCustomerAPI:string = 'http://localhost:8080/updateCustomer';
+  readCustomerAPI:string = 'http://localhost:8080/customer/read';
+  createCustomerAPI:string = 'http://localhost:8080/customer/create';
+  deleteCustomerAPI:string = 'http://localhost:8080/customer/delete';
+  updateCustomerAPI:string = 'http://localhost:8080/customer/update';
 
   constructor(private http: HttpClient) {}
 
