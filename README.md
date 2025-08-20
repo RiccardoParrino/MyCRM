@@ -1,3 +1,41 @@
+# MyCRM
+
+**Login page** - An illustration of the login page
+
+![Logo](readme-images/login-page.png)
+
+**Home Page** - An illustration of the Home Page
+
+![Logo](readme-images/home-page.png)
+
+**Product Page** - An illustration of the Product Page
+
+![Logo](readme-images/product-page.png)
+
+**Create New Product Modal** - An illustration of the Create New Product Modal
+
+![Logo](readme-images/create-new-product-page.png)
+
+**Customer Page** - An illustration of the Customer Page
+
+![Logo](readme-images/customer-page.png)
+
+**Add New Customer Modal** - An illustration of the login page
+
+![Logo](readme-images/add-new-customer-page.png)
+
+**Sales Page** - An illustration of the Sales Page
+
+![Logo](readme-images/sales-page.png)
+
+**Create New Sale Modal** - An illustration of the Create New Sale Modal
+
+![Logo](readme-images/create-new-sale-page.png)
+
+**Settings Page** - An illustration of the Settings Page
+
+![Logo](readme-images/settings-page.png)
+
 # MyCRM - en
 
 Project for Demonstration and Non-Commercial Purposes
