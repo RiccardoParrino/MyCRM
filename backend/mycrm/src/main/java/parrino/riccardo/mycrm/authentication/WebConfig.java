@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -20,6 +21,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import parrino.riccardo.mycrm.model.User;
 
 @Configuration
 @EnableWebSecurity
@@ -84,7 +87,8 @@ public class WebConfig {
     }
 
     @Bean
-    public UserDetailsManager jdbcUserDetailsManager (DataSource dataSource, PasswordEncoder passwordEncoder) {
+    @Profile("oracle")
+    public UserDetailsManager oracleJdbcUserDetailsManager (DataSource dataSource, PasswordEncoder passwordEncoder) {
 
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
 
@@ -96,6 +100,43 @@ public class WebConfig {
 
         jdbcUserDetailsManager.setUsersByUsernameQuery("SELECT USERNAME, PASSWORD, ENABLED FROM MYCRM.USERS WHERE USERNAME = ?");
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("SELECT USER_USERNAME as USERNAME, ROLES_AUTHORITY FROM MYCRM.USERS_ROLES WHERE USER_USERNAME = ?");
+
+        Authorities userRole = Authorities.builder()
+            .authority("USER")
+            .build();
+
+        Authorities adminRole = Authorities.builder()
+            .authority("ADMIN")
+            .build();
+
+        User user = User.builder()
+            .username("ric")
+            .password(passwordEncoder().encode("mycrm"))
+            .build();
+        
+        user.getRoles().add(userRole);
+
+        jdbcUserDetailsManager.createUser(
+            new MyUserPrincipal(
+                user
+        ));
+        return jdbcUserDetailsManager;
+    }
+
+    @Bean
+    @Profile("mysql")
+    public UserDetailsManager mySqlJdbcUserDetailsManager (DataSource dataSource, PasswordEncoder passwordEncoder) {
+
+        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+
+        jdbcUserDetailsManager.setUserExistsSql("SELECT 1 FROM mycrm.users WHERE USERNAME = ?");
+
+        jdbcUserDetailsManager.setCreateUserSql("INSERT INTO mycrm.users (USERNAME, PASSWORD, ENABLED) VALUES (?, ?, ?)");
+
+        jdbcUserDetailsManager.setCreateAuthoritySql("INSERT INTO mycrm.users_roles (USER_USERNAME, ROLES_AUTHORITY) VALUES (?, ?)");
+
+        jdbcUserDetailsManager.setUsersByUsernameQuery("SELECT USERNAME, PASSWORD, ENABLED FROM mycrm.users WHERE USERNAME = ?");
+        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("SELECT USER_USERNAME as USERNAME, ROLES_AUTHORITY FROM mycrm.users_roles WHERE USER_USERNAME = ?");
 
         // Authorities userRole = Authorities.builder()
         //     .authority("USER")
