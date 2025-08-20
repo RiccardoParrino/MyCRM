@@ -1,6 +1,12 @@
 # MyCRM
 
-**Login page** - An illustration of the login page
+This project is a simple CRUD application implementing a small CRM with the page of Sales, Products and Customers.
+
+This project doesn't pretend to be professional or for commercial purposes as simple as it is.
+
+Here you can find some screeshots from the live project.
+
+**Login page** - An illustration of the Login page
 
 ![Logo](readme-images/login-page.png)
 
