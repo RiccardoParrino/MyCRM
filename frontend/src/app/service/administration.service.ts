@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserDTO } from '../dto/user.dto';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdministrationService {
 
-  private allRegisteredUserUrl : string = 'http://localhost:8080/user/getAllUser';
+  private allRegisteredUserUrl : string = environment.apiUrl + '/user/getAllUser';
 
   constructor(private http:HttpClient) { }
 

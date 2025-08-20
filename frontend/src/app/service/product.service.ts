@@ -3,16 +3,17 @@ import { ProductDTO } from '../dto/product.dto';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Product } from '../model/product.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  readUrl : string = 'http://localhost:8080/product/read'
-  createUrl : string = 'http://localhost:8080/product/create'
-  updateUrl : string = 'http://localhost:8080/product/update'
-  deleteUrl : string = 'http://localhost:8080/product/delete'
+  readUrl : string = environment.apiUrl + '/product/read'
+  createUrl : string = environment.apiUrl + '/product/create'
+  updateUrl : string = environment.apiUrl + '/product/update'
+  deleteUrl : string = environment.apiUrl + '/product/delete'
 
   constructor(
     private http:HttpClient

@@ -4,16 +4,17 @@ import { Observable } from 'rxjs';
 import { SaleDTO } from '../dto/sale.dto';
 import { Sale } from '../model/sale.model';
 import { SaleId } from '../model/saleId.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SaleService {
 
-  readUrl : string = 'http://localhost:8080/sale/read'
-  createUrl : string = 'http://localhost:8080/sale/create'
-  updateUrl : string = 'http://localhost:8080/sale/update'
-  deleteUrl : string = 'http://localhost:8080/sale/delete'
+  readUrl : string = environment.apiUrl + '/sale/read'
+  createUrl : string = environment.apiUrl + '/sale/create'
+  updateUrl : string = environment.apiUrl + '/sale/update'
+  deleteUrl : string = environment.apiUrl + '/sale/delete'
 
   constructor(private httpClient:HttpClient) {}
 
