@@ -32,3 +32,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Production Profile ###
+src/main/resources/application-mysql-aws.properties

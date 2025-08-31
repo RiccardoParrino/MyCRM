@@ -2,6 +2,7 @@ package parrino.riccardo.mycrm.authentication;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -28,13 +29,16 @@ import parrino.riccardo.mycrm.model.User;
 @EnableWebSecurity
 public class WebConfig {
 
+    @Value("${cors.allowed.origins}")
+    private String corsAllowedOrigins;
+
     @Bean
     WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:4200")
+                        .allowedOrigins(corsAllowedOrigins)
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
                         .allowedHeaders("*");
             }
@@ -124,7 +128,7 @@ public class WebConfig {
     }
 
     @Bean
-    @Profile("mysql")
+    @Profile("mysql || mysql-aws")
     public UserDetailsManager mySqlJdbcUserDetailsManager (DataSource dataSource, PasswordEncoder passwordEncoder) {
 
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
