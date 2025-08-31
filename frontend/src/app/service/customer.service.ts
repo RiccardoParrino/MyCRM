@@ -2,16 +2,17 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CustomerDTO } from '../dto/customer.dto';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
 
-  readCustomerAPI:string = 'http://localhost:8080/customer/read';
-  createCustomerAPI:string = 'http://localhost:8080/customer/create';
-  deleteCustomerAPI:string = 'http://localhost:8080/customer/delete';
-  updateCustomerAPI:string = 'http://localhost:8080/customer/update';
+  readCustomerAPI:string = environment.apiUrl + '/customer/read';
+  createCustomerAPI:string = environment.apiUrl + '/customer/create';
+  deleteCustomerAPI:string = environment.apiUrl + '/customer/delete';
+  updateCustomerAPI:string = environment.apiUrl + '/customer/update';
 
   constructor(private http: HttpClient) {}
 

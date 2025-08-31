@@ -2,14 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserDTO } from '../dto/user.dto';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  userDetailsUrl:string = 'http://localhost:8080/user/userDetails'
-  updateUserDetailsUrl:string = 'http://localhost:8080/user/updateUserDetails'
+  userDetailsUrl:string = environment.apiUrl + '/user/userDetails';
+  updateUserDetailsUrl:string = environment.apiUrl + '/user/updateUserDetails';
 
   constructor(
     private http:HttpClient

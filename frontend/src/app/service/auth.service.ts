@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, Observable, of, Subject, switchMap, tap } from 'rxjs';
 import { __values } from 'tslib';
 import { UserDTO } from '../dto/user.dto';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,9 @@ export class AuthService {
   public isLogged: boolean = false;
   public usernameLogged:string = '';
   public passwordLogged:string = '';
-  private registrationUrl: string = 'http://localhost:8080/auth/registration';
-  private loginUrl: string = 'http://localhost:8080/auth/login';
-  private refreshUrl: string = 'http://localhost:8080/auth/refreshToken'
+  private registrationUrl: string = environment.apiUrl + '/auth/registration';
+  private loginUrl: string = environment.apiUrl + '/auth/login';
+  private refreshUrl: string = environment.apiUrl + '/auth/refreshToken'
 
   isRefreshing = false;
   private refreshTokenSubject = new BehaviorSubject<string | null>(null);

@@ -4,14 +4,15 @@ import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { UserDTO } from '../dto/user.dto';
 import { UserService } from './user.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SettingService {
 
-  resetUrl:string = "http://localhost:8080/auth/resetPassword";
-  changePasswordUrl:string = "http://localhost:8080/auth/changePassword";
+  resetUrl:string = environment.apiUrl + '/auth/resetPassword';
+  changePasswordUrl:string = environment.apiUrl + '/auth/changePassword';
 
   constructor(private http:HttpClient,
     private authService:AuthService,
