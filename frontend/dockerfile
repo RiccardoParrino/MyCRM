@@ -1,26 +1,12 @@
-FROM node:22.20.0-alpine as base
+FROM node:22.20.0-alpine
 
 WORKDIR /usr/src/app
 
+COPY [ "package.json", "package-lock.json", "./" ]
+
+RUN npm install
+
 COPY . .
-
-# deps stage
-FROM base as deps
-
-RUN npm ci
-
-# build stage
-FROM deps as build
-
-RUN npm run build
-
-# final stage
-FROM base as final
-
-COPY --from=deps /usr/src/app/node_modules ./node_modules
-COPY --from=build /usr/src/app/dist ./dist
-COPY package.json .
-COPY package-lock.json .
 
 EXPOSE 4200
 
